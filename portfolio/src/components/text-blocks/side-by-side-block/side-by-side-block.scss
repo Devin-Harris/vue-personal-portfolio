@@ -1,0 +1,53 @@
+.side-by-side-block-container {
+  width: 40%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  
+  &__side-section {
+    width: 100%;
+    padding: 4rem 2rem;
+    margin-top: -5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 5rem 3rem 5rem 8rem auto;
+    border: 2px solid $theme-greylight;
+    background-color: white;
+
+    &:first-child {
+      border-right: 1px;
+      border-radius: .75rem 0 0 .75rem;
+    }
+
+    &:last-child {
+      border-radius: 0 .75rem .75rem 0;
+    }
+
+    i {
+      color: $primary;
+      font-size: 2.5rem;
+    }
+
+    h1 {
+      font-size: 150%;
+      color: $theme-greydark;
+    }
+
+    h4 {
+      font-weight: 400;
+      color: $theme-greydark;
+      font-size: .75rem;
+      padding: 0 2.5rem;
+    }
+
+    &__row {
+
+      h1 {
+        color: $primary;
+        font-size: 1rem;
+      }
+    }
+
+  }
+  
+}

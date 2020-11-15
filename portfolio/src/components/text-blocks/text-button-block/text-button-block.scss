@@ -1,0 +1,26 @@
+.text-button-block-container {
+  margin: 5rem auto;
+  width: 30%;
+
+  &__heading {
+    
+  }  
+
+  &__text {
+    margin: .5rem 0;
+    color: white;
+  }  
+
+  &__btns {
+    margin: .5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .icon-button-container {
+      &:hover {
+        background-color: $theme-greymiddle;
+      }
+    }
+  }  
+
+}

@@ -1,0 +1,36 @@
+.text-card-block-container {
+  padding: 10rem 0;
+  margin: 0 auto;
+  width: 80%;
+
+  &__heading {
+    
+  }  
+
+  &__text {
+    margin: .5rem 0;
+    color: $theme-greydark;
+    span {
+      color: $primary;
+      font-weight: 700;
+      transition: .3s;
+      &:hover {
+        cursor: pointer;
+        color: $primary-light;
+      }
+    }
+  }  
+
+  &__btns {
+    margin: .5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .icon-button-container {
+      &:hover {
+        background-color: $theme-greymiddle;
+      }
+    }
+  }  
+
+}
