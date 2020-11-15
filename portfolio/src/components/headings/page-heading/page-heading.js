@@ -34,7 +34,7 @@ export default {
         linksElm.style.right = illustrationBounds.width - 16 + 'px'
         linksElm.style.margin = 0
         linksElm.classList.remove('hidden')
-      }, 50)
+      }, 500)
     }
   }
 }

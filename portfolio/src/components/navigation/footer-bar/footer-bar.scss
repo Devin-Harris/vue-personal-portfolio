@@ -1,0 +1,58 @@
+.footer-bar-container {
+  background-color: $theme-greymiddle;
+  min-height: 30vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__illustration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(-1);
+    height: 115%;
+    width: auto;
+  }
+
+  &__links {
+    width: 60vw;
+    text-align: left;
+    color: white;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+
+    &__navigation, &__media, &__copyright {
+      h1 {
+        font-size: 1.75rem;
+      }
+      h4 {
+        font-weight: 400;
+        width: max-content;
+        font-size: 1rem;
+
+        &:hover {
+          cursor: pointer;
+          color: $theme-grey;
+        }
+      }
+    }
+
+    &__copyright {
+      h4 {
+        font-weight: 400;
+        width: max-content;
+        font-size: 1rem;
+
+        &:hover {
+          cursor: default;
+          color: unset;
+        }
+      }
+    }
+
+  }
+
+}

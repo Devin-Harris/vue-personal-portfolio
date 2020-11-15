@@ -1,0 +1,52 @@
+.footer-button-container {
+  min-width: 35rem;
+  padding: 1.5rem;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: .75rem;
+
+  &__text {
+    text-align: left;
+    color: white;
+
+    h4 {
+      font-weight: 400;
+    }
+    h1 {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__button {
+    padding: .5rem 2rem;
+    border-radius: 50rem;
+    background-color: $primary;
+    color: white;
+    transition: .3s;
+    font-weight: 700;
+    font-size: .85rem;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $primary-light;
+    }
+  }
+
+  &__dark {
+    background-color: $theme-greydark;
+  }
+
+  &__light {
+    background-color: $theme-greywhite;
+
+    .footer-button-container__text {
+      color: $theme-greydark;
+    }
+  }
+
+}

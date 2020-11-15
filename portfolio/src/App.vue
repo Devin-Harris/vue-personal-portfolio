@@ -1,11 +1,31 @@
 <template>
-<div id="nav">
-  <router-link to="/">Home</router-link>
-  <router-link to="/my-work">My Work</router-link>
-  <router-link to="/contact">Contact Me</router-link>
-</div>
-<router-view />
+  <div>
+    <nav-bar />
+    <router-view />
+    <footer-bar :footerButtonTheme="footerButtonTheme" />
+  </div>
 </template>
+
+<script>
+import NavBar from '@/components/navigation/nav-bar'
+import FooterBar from '@/components/navigation/footer-bar'
+
+export default {
+  name: 'app',
+  components: {
+    NavBar,
+    FooterBar
+  },
+  computed: {
+    footerButtonTheme() {
+      let theme = 'dark'
+      if (this.$route.name === 'Contact')
+        theme = 'light'
+      return theme
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 * {
@@ -23,48 +43,4 @@
   height: 100%;
 }
 
-#nav {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: $theme-grey;
-  border-radius: .75rem;
-  z-index: 10;
-
-  a {
-    font-size: 1rem;
-    border: none;
-    outline: none;
-    font-weight: 500;
-    font-size: 1rem;
-    padding: 1rem 0;
-    width: 11rem;
-    color: white;
-    text-decoration: none;
-    background-color: $theme-grey;
-    display: inline-block;
-    transition: .3s;
-
-    &.router-link-exact-active {
-      background-color: $primary;
-
-      &:hover {
-        background-color: $primary;
-      }
-    }
-
-    &:first-child {
-      border-radius: 0 0 0 .75rem;
-    }
-
-    &:last-child {
-      border-radius: 0 0 .75rem 0;
-    }
-
-    &:hover {
-      background-color: $theme-greymiddle;
-    }
-  }
-}
 </style>
