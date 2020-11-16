@@ -16,6 +16,18 @@ export default {
         return
       }
 
+      if (name === 'work') {
+        if (this.$route.name === 'Home')
+          document.querySelector('.page-work-section').scrollIntoView()
+        else {
+          this.$router.push('/')
+          setTimeout(() => {
+            document.querySelector('.page-work-section').scrollIntoView()
+          }, 50)
+        }
+        return
+      }
+
       this.$router.push({ name })
     }
   }

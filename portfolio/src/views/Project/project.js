@@ -48,5 +48,18 @@ export default {
         document.querySelector('.page-work-section').scrollIntoView()
       }, 50)
     }
-  }
+  },
+  async mounted() {
+    const category = this.$store.state.project_categories.find(c => c.category_name === this.$route.params.projectCategory)
+
+    if (category.subCategories.length > 0) {
+      const url = "http://localhost:3000/project-sub-categories"
+      const response = await fetch(url, {
+        method: 'GET'
+      })
+      const data = await response.json()
+      console.log(data)
+      this.projectHasSubCategory = true
+    }
+  },
 }
