@@ -1,26 +1,47 @@
 import PageHeading from '@/components/headings/page-heading'
+import EditorHeading from '@/components/headings/editor-heading'
 
 export default {
   name: 'project',
   components: {
-    PageHeading
-  },
-  created() {
-    this.projectCategory = this.$route.params.projectCategory
-    if (this.projectCategory === 'add' || this.projectCategory === 'edit' || this.projectCategory === 'delete') {
-      this.projectEditor = true
-    }
-    if (this.$route.params.projectSubCategory) {
-      this.projectSubCategory = this.$route.params.projectSubCategory
-    }
-    console.log(this.projectEditor)
+    PageHeading,
+    EditorHeading
   },
   data() {
     return {
-      projectCategory: '',
-      projectEditor: false,
-      projectHasSubCategory: false,
-      projectSubCategory: null
+      projectHasSubCategory: false
     }
-  }
+  },
+  computed: {
+    projectCategory() {
+      return this.$route.params.projectCategory
+    },
+    projectEditor() {
+      if (this.projectCategory === 'add' || this.projectCategory === 'edit' || this.projectCategory === 'delete') {
+        return true
+      } else {
+        return false
+      }
+    },
+    projectEditorTitle() {
+      let title = ''
+      if (this.projectCategory === 'add')
+        title = 'Add new project'
+      else if (this.projectCategory === 'edit')
+        title = 'Edit a project'
+      else if (this.projectCategory === 'delete')
+        title = 'Delete a project'
+      return title
+    },
+    projectSubCategory() {
+      if (this.$route.params.projectSubCategory) {
+        return this.$route.params.projectSubCategory
+      } else {
+        return null
+      }
+    }
+  },
+  mounted() {
+    console.log(this.$route)
+  },
 }

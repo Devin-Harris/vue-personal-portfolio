@@ -1,0 +1,19 @@
+.editor-heading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    margin: 0 .5rem;
+    font-size: 2rem;
+    color: white
+  }
+
+  &__btn {
+    &:hover {
+      background-color: $theme-greymiddle;
+    }
+  }
+  
+}

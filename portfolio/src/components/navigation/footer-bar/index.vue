@@ -4,23 +4,27 @@
     
     <img src="../../../assets/images/selfIllustrationSmall.png" class="footer-bar-container__illustration" />
   
-    <footer-button :btnText="'Lets do this'" :subTitle="'Need a design?'" :title="'Commission me!'" :theme="footerButtonTheme" />
+    <footer-button
+      v-if="$route.params.projectCategory !== 'add' && $route.params.projectCategory !== 'edit' && $route.params.projectCategory !== 'delete'"
+      :btnText="'Lets do this'"
+      :subTitle="'Need a design?'"
+      :title="'Commission me!'"
+      :theme="footerButtonTheme"
+    />
 
     <div class="footer-bar-container__links">
 
       <div class="footer-bar-container__links__navigation">
         <h1>Page Navigation</h1>
-        <h4>Top of page</h4>
-        <h4>Home</h4>
+        <h4 @click="redirect('top')">Top of page</h4>
+        <h4 @click="redirect('Home')">Home</h4>
         <h4>My work</h4>
-        <h4>Contact Me</h4>
+        <h4 @click="redirect('Contact')">Contact Me</h4>
       </div>
 
       <div class="footer-bar-container__links__media">
         <h1>Social Media</h1>
-        <h4>Youtube</h4>
-        <h4>GitHub</h4>
-        <h4>Instagram</h4>
+        <h4 v-for="media in $store.state.media" :key="media.name" @click="openLink(media.link)">{{media.name}}</h4>
       </div>
 
       <div class="footer-bar-container__links__copyright">
@@ -35,4 +39,4 @@
 
 <script src="./footer-bar.js"></script>
 
-<style lang="scss" src="./footer-bar.scss"></style>
+<style lang="scss" src="./footer-bar.scss" scoped></style>

@@ -69,5 +69,13 @@ export default {
         }
       ]
     }
-  }
+  },
+  async mounted() {
+    const url = "http://localhost:3000/allCategories"
+    const response = await fetch(url, {
+      method: 'GET'
+    })
+    this.$store.state.project_categories = await response.json()
+    console.log(this.$store.state.project_categories)
+  },
 }

@@ -18,7 +18,8 @@ export default createStore({
         link: 'https://www.instagram.com/devinharris_designs/?hl=en',
         iconClass: 'fab fa-instagram'
       }
-    ]
+    ],
+    project_categories: []
   },
   mutations: {
   },

@@ -31,6 +31,15 @@
         background-color: $theme-greymiddle;
       }
     }
-  }  
+  }
+
+  &__cards {
+    margin: 0 auto;
+    width: 50vw;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    place-content: center;
+    place-items: center;
+  }
 
 }

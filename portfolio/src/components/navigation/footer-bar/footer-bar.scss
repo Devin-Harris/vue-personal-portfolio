@@ -1,6 +1,6 @@
 .footer-bar-container {
   background-color: $theme-greymiddle;
-  min-height: 30vh;
+  min-height: 40vh;
   position: relative;
   display: flex;
   justify-content: center;
@@ -13,29 +13,35 @@
     transform: scaleX(-1);
     height: 115%;
     width: auto;
+    z-index: 1;
   }
 
   &__links {
-    width: 60vw;
+    position: relative;
+    z-index: 5;
+    width: max-content;
     text-align: left;
     color: white;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, auto);
     justify-content: center;
 
     &__navigation, &__media, &__copyright {
+      margin: 0 2rem;
+      width: max-content;
       h1 {
         font-size: 1.75rem;
+        width: max-content;
       }
       h4 {
         font-weight: 400;
-        width: max-content;
         font-size: 1rem;
+        width: max-content;
 
         &:hover {
           cursor: pointer;
-          color: $theme-grey;
+          color: $theme-greydark;
         }
       }
     }

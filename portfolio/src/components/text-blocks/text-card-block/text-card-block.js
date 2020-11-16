@@ -1,5 +1,6 @@
 import IconHeading from '@/components/headings/icon-heading'
 import IconButton from '@/components/buttons/icon-button'
+import CategoryCard from '@/components/projects/category-card'
 
 export default {
   name: 'text-card-block',
@@ -13,7 +14,8 @@ export default {
   ],
   components: {
     IconHeading,
-    IconButton
+    IconButton,
+    CategoryCard
   },
   data() {
     return {}

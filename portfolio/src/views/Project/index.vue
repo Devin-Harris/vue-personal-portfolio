@@ -3,6 +3,7 @@
 
     <div v-if="projectEditor">
      <!-- load in cards for each sub category within the current projectCategory -->
+     <editor-heading :title="projectEditorTitle" :btnText="'Go back to home page'" />
     </div>
 
     <div v-else-if="projectHasSubCategory && !projectSubCategory">
