@@ -8,5 +8,12 @@ export default {
   data() {
     return {}
   },
-  methods: {}
+  methods: {
+    redirect(category) {
+      if (this.$route.params.projectSubCategory)
+        this.$router.push(`/projects/${category.category_name}/${category.sub_category_name}`)
+      else
+        this.$router.push(`/projects/${category.category_name}`)
+    }
+  }
 }

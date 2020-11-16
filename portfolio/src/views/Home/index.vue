@@ -4,6 +4,7 @@
     <div class="home-container__heading">
       <page-heading
         class="page-heading-card"
+        @heading-button-click="headingBtnClick()"
         :title="'Hello.'"
         :subTitle="'My name is Devin Harris'"
         :btnText="'View my work'"

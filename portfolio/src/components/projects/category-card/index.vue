@@ -1,5 +1,5 @@
 <template>
-  <div class="category-card-container">
+  <div class="category-card-container" @click="redirect(category)">
 
     <div class="category-card-container__image-container">
       <i class="fas fa-mouse-pointer"></i>

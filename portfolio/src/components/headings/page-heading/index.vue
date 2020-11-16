@@ -3,7 +3,7 @@
     <div class="page-heading-container__text">
       <h1 :class="{'marginBottom': !subTitle}">{{title}}</h1>
       <h4 v-if="subTitle">{{subTitle}}</h4>
-      <icon-button :btnText="btnText" :hasIcon="true" />
+      <icon-button @click="$emit('heading-button-click', $event)" :btnText="btnText" :hasIcon="true" />
     </div>
     <div v-if="isSocialMediaShown" class="page-heading-container__links" :class="{'hidden': isIllustrationShown}">
       <div class="media_container" v-for="media in $store.state.media" :key="media.name">

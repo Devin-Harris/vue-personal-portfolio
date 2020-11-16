@@ -18,6 +18,7 @@
       <!-- load in category and corresponding images with that category -->
       <page-heading
         class="page-heading-card"
+        @heading-button-click="headingBtnClick()"
         :title="projectCategory"
         :subTitle="''"
         :btnText="'View my other work'"

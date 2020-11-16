@@ -41,7 +41,12 @@ export default {
       }
     }
   },
-  mounted() {
-    console.log(this.$route)
-  },
+  methods: {
+    headingBtnClick() {
+      this.$router.push('/')
+      setTimeout(() => {
+        document.querySelector('.page-work-section').scrollIntoView()
+      }, 50)
+    }
+  }
 }

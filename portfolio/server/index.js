@@ -87,7 +87,7 @@ app.post('/api', (req, res) => {
   res.end()
 })
 
-app.get('/allCategories', async (req, res) => {
+app.get('/project-categories', async (req, res) => {
   const data = await findOneListingByName()
   res.json(data)
 })

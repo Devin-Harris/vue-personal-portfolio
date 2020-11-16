@@ -70,12 +70,16 @@ export default {
       ]
     }
   },
+  methods: {
+    headingBtnClick() {
+      document.querySelector('.page-work-section').scrollIntoView()
+    }
+  },
   async mounted() {
-    const url = "http://localhost:3000/allCategories"
+    const url = "http://localhost:3000/project-categories"
     const response = await fetch(url, {
       method: 'GET'
     })
     this.$store.state.project_categories = await response.json()
-    console.log(this.$store.state.project_categories)
   },
 }
