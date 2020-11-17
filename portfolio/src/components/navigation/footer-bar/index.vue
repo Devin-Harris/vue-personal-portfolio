@@ -6,10 +6,11 @@
   
     <footer-button
       v-if="$route.params.projectCategory !== 'add' && $route.params.projectCategory !== 'edit' && $route.params.projectCategory !== 'delete'"
-      :btnText="'Lets do this'"
-      :subTitle="'Need a design?'"
-      :title="'Commission me!'"
+      :btnText="$route.name === 'Contact' ? 'View Projects' : 'Lets do this'"
+      :subTitle="$route.name === 'Contact' ? 'Want to see my projects?' : 'Need a design?'"
+      :title="$route.name === 'Contact' ? 'Check them out!' : 'Commission me!'"
       :theme="footerButtonTheme"
+      @footer-button-click="redirect('footer-button')"
     />
 
     <div class="footer-bar-container__links">

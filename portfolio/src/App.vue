@@ -7,36 +7,39 @@
 </template>
 
 <script>
-import NavBar from '@/components/navigation/nav-bar'
-import FooterBar from '@/components/navigation/footer-bar'
+import NavBar from "@/components/navigation/nav-bar";
+import FooterBar from "@/components/navigation/footer-bar";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
     NavBar,
-    FooterBar
+    FooterBar,
   },
   computed: {
     footerButtonTheme() {
-      let theme = 'dark'
-      if (this.$route.name === 'Contact')
-        theme = 'light'
-      return theme
-    }
-  }
-}
+      let theme = "dark";
+      if (this.$route.params.projectName !== undefined && this.$route.params.projectName !== null && this.$route.params.projectName !== '') theme = "light";
+      return theme;
+    },
+  },
+  async beforeCreate() {
+    const url = "http://localhost:3000/project-categories";
+    const response = await fetch(url, {
+      method: "GET",
+    });
+    let data = await response.json();
+    this.$store.state.project_categories = Array.from(data);
+  },
+};
 </script>
 
 <style lang="scss">
-html {
-  scroll-behavior: smooth;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
 }
 
 #app {
@@ -46,5 +49,4 @@ html {
   text-align: center;
   height: 100%;
 }
-
 </style>

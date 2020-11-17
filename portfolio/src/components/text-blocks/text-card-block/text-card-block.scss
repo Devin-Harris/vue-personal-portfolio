@@ -26,9 +26,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    .icon-button-container {
+
+    &__btn {
+      padding: 1rem;
+      background-color: $theme-greydark;
+      outline: none;
+      border: none;
+      width: 10rem;
+      color: white;
+      transition: .3s;
+
       &:hover {
+        cursor: pointer;
         background-color: $theme-greymiddle;
+      }
+
+    }
+
+    .active {
+      background-color: $primary;
+
+      &:hover {
+        cursor: default;
+        background-color: $primary;
       }
     }
   }
@@ -37,9 +57,10 @@
     margin: 1rem auto;
     width: 50vw;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    place-content: center;
-    place-items: center;
+    // grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, 10.5rem);
+    justify-items: center;
+    justify-content: center;
   }
 
 }

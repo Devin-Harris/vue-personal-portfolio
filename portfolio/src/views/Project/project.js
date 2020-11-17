@@ -1,15 +1,24 @@
 import PageHeading from '@/components/headings/page-heading'
+import ProjectImageGallery from '@/components/projects/project-image-gallery'
 import EditorHeading from '@/components/headings/editor-heading'
+import TextCardBlock from '@/components/text-blocks/text-card-block'
+import TextButtonBlock from '@/components/text-blocks/text-button-block'
 
 export default {
   name: 'project',
   components: {
     PageHeading,
-    EditorHeading
+    EditorHeading,
+    TextCardBlock,
+    TextButtonBlock,
+    ProjectImageGallery
   },
   data() {
     return {
-      projectHasSubCategory: false
+      projectHasSubCategory: false,
+      category: {},
+      subCategories: [],
+      activeSubCategory: {}
     }
   },
   computed: {
@@ -39,27 +48,52 @@ export default {
       } else {
         return null
       }
+    },
+    subCategoriesItems() {
+      let items = []
+      this.subCategories.map(sc => Array.from(sc.projects).forEach(project => items.push(project)))
+      return items.filter(item => this.activeSubCategory.projects.find(project => project === item))
+    },
+    getProjectDescription() {
+      console.log(this.subCategoriesItems)
+      const project = this.subCategoriesItems.find(project => project.name === this.$route.params.projectName)
+      return project.description
     }
   },
   methods: {
+    async initData() {
+
+      // Wait for store to be populated by app call
+      while (this.$store.state.project_categories.length === 0) {
+        await new Promise(resolve => setTimeout(resolve, 10))
+      }
+
+      this.category = this.$store.state.project_categories.find(c => c.name === this.$route.params.projectCategory)
+
+      if (this.category && this.category.subCategories.length > 0) {
+        const url = "http://localhost:3000/project-sub-categories"
+        const response = await fetch(url, {
+          method: 'GET'
+        })
+        this.subCategories = await response.json()
+        this.activeSubCategory = this.subCategories[0]
+        this.projectHasSubCategory = true
+      }
+    },
     headingBtnClick() {
       this.$router.push('/')
       setTimeout(() => {
-        document.querySelector('.page-work-section').scrollIntoView()
+        document.querySelector('.page-work-section').scrollIntoView({ behavior: "smooth" })
       }, 50)
+    },
+    subCategoryClick(subCategory) {
+      this.activeSubCategory = subCategory
+    },
+    subCategoryCardClick(subCategoryCardName) {
+      this.$router.push(`/projects/${this.$route.params.projectCategory}/${this.activeSubCategory.sub_category_name}/${subCategoryCardName}`)
     }
   },
   async mounted() {
-    const category = this.$store.state.project_categories.find(c => c.category_name === this.$route.params.projectCategory)
-
-    if (category.subCategories.length > 0) {
-      const url = "http://localhost:3000/project-sub-categories"
-      const response = await fetch(url, {
-        method: 'GET'
-      })
-      const data = await response.json()
-      console.log(data)
-      this.projectHasSubCategory = true
-    }
-  },
+    await this.initData()
+  }
 }

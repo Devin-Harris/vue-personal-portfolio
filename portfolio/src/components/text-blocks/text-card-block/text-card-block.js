@@ -10,7 +10,10 @@ export default {
     'theme',
     'paragraphText',
     'paragraphEmphasisText',
-    'buttons'
+    'buttons',
+    'items',
+    'category',
+    'activeButton'
   ],
   components: {
     IconHeading,
@@ -18,7 +21,9 @@ export default {
     CategoryCard
   },
   data() {
-    return {}
+    return {
+      currentCategorySelection: ''
+    }
   },
   methods: {}
 }

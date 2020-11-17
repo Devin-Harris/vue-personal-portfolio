@@ -6,7 +6,7 @@
       <h1>{{title}}</h1>
     </div>
 
-    <div class="footer-button-container__button">
+    <div class="footer-button-container__button" @click="$emit('footer-button-click')">
       {{btnText}}
     </div>
   </div>

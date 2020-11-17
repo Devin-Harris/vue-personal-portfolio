@@ -20,7 +20,7 @@ const routes = [
     component: Project
   },
   {
-    path: '/projects/:projectCategory/:projectSubCategory?',
+    path: '/projects/:projectCategory/:projectSubCategory?/:projectName?',
     name: 'Projects',
     component: Project
   }
@@ -28,7 +28,10 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  scrollBehavior() {
+    window.scrollTo({ left: 0, top: 0, behavior: 'auto' })
+  }
 })
 
 export default router

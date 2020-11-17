@@ -31,6 +31,7 @@
         :paragraphText="'Here are some projects I have worked on. Want a commission?'"
         :paragraphEmphasisText="'Contact me.'"
         :buttons="[]"
+        :items="$store.state.project_categories"
       />
     </div>
   </div>
