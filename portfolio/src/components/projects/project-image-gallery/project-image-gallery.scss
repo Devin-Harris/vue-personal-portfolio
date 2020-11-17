@@ -1,0 +1,29 @@
+.project-image-gallery-container {
+  display: grid;
+  margin: 0 auto;
+  padding: 2rem 0 10rem 0;
+  width: 50vw;
+  height: max-content;
+  grid-template-columns: repeat(5, 20vmin);
+  grid-gap: 1rem;
+  grid-auto-rows: 20vmin;
+  justify-items: center;
+  justify-content: center;
+
+  &__image-container {
+    background-color: $theme-greylight;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__image {
+      height: 95%;
+      width: 95%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+}
