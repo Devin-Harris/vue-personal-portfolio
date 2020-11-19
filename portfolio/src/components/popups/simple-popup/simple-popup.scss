@@ -1,0 +1,54 @@
+.simple-popup-container {
+  position: relative;
+  width: 100%;
+
+  &__dropdown-popup {
+    position: absolute;
+    top: .5rem;
+    left: 0;
+    width: 100%;
+    background-color: $theme-greywhite;
+    padding: 1rem 0;
+    border-radius: .5rem;
+    border: 1px solid $theme-greymiddle;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+    z-index: 4;
+
+    &__arrow {
+      position: absolute;
+      top: -.2rem;
+      left: 50%;
+      height: 1rem;
+      width: 1rem;
+      background-color: $theme-greywhite;
+      border: 1px solid $theme-greymiddle;
+      z-index: -1;
+      transform: rotate(45deg) translate(-50%, 0%);
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1rem;
+        width: 1rem;
+        background-color: $theme-greywhite;
+      }
+    }
+
+    &__item {
+      h4 {
+        font-weight: 400;
+        color: $theme-greydark;
+        text-align: left;
+        padding: .25rem 1rem;
+        transition: .3s;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $primary-light;
+        }
+      }
+    }
+  }
+}

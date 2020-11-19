@@ -1,0 +1,36 @@
+.editor-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary-light;
+  padding: .5rem 1.5rem;
+  margin: .5rem 0 0 0;
+  transition: .3s;
+  color: white;
+  pointer-events: none;
+
+  h1 {
+    background-color: none;
+    font-size: .8rem;
+    font-weight: 400;
+    margin: 0 .25rem;
+  }
+  
+  i {
+    margin: 0 .25rem;
+    font-size: .8rem;
+  }
+
+  
+}
+
+.active {
+  pointer-events: all;
+  background-color: $primary;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $theme-greymiddle;
+  }
+}
