@@ -1,3 +1,4 @@
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'project-image-gallery',
@@ -7,20 +8,25 @@ export default {
   components: {
   },
   computed: {
+    ...mapGetters([
+      'getCategories'
+    ]),
     category() {
-      return this.$store.state.project_categories.find(category => category.name === this.$route.params.projectCategory)
+      return this.getCategories.data.find(category => category.name === this.$route.params.projectCategory)
     }
   },
   data() {
     return {}
   },
-  methods: {},
+  methods: {
+    ...mapActions([
+      'fetchCategories'
+    ]),
+  },
   async mounted() {
-
     // Wait for store to be populated by app call
     while (this.$store.state.project_categories.length === 0) {
       await new Promise(resolve => setTimeout(resolve, 10))
     }
-    console.log(this.category)
   },
 }

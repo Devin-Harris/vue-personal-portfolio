@@ -1,3 +1,4 @@
+import { mapActions, mapGetters } from 'vuex'
 import PageHeading from '@/components/headings/page-heading'
 import TextButtonBlock from '@/components/text-blocks/text-button-block'
 import TextCardBlock from '@/components/text-blocks/text-card-block'
@@ -10,6 +11,9 @@ export default {
     TextButtonBlock,
     TextCardBlock,
     SideBySideBlock
+  },
+  computed: {
+    ...mapGetters(['getCategories'])
   },
   data() {
     return {
@@ -71,6 +75,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['fetchCategories']),
     headingBtnClick() {
       document.querySelector('.page-work-section').scrollIntoView({ behavior: "smooth" })
     }

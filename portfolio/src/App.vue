@@ -7,30 +7,36 @@
 </template>
 
 <script>
-import NavBar from "@/components/navigation/nav-bar";
-import FooterBar from "@/components/navigation/footer-bar";
+import { mapActions, mapGetters } from 'vuex';
+import NavBar from '@/components/navigation/nav-bar';
+import FooterBar from '@/components/navigation/footer-bar';
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
     NavBar,
-    FooterBar,
+    FooterBar
   },
   computed: {
+    ...mapGetters(['getCategories']),
     footerButtonTheme() {
-      let theme = "dark";
-      if (this.$route.params.projectName !== undefined && this.$route.params.projectName !== null && this.$route.params.projectName !== '') theme = "light";
+      let theme = 'dark';
+      if (
+        this.$route.params.projectName !== undefined &&
+        this.$route.params.projectName !== null &&
+        this.$route.params.projectName !== ''
+      )
+        theme = 'light';
       return theme;
-    },
+    }
   },
-  async beforeCreate() {
-    const url = "http://localhost:3000/project-categories";
-    const response = await fetch(url, {
-      method: "GET",
-    });
-    let data = await response.json();
-    this.$store.state.project_categories = Array.from(data);
+  methods: {
+    ...mapActions(['fetchCategories'])
   },
+  async beforeCreate() {},
+  async mounted() {
+    await this.fetchCategories();
+  }
 };
 </script>
 
@@ -39,7 +45,7 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
 }
 
 #app {

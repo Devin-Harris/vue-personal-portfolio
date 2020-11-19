@@ -1,6 +1,10 @@
+import { mapActions, mapGetters } from 'vuex'
 import PageHeading from '@/components/headings/page-heading'
 import ProjectImageGallery from '@/components/projects/project-image-gallery'
+import ProjectEditor from '@/components/projects/project-editor'
 import EditorHeading from '@/components/headings/editor-heading'
+import IconHeading from '@/components/headings/icon-heading'
+import SimpleDropdown from '@/components/dropdowns/simple-dropdown'
 import TextCardBlock from '@/components/text-blocks/text-card-block'
 import TextButtonBlock from '@/components/text-blocks/text-button-block'
 
@@ -9,9 +13,12 @@ export default {
   components: {
     PageHeading,
     EditorHeading,
+    IconHeading,
     TextCardBlock,
     TextButtonBlock,
-    ProjectImageGallery
+    SimpleDropdown,
+    ProjectImageGallery,
+    ProjectEditor
   },
   data() {
     return {
@@ -22,6 +29,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters([
+      'getCategories'
+    ]),
     projectCategory() {
       return this.$route.params.projectCategory
     },
@@ -55,20 +65,22 @@ export default {
       return items.filter(item => this.activeSubCategory.projects.find(project => project === item))
     },
     getProjectDescription() {
-      console.log(this.subCategoriesItems)
       const project = this.subCategoriesItems.find(project => project.name === this.$route.params.projectName)
       return project.description
     }
   },
   methods: {
+    ...mapActions([
+      'fetchCategories'
+    ]),
     async initData() {
-
+      await this.fetchCategories()
       // Wait for store to be populated by app call
-      while (this.$store.state.project_categories.length === 0) {
+      while (this.getCategories.length === 0) {
         await new Promise(resolve => setTimeout(resolve, 10))
       }
 
-      this.category = this.$store.state.project_categories.find(c => c.name === this.$route.params.projectCategory)
+      this.category = this.getCategories.data.find(c => c.name === this.$route.params.projectCategory)
 
       if (this.category && this.category.subCategories.length > 0) {
         const url = "http://localhost:3000/project-sub-categories"

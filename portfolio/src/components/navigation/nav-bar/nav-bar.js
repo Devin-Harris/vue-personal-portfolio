@@ -3,5 +3,10 @@ export default {
   data() {
     return {}
   },
+  computed: {
+    route() {
+      return this.$route
+    }
+  },
   methods: {}
 }

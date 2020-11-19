@@ -1,6 +1,5 @@
 <template>
   <div class="home-container">
-
     <div class="home-container__heading">
       <page-heading
         class="page-heading-card"
@@ -17,7 +16,7 @@
         :iconClass="'fas fa-user-circle'"
         :theme="'dark'"
         :paragraphText="aboutMeText"
-        :buttons="[{btnText: 'Contact me', hasIcon: true}]"
+        :buttons="[{ btnText: 'Contact me', hasIcon: true }]"
       />
     </div>
 
@@ -31,7 +30,7 @@
         :paragraphText="'Here are some projects I have worked on. Want a commission?'"
         :paragraphEmphasisText="'Contact me.'"
         :buttons="[]"
-        :items="$store.state.project_categories"
+        :items="getCategories.data"
       />
     </div>
   </div>

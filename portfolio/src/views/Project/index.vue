@@ -1,9 +1,15 @@
 <template>
   <div class="project-container">
-
     <!-- load in cards for each sub category within the current projectCategory -->
     <div v-if="projectEditor">
-     <editor-heading :title="projectEditorTitle" :btnText="'Go back to home page'" />
+      <editor-heading
+        :title="projectEditorTitle"
+        :btnText="'Go back to home page'"
+      />
+      <project-editor
+        :editorType="$route.params.projectCategory"
+        @get-data="initData"
+      />
     </div>
     <!-- load in cards for each sub category within the current projectCategory -->
     <div v-else-if="projectHasSubCategory && !projectSubCategory">
@@ -51,7 +57,10 @@
         :iconClass="'fas fa-info-circle'"
         :theme="'dark'"
         :paragraphText="getProjectDescription"
-        :buttons="[{hasIcon: true, btnText: 'View the live site'}, {hasIcon: true, btnText: 'View the code'}]"
+        :buttons="[
+          { hasIcon: true, btnText: 'View the live site' },
+          { hasIcon: true, btnText: 'View the code' }
+        ]"
       />
     </div>
     <div v-else>
@@ -66,7 +75,7 @@
         :isIllustrationShown="false"
       />
       <div class="project-gallery-block">
-        <text-card-block 
+        <text-card-block
           class="project-image-gallery-block"
           :title="'Image gallery'"
           :iconClass="'fas fa-file-image'"
@@ -75,9 +84,7 @@
           :paragraphEmphasisText="'Contact me.'"
           :items="[]"
         />
-        <project-image-gallery
-          :items="category.images"
-        />
+        <project-image-gallery :items="category ? category.images : []" />
       </div>
     </div>
   </div>
