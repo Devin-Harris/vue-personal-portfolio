@@ -15,7 +15,7 @@ export default {
         { label: 'Email', type: 'input', value: '', required: true },
         { label: 'Message', type: 'textarea', value: '', required: true }
       ],
-      btnText: 'Submit'
+      btnText: 'Send another message'
     }
   },
   methods: {
@@ -28,9 +28,19 @@ export default {
     formAction() {
 
       // If btnText is submit, Post to send message
+      if (this.btnText === 'Submit') {
 
+      }
       //Else reload form
-
+      else {
+        this.btnText = 'Submit'
+        this.formFields = [
+          { label: 'First Name', type: 'input', value: '', required: false },
+          { label: 'Last Name', type: 'input', value: '', required: false },
+          { label: 'Email', type: 'input', value: '', required: true },
+          { label: 'Message', type: 'textarea', value: '', required: true }
+        ]
+      }
     }
-  },
+  }
 }

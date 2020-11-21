@@ -1,0 +1,158 @@
+.project-edit-container {
+  padding: 0;
+
+  .project-name-field,
+  .project-description-field,
+  .project-images-field,
+  .project-display-image-field,
+  .project-security-field,
+  .project-category-field {
+    padding: 1rem 0;
+    margin: 0 auto;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    label {
+      font-weight: 400;
+      color: $theme-greywhite;
+      text-align: left;
+      margin: 0.25rem 0;
+      font-size: 0.75rem;
+    }
+
+    span {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0.5rem;
+      color: $primary;
+      font-weight: 700;
+    }
+
+    input,
+    textarea {
+      outline: none;
+      border: none;
+      padding: 0.5rem 1rem;
+      background-color: $theme-greywhite;
+      resize: vertical;
+      font-size: 1rem;
+
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+
+    textarea {
+      min-height: 10rem;
+    }
+
+    .urlPrefix {
+      color: $primary;
+    }
+
+    .all-image-links {
+      width: 100%;
+      margin: 0 auto 0.5rem auto;
+
+      .image-link {
+        width: 100%;
+        position: relative;
+
+        p {
+          width: 100%;
+          text-align: left;
+          padding: 0.5rem 1rem;
+          margin: 0.5rem auto;
+          margin-right: 2rem;
+          background-color: $primary-light;
+          color: $theme-greymiddle;
+          transition: 0.3s;
+        }
+
+        i {
+          position: absolute;
+          top: 50%;
+          right: 0.75rem;
+          transform: translateY(-50%);
+          color: $theme-greymiddle;
+          transition: 0.3s;
+
+          &:hover {
+            cursor: pointer;
+            color: $theme-greydark;
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          p {
+            background-color: $primary;
+            color: $theme-greywhite;
+          }
+
+          i {
+            color: $primary-light;
+
+            &:hover {
+              cursor: pointer;
+              color: $theme-greydark;
+            }
+          }
+        }
+      }
+    }
+
+    .security-input {
+      padding-left: 1.25rem;
+    }
+  }
+
+  .project-action-button, .project-images, .project-display-image {
+    width: 20rem;
+    padding: 1rem 0;
+    margin: 0 auto;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    label {
+      font-weight: 400;
+      color: $theme-greywhite;
+      text-align: left;
+      margin: 0.25rem 0;
+      font-size: 0.75rem;
+    }
+
+    span {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0.5rem;
+      color: $primary;
+      font-weight: 700;
+    }
+
+    .urlPrefix {
+      color: $primary;
+    }
+  }
+
+  .project-category-field {
+    input {
+      background-color: $primary-light;
+      &::placeholder {
+        color: $theme-greywhite;
+      }
+    }
+  }
+
+  .project_container__search {
+    margin-bottom: 4rem;
+  }
+}

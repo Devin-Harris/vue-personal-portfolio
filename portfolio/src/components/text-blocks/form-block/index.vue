@@ -1,0 +1,21 @@
+<template>
+  <div class="form-block-container">
+    <h1>{{ title }}</h1>
+    <p>{{ subTitle }}</p>
+    <form class="form-block-container__form" @submit.prevent="formSubmit">
+      <div class="form-block-container__form__input" v-for="field in fields.filter((f) => f.type === 'input')" :key="field.label">
+        <span v-if="field.required">*</span>
+        <input type="text" :placeholder="field.label" :value="field.value" :required="field.required" @input="$emit('field-value-change', $event, field)" />
+      </div>
+      <div class="form-block-container__form__textarea" v-for="field in fields.filter((f) => f.type === 'textarea')" :key="field.label">
+        <span v-if="field.required">*</span>
+        <textarea :placeholder="field.label" :value="field.value" :required="field.required" @input="$emit('field-value-change', $event, field)" />
+      </div>
+      <button class="form-block-container__form__button" :class="{ active: canClick && btnText === 'Submit' }" @click="$emit('form-button-click')">{{ btnText }}</button>
+    </form>
+  </div>
+</template>
+
+<script src="./form-block.js"></script>
+
+<style lang="scss" src="./form-block.scss"></style>

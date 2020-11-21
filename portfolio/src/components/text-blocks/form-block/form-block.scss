@@ -1,0 +1,73 @@
+.form-block-container {
+  padding: 10rem 0;
+  margin: 0 auto;
+  width: 80%;
+
+  h1 {
+    color: $primary;
+    font-weight: 500;
+  }
+
+  p {
+    color: $theme-greydark;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 25rem;
+
+    &__input,
+    &__textarea {
+      width: 100%;
+      position: relative;
+
+      span {
+        position: absolute;
+        top: 0.75rem;
+        left: 0.25rem;
+        color: $primary;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        margin: 0.25rem 0;
+        border: 0;
+        outline: 0;
+        padding: 0.5rem 1rem;
+        background-color: $theme-greydark;
+        color: $theme-greywhite;
+      }
+
+      textarea {
+        min-height: 8rem;
+      }
+    }
+
+    &__button {
+      width: 100%;
+      background-color: $theme-greylight;
+      border: 0;
+      outline: 0;
+      padding: .5rem 1rem;
+      border-radius: .25rem;
+      color: $theme-greywhite;
+      pointer-events: none;
+      transition: .3s;
+    }
+
+    .active {
+      pointer-events: all;
+      background-color: $primary;
+
+      &:hover {
+        background-color: $primary-light;
+      }
+    }
+
+  }
+}

@@ -1,0 +1,35 @@
+.invalid-route-container {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $theme-greydark;
+
+  &__content {
+    color: $theme-greywhite;
+
+    p {
+      color: $primary;
+
+      span {
+        color: $theme-greywhite;
+      }
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    .icon-button-container {
+      margin: .5rem auto;
+
+      h1 {
+        font-size: .75rem;
+      }
+
+      &:hover {
+        background-color: $theme-greymiddle;
+      }
+    }
+  }
+}
