@@ -1,14 +1,9 @@
 <template>
   <div class="text-button-block-container">
-    <icon-heading
-      class="text-button-block-container__heading"
-      :title="title"
-      :iconClass="iconClass"
-      :theme="theme"
-    />
+    <icon-heading class="text-button-block-container__heading" :title="title" :iconClass="iconClass" :theme="theme" />
     <p class="text-button-block-container__text">{{ paragraphText }}</p>
     <div class="text-button-block-container__btns">
-      <icon-button v-for="button in buttons" :key="button.btnText" :btnText="button.btnText" :hasIcon="button.hasIcon" />
+      <icon-button v-for="button in buttons" :key="button.btnText" :btnText="button.btnText" :hasIcon="button.hasIcon" @click="handleClick(button.action)" />
     </div>
   </div>
 </template>

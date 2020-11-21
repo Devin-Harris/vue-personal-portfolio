@@ -128,8 +128,7 @@ app.post('/add-project', async (req, res) => {
           },
           async (err, response) => {
             if (err) {
-              console.log(err)
-              res.send(err)
+              res.send({ message: 'Project has NOT successfully been created', status: 400 })
               return
             }
             res.send({ message: 'Project has successfully been created', status: 200 })
@@ -146,8 +145,7 @@ app.post('/add-project', async (req, res) => {
       else
         Categories.updateOne({ _id: req.body.projectCategory._id }, { $push: { images: req.body.projectImages } }, async (err, response) => {
           if (err) {
-            console.log(err)
-            res.send(err)
+            res.send({ message: 'Project has NOT successfully been created', status: 400 })
             return
           }
           res.send({ message: 'Project has successfully been created', status: 200 })
@@ -155,5 +153,111 @@ app.post('/add-project', async (req, res) => {
     }
   } else {
     res.send({ message: 'Project has NOT successfully been created', status: 400 })
+  }
+})
+
+app.post('/edit-project', async (req, res) => {
+  console.log('Route / recieved')
+  // Check for correct security key
+
+  // If sub categories find sub category in DB
+  if (req.body.projectSubCategory) {
+    console.log(req.body)
+    const subCategory = await SubCategories.find({ sub_category_name: req.body.projectSubCategory })
+    const project = subCategory[0].projects.find(project => project._id == req.body.projectId)
+
+    // If project exists in subcategory, update project in sub category
+    if (project) {
+      project.name = req.body.projectName
+      project.description = req.body.projectDesc
+      project.display_image = req.body.projectImages[0]
+
+      const updatedProjects = subCategory[0].projects.map(project => {
+        if (project._id === req.body.projectId) {
+          return {
+            name: project.name,
+            display_image: project.display_image,
+            description: project.description,
+            _id: req.body.projectId
+          }
+        } else {
+          return project
+        }
+      })
+
+      // Update project in subcategory
+      SubCategories.updateOne({ sub_category_name: req.body.projectSubCategory },
+        {
+          projects: updatedProjects
+        },
+        async (err, response) => {
+          if (err) {
+            res.send({ message: 'Project has NOT successfully been updated', status: 400 })
+            return
+          }
+          res.send({ message: 'Project has successfully been updated', status: 200 })
+        })
+
+    }
+    // If project doesnt exist in subcategory, add project to sub category and remove from subcategory it originated from
+    else {
+      console.log('not in subcategory', req.body.originSubCategory)
+      // Remove from subcategory
+      SubCategories.updateOne({ sub_category_name: req.body.originSubCategory },
+        {
+          $pull: {
+            projects: {
+              _id: req.body.projectId
+            }
+          }
+        },
+        async (err, response) => {
+          if (err) {
+            res.send({ message: 'Project has NOT successfully been updated', status: 400 })
+            return
+          }
+          res.send({ message: 'Project has successfully been updated', status: 200 })
+        }
+      )
+
+      // Add to new subcategory
+      SubCategories.updateOne({ sub_category_name: req.body.projectSubCategory },
+        {
+          $push: {
+            projects: {
+              name: req.body.projectName,
+              description: req.body.projectDesc,
+              display_image: req.body.projectImages[0]
+            }
+          }
+        },
+        async (err, response) => {
+          if (err) {
+            res.send({ message: 'Project has NOT successfully been updated', status: 400 })
+            return
+          }
+          res.send({ message: 'Project has successfully been updated', status: 200 })
+        }
+      )
+    }
+
+
+  } else {
+    const { projectImages } = req.body
+    await Categories.findOneAndUpdate({ _id: req.body.projectCategory._id }, { images: projectImages }, async (err, response) => {
+      if (err) {
+        res.send({ message: 'Project has NOT successfully been updated', status: 400 })
+        return
+      }
+      res.send({ message: 'Project has successfully been updated', status: 200 })
+    })
+  }
+
+  if (req.body.projectKey === process.env.PASS) {
+    // Make insert to images of document if no sub categories or insert to projects of sub category if sub category
+
+
+  } else {
+    res.send({ message: 'Project has NOT successfully been updated', status: 400 })
   }
 })

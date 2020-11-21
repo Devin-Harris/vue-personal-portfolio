@@ -17,5 +17,11 @@ export default {
   data() {
     return {}
   },
-  methods: {}
+  methods: {
+    handleClick(action) {
+      if (action === '/contact') {
+        this.$router.push('/contact')
+      }
+    }
+  }
 }

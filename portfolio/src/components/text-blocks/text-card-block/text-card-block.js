@@ -25,5 +25,9 @@ export default {
       currentCategorySelection: ''
     }
   },
-  methods: {}
+  methods: {
+    contactRedirect() {
+      this.$router.push('/contact')
+    }
+  }
 }

@@ -19,11 +19,15 @@ export default createStore({
         iconClass: 'fab fa-instagram'
       }
     ],
-    project_categories: []
+    project_categories: [],
+    project_sub_categories: []
   },
   mutations: {
     updateCategories(state, payload) {
       state.project_categories = payload
+    },
+    updateSubCategories(state, payload) {
+      state.project_sub_categories = payload
     }
   },
   actions: {
@@ -38,11 +42,27 @@ export default createStore({
       })
       let data = await response.json()
       context.commit('updateCategories', { data })
-    }
+    },
+    async fetchSubCategories(context) {
+      let url = ""
+      if (location.hostname === "localhost")
+        url = "http://localhost:3000/project-sub-categories"
+      else url = "https://devinharris-portfolio.herokuapp.com/project-sub-categories"
+
+      const response = await fetch(url, {
+        method: "GET",
+      })
+      let data = await response.json()
+      context.commit('updateSubCategories', { data })
+    },
+
   },
   getters: {
     getCategories(state) {
       return state.project_categories
+    },
+    getSubCategories(state) {
+      return state.project_sub_categories
     }
   },
   modules: {

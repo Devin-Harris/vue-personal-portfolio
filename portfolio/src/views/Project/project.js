@@ -29,10 +29,24 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'getCategories'
-    ]),
+    ...mapGetters(['getCategories', 'getSubCategories']),
     projectCategory() {
+      if (this.$route.params.projectCategory === 'add' || this.$route.params.projectCategory === 'edit' || this.$route.params.projectCategory === 'delete')
+        return this.$route.params.projectCategory
+
+      if (this.getCategories && this.$route.params.projectCategory)
+        this.category = this.getCategories.data.find((c) => c.name === this.$route.params.projectCategory)
+
+      if (this.category && this.category.subCategories.length > 0) {
+        this.subCategories = this.getSubCategories.data
+        if (this.subCategories)
+          this.activeSubCategory = this.subCategories[0]
+        this.projectHasSubCategory = true
+      } else {
+        this.subCategories = []
+        this.activeSubCategory = ''
+        this.projectHasSubCategory = false
+      }
       return this.$route.params.projectCategory
     },
     projectEditor() {
@@ -44,12 +58,9 @@ export default {
     },
     projectEditorTitle() {
       let title = ''
-      if (this.projectCategory === 'add')
-        title = 'Add new project'
-      else if (this.projectCategory === 'edit')
-        title = 'Edit a project'
-      else if (this.projectCategory === 'delete')
-        title = 'Delete a project'
+      if (this.projectCategory === 'add') title = 'Add new project'
+      else if (this.projectCategory === 'edit') title = 'Edit a project'
+      else if (this.projectCategory === 'delete') title = 'Delete a project'
       return title
     },
     projectSubCategory() {
@@ -61,33 +72,32 @@ export default {
     },
     subCategoriesItems() {
       let items = []
-      this.subCategories.map(sc => Array.from(sc.projects).forEach(project => items.push(project)))
-      return items.filter(item => this.activeSubCategory.projects.find(project => project === item))
+      if (this.subCategories)
+        this.subCategories.map((sc) => Array.from(sc.projects).forEach((project) => items.push(project)))
+      return items.filter((item) => this.activeSubCategory.projects.find((project) => project === item))
     },
     getProjectDescription() {
-      const project = this.subCategoriesItems.find(project => project.name === this.$route.params.projectName)
-      return project.description
+      const project = this.subCategoriesItems.find((project) => project.name === this.$route.params.projectName)
+      if (project)
+        return project.description
+      else
+        return ''
     }
   },
   methods: {
-    ...mapActions([
-      'fetchCategories'
-    ]),
+    ...mapActions(['fetchCategories', 'fetchSubCategories']),
     async initData() {
       await this.fetchCategories()
+      await this.fetchSubCategories()
       // Wait for store to be populated by app call
       while (this.getCategories.length === 0) {
-        await new Promise(resolve => setTimeout(resolve, 10))
+        await new Promise((resolve) => setTimeout(resolve, 10))
       }
 
-      this.category = this.getCategories.data.find(c => c.name === this.$route.params.projectCategory)
+      this.category = this.getCategories.data.find((c) => c.name === this.$route.params.projectCategory)
 
       if (this.category && this.category.subCategories.length > 0) {
-        const url = "http://localhost:3000/project-sub-categories"
-        const response = await fetch(url, {
-          method: 'GET'
-        })
-        this.subCategories = await response.json()
+        this.subCategories = await this.getSubCategories.data
         this.activeSubCategory = this.subCategories[0]
         this.projectHasSubCategory = true
       }
@@ -95,7 +105,7 @@ export default {
     headingBtnClick() {
       this.$router.push('/')
       setTimeout(() => {
-        document.querySelector('.page-work-section').scrollIntoView({ behavior: "smooth" })
+        document.querySelector('.page-work-section').scrollIntoView({ behavior: 'smooth' })
       }, 50)
     },
     subCategoryClick(subCategory) {
@@ -106,6 +116,8 @@ export default {
     }
   },
   async mounted() {
+    await this.fetchCategories()
+    await this.fetchSubCategories()
     await this.initData()
   }
 }

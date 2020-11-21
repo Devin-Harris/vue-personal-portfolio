@@ -21,6 +21,11 @@ export default {
       isDropdownOpen: false
     }
   },
+  computed: {
+    itemChange() {
+      return this.items
+    }
+  },
   methods: {
     togglePopup() {
       this.isDropdownOpen = !this.isDropdownOpen
@@ -40,5 +45,11 @@ export default {
     setTimeout(() => {
       this.selectedItem = this.items[0]
     }, 200)
+  },
+  watch: {
+    itemChange() {
+      if (this.items.includes(this.selectedItem)) return
+      this.selectedItem = this.itemChange[0]
+    }
   },
 }

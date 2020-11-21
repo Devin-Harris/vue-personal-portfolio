@@ -1,34 +1,19 @@
 <template>
   <div class="text-card-block-container">
-    <icon-heading
-      class="text-card-block-container__heading"
-      :title="title"
-      :iconClass="iconClass"
-      :theme="theme"
-    />
+    <icon-heading class="text-card-block-container__heading" :title="title" :iconClass="iconClass" :theme="theme" />
 
     <p class="text-card-block-container__text">
-      {{ paragraphText }} <span>{{ paragraphEmphasisText }}</span>
+      {{ paragraphText }} <span @click="contactRedirect">{{ paragraphEmphasisText }}</span>
     </p>
 
     <div class="text-card-block-container__btns">
-      <button
-        class="text-card-block-container__btns__btn"
-        :class="{'active': activeButton === button.sub_category_name}"
-        v-for="button in buttons"
-        :key="button.sub_category_name"
-        @click="$emit('sub-category-click', button)"
-      >
-        {{button.sub_category_name}}
+      <button class="text-card-block-container__btns__btn" :class="{ active: activeButton === button.sub_category_name }" v-for="button in buttons" :key="button.sub_category_name" @click="$emit('sub-category-click', button)">
+        {{ button.sub_category_name }}
       </button>
     </div>
 
     <div class="text-card-block-container__cards">
-      <category-card
-        v-for="item in items"
-        :item="item"
-        :key="item.name"
-      />
+      <category-card v-for="item in items" :item="item" :key="item.name" />
     </div>
   </div>
 </template>

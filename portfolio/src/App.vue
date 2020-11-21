@@ -21,12 +21,7 @@ export default {
     ...mapGetters(['getCategories']),
     footerButtonTheme() {
       let theme = 'dark';
-      if (
-        this.$route.params.projectName !== undefined &&
-        this.$route.params.projectName !== null &&
-        this.$route.params.projectName !== ''
-      )
-        theme = 'light';
+      if (this.$route.params.projectName !== undefined && this.$route.params.projectName !== null && this.$route.params.projectName !== '') theme = 'light';
       return theme;
     }
   },

@@ -12,5 +12,9 @@ export default {
   data() {
     return {}
   },
-  methods: {}
+  methods: {
+    headingRedirect() {
+      this.$router.push('/')
+    }
+  }
 }

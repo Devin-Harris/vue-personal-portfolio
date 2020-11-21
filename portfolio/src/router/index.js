@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home'
 import Contact from '../views/Contact'
 import Project from '../views/Project'
+import InvalidRoute from '../components/navigation/invalid-route'
 
 const routes = [
   {
@@ -15,14 +16,14 @@ const routes = [
     component: Contact
   },
   {
-    path: '/projects/:projectCategory',
+    path: '/projects/:projectCategory/:projectSubCategory?/:projectName?',
     name: 'Projects',
     component: Project
   },
   {
-    path: '/projects/:projectCategory/:projectSubCategory?/:projectName?',
-    name: 'Projects',
-    component: Project
+    path: "/:catchAll(.*)",
+    name: 'Invalid',
+    component: InvalidRoute
   }
 ]
 
