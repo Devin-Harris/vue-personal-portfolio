@@ -51,7 +51,9 @@ export default {
       project: {
         projectName: "",
         projectDesc: "",
-        projectKey: ""
+        projectKey: "",
+        projectSite: "",
+        projectCode: ""
       }
     }
   },
@@ -102,6 +104,8 @@ export default {
         projectName: this.projectName,
         projectDesc: this.projectDesc,
         projectKey: this.projectKey,
+        projectSite: this.projectSite,
+        projectCode: this.projectCode,
         projectImages: this.projectImages.map(
           (image) => this.urlPrefix + image
         ),

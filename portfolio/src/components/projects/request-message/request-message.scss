@@ -1,8 +1,10 @@
 .request-message-container {
+  min-width: 20rem;
+  max-width: max-content;
+  margin: 0 auto;
 
   &__message {
-    min-width: 20rem;
-    max-width: max-content;
+    width: 100%;
     margin: 0 auto;
     padding: .5rem 1rem;
     background-color: $theme-greywhite;
@@ -21,18 +23,23 @@
   }
 
   &__btns {
-    display: flex;
-    flex-direction: row;
+    display: grid;
     justify-content: center;
     align-items: center;
-    width: 20rem;
-    padding: 0 3rem;
+    width: 100%;
+    padding: 0;
     margin: 0 auto;
+    background-color: $theme-grey;
+    border: 1px solid $primary;
+    transition: .3s;
 
     .request-message-btn {
-      min-width: 100%;
-      width: max-content;
-      margin: 1.5rem .5rem;
+      width: 100%;
+      margin: 0;
+      padding: 1rem 2rem;
+      background-color: unset;
+      justify-content: center;
+      border-radius: 0;
 
       h1 {
         font-size: 70%;
@@ -42,6 +49,7 @@
         background-color: $theme-greymiddle;
       }
     }
+
   }
 
 }
@@ -54,18 +62,17 @@
 
 .error {
   background-color: $error-red;
+  border: 1px solid $error-red;
 
   i, p {
     color: $theme-greywhite;
   }
 
   .request-message-btn {
-    background-color: $theme-greywhite;
-    width: 100%;
-    justify-content: center;
+    background-color: $theme-grey;
 
     h1 {
-      color: $theme-greydark;
+      color: $theme-greywhite;
       font-size: 70%;
       transition: .3s;
     }
@@ -79,6 +86,3 @@
   }
 }
 
-.request-message-container__btns {
-  background-color: unset;
-}

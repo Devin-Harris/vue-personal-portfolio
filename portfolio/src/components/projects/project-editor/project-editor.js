@@ -6,6 +6,7 @@ import IconButton from '@/components/buttons/icon-button'
 import RequestMessage from '@/components/projects/request-message'
 import ProjectAdd from '@/components/projects/project-add'
 import ProjectEdit from '@/components/projects/project-edit'
+import ProjectReorder from '@/components/projects/project-reorder'
 
 export default {
   name: 'project-editor',
@@ -17,7 +18,8 @@ export default {
     IconButton,
     RequestMessage,
     ProjectAdd,
-    ProjectEdit
+    ProjectEdit,
+    ProjectReorder
   },
   computed: {
     ...mapGetters(['getCategories', 'getSubCategories']),
@@ -100,6 +102,8 @@ export default {
       selectedSubCategory: '',
       selectedName: '',
       selectedDesc: '',
+      selectedCode: '',
+      selectedSite: '',
       availableCategories: [],
       projectImages: [],
       requestMessage: null
@@ -124,6 +128,14 @@ export default {
         this.selectedDesc = subCategory.projects.find(
           (project) => project.name === this.selectedName
         ).description
+        this.selectedCode = subCategory.projects.find(
+          (project) => project.name === this.selectedName
+        ).code
+        this.selectedSite = subCategory.projects.find(
+          (project) => project.name === this.selectedName
+        ).live_site
+
+        console.log(this.selectedSite, this.selectedCode)
       } else {
         this.selectedSubCategory = ''
       }
@@ -139,6 +151,12 @@ export default {
       this.selectedDesc = subCategory.projects.find(
         (project) => project.name === this.selectedName
       ).description
+      this.selectedCode = subCategory.projects.find(
+        (project) => project.name === this.selectedName
+      ).code
+      this.selectedSite = subCategory.projects.find(
+        (project) => project.name === this.selectedName
+      ).live_site
     },
     nameChanged(clickedName) {
       this.selectedName = clickedName
@@ -151,6 +169,12 @@ export default {
       this.selectedDesc = subCategory.projects.find(
         (project) => project.name === this.selectedName
       ).description
+      this.selectedCode = subCategory.projects.find(
+        (project) => project.name === this.selectedName
+      ).code
+      this.selectedSite = subCategory.projects.find(
+        (project) => project.name === this.selectedName
+      ).live_site
     },
     addImage(e) {
       this.projectImages.push(e.target.value)
@@ -174,6 +198,9 @@ export default {
       } else if (this.$route.params.projectCategory === 'edit') {
         route = '/edit-project'
         editor = 'edit'
+      } else if (this.$route.params.projectCategory === 'reorder') {
+        route = '/reorder-project'
+        editor = 'reorder'
       } else if (this.$route.params.projectCategory === 'delete') {
         route = '/delete-project'
         editor = 'delete'
@@ -185,7 +212,7 @@ export default {
       else url = `https://devinharris-portfolio.herokuapp.com${route}`
 
       let data
-      if (editedData) {
+      if (editor === 'edit') {
         data = {
           projectCategory: this.selectedCategory,
           projectSubCategory: editedData.projectSubCategory,
@@ -193,15 +220,25 @@ export default {
           projectId: editedData.projectId,
           projectName: editedData.projectName,
           projectDesc: editedData.projectDesc,
+          projectSite: editedData.projectSite,
+          projectCode: editedData.projectCode,
           projectKey: editedData.projectKey,
           projectImages: editedData.projectImages.map((image) => this.urlPrefix + image)
         }
-      } else {
+      } else if (editor === 'reorder') {
+        data = {
+          categories: editedData.categories,
+          subCategories: editedData.subCategories,
+          selectedSubCategory: editedData.selectedSubCategory
+        }
+      } else if (editor === 'add') {
         data = {
           projectCategory: this.selectedCategory,
           projectSubCategory: this.selectedSubCategory,
           projectName: project.projectName,
           projectDesc: project.projectDesc,
+          projectSite: project.projectSite,
+          projectCode: project.projectCode,
           projectKey: project.projectKey,
           projectImages: this.projectImages.map((image) => this.urlPrefix + image)
         }
@@ -219,15 +256,23 @@ export default {
       this.requestMessage = await response.json()
     },
     requestBtnHandler(action) {
-      if (action === 'add') this.$router.push('/projects/add')
-      else if (action === 'edit') this.$router.push('/projects/edit')
+      if (action === 'add') {
+        this.$router.push('/projects/add')
+        this.requestMessage = null
+      }
+      else if (action === 'edit') {
+        this.$router.push('/projects/edit')
+        this.requestMessage = null
+      }
       else if (action === 'view') {
         this.$router.push(`/projects/${this.selectedCategory.name}`)
         setTimeout(() => {
           this.$emit('get-data')
         }, 300)
-      } else if (action === 'retry')
+      } else if (action === 'retry') {
         this.$router.push(`/projects/${this.$route.params.projectCategory}`)
+        this.requestMessage = null
+      }
     }
   },
   async mounted() {
@@ -243,11 +288,15 @@ export default {
     )
     this.selectedCategory = this.availableCategories[0]
     this.selectedSubCategory = this.selectedCategory.subCategories[0]
-    this.selectedName = JSON.parse(
+    let init_project = JSON.parse(
       JSON.stringify(this.getSubCategories.data)
     ).find(
       (subCategory) =>
         subCategory.sub_category_name === this.selectedSubCategory
-    ).projects[0].name
+    ).projects[0]
+    this.selectedName = init_project.name
+    this.selectedDesc = init_project.description
+    this.selectedCode = init_project.code
+    this.selectedSite = init_project.live_site
   }
 }

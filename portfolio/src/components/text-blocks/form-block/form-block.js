@@ -8,7 +8,8 @@ export default {
     'fields',
     'title',
     'subTitle',
-    'btnText'
+    'btnText',
+    'isFormShown'
   ],
   components: {
     IconHeading,

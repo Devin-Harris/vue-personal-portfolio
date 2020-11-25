@@ -2,6 +2,8 @@ const axios = require('axios')
 const dotenv = require('dotenv').config()
 const express = require('express')
 const app = express()
+const nodemailer = require("nodemailer")
+const mailGun = require("nodemailer-mailgun-transport")
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
@@ -9,10 +11,11 @@ const bodyParser = require("body-parser")
 const cors = require("cors")
 
 app.use(cors())
-// Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+
+// Mongoose methods
 mongoose.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.PASS}@cluster0.fvr3j.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -43,12 +46,16 @@ var sub_category_schema = new Schema(
     projects: [{
       name: String,
       display_image: String,
-      description: String
+      description: String,
+      live_site: String,
+      code: String
     }],
   }
 )
 const SubCategories = mongoose.model('project-sub-categories', sub_category_schema)
 
+
+// Express endpoints setup
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => { console.log(`Listening on port ${PORT}`) })
 
@@ -110,7 +117,9 @@ app.post('/add-project', async (req, res) => {
         projects: {
           name: req.body.projectName,
           display_image: req.body.projectImages[0],
-          description: req.body.projectDesc
+          description: req.body.projectDesc,
+          live_site: req.body.projectSite,
+          code: req.body.projectCode
         }
       }))
         res.send({ message: 'Project already exists', status: 400 })
@@ -122,7 +131,9 @@ app.post('/add-project', async (req, res) => {
               projects: {
                 name: req.body.projectName,
                 display_image: req.body.projectImages[0],
-                description: req.body.projectDesc
+                description: req.body.projectDesc,
+                live_site: req.body.projectSite,
+                code: req.body.projectCode
               }
             }
           },
@@ -159,6 +170,10 @@ app.post('/add-project', async (req, res) => {
 app.post('/edit-project', async (req, res) => {
   console.log('Route / recieved')
   // Check for correct security key
+  if (req.body.projectKey !== process.env.PASS) {
+    res.send({ message: 'Project has NOT successfully been updated', status: 400 })
+    return
+  }
 
   // If sub categories find sub category in DB
   if (req.body.projectSubCategory) {
@@ -171,6 +186,8 @@ app.post('/edit-project', async (req, res) => {
       project.name = req.body.projectName
       project.description = req.body.projectDesc
       project.display_image = req.body.projectImages[0]
+      project.live_site = req.body.projectSite
+      project.code = req.body.projectCode
 
       const updatedProjects = subCategory[0].projects.map(project => {
         if (project._id === req.body.projectId) {
@@ -178,7 +195,9 @@ app.post('/edit-project', async (req, res) => {
             name: project.name,
             display_image: project.display_image,
             description: project.description,
-            _id: req.body.projectId
+            _id: req.body.projectId,
+            live_site: req.body.projectSite,
+            code: req.body.projectCode,
           }
         } else {
           return project
@@ -227,7 +246,9 @@ app.post('/edit-project', async (req, res) => {
             projects: {
               name: req.body.projectName,
               description: req.body.projectDesc,
-              display_image: req.body.projectImages[0]
+              display_image: req.body.projectImages[0],
+              live_site: req.body.projectSite,
+              code: req.body.projectCode
             }
           }
         },
@@ -253,11 +274,84 @@ app.post('/edit-project', async (req, res) => {
     })
   }
 
-  if (req.body.projectKey === process.env.PASS) {
-    // Make insert to images of document if no sub categories or insert to projects of sub category if sub category
-
-
-  } else {
-    res.send({ message: 'Project has NOT successfully been updated', status: 400 })
-  }
 })
+
+app.post('/reorder-project', async (req, res) => {
+  // Check if security key is valid
+
+  // Reset categories to match order of req categories
+  Categories.deleteMany({}, (err) => {
+    if (err)
+      console.log(err)
+    else
+      console.log('success')
+  })
+
+  const categories = req.body.categories
+  Categories.insertMany(categories, (err) => {
+    if (err)
+      console.log(err)
+    else
+      console.log('success')
+  })
+
+  // Reset sub categories to match order of req sub categories
+  SubCategories.deleteMany({}, (err) => {
+    if (err)
+      console.log(err)
+    else
+      console.log('success')
+  })
+
+  const subCategories = req.body.subCategories
+  SubCategories.insertMany(subCategories, (err) => {
+    if (err)
+      console.log(err)
+    else
+      console.log('success')
+  })
+
+  // Reset selected sub category projects to match order of req selected sub category projects
+
+
+  // console.log(req.body)
+})
+
+// Node Mailer methods
+app.post('/form-submission', async (req, res) => {
+  const { email, message, firstName, lastName } = req.body
+
+  let name = null
+  if (firstName && lastName)
+    name = firstName + ' ' + lastName
+
+  let fromEmail = email
+  if (name)
+    fromEmail = `${name} <${email}>`
+
+  const auth = {
+    auth: {
+      api_key: process.env.MAIL_GUN_API_KEY,
+      domain: process.env.MAIL_GUN_DOMAIN
+    }
+  }
+  let transporter = nodemailer.createTransport(mailGun(auth))
+
+  var mailOptions = {
+    from: fromEmail,
+    to: process.env.EMAIL,
+    subject: 'Sending Email using Node.js',
+    text: message
+  }
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      res.send({ status: 400, message: { title: 'Oh no!', subTitle: 'There was an error sending your message.' } })
+    } else {
+      res.send({ status: 200, message: { title: 'Message sent!', subTitle: 'I will try to respond as soon as possible.' } })
+    }
+  })
+
+})
+
+

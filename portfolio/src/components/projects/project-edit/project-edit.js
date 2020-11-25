@@ -9,7 +9,7 @@ import DraggableItem from '@/components/projects/draggable-item'
 
 export default {
   name: 'project-edit',
-  props: ['availableSubCategories', 'urlPrefix', 'selectedCategory', 'selectedSubCategory', 'availableCategories', 'availableNames', 'projectImages', 'selectedName', 'selectedDesc'],
+  props: ['availableSubCategories', 'urlPrefix', 'selectedCategory', 'selectedSubCategory', 'availableCategories', 'availableNames', 'projectImages', 'selectedName', 'selectedDesc', 'selectedCode', 'selectedSite'],
   components: {
     IconHeading,
     SimpleDropdown,
@@ -36,6 +36,8 @@ export default {
     },
     changedProjectImages() {
       this.project.changedDesc = this.selectedDesc
+      this.project.changedSite = this.selectedSite
+      this.project.changedCode = this.selectedCode
       if (this.availableSubCategories.length > 0) {
         const subCategoryName = this.selectedCategory.subCategories.find((sc) => sc === this.selectedSubCategory)
         const subCategories = JSON.parse(JSON.stringify(this.getSubCategories))
@@ -65,6 +67,8 @@ export default {
         projectId: this.selectedSubCategory ? this.getSubCategories.data.find((sc) => sc.sub_category_name === this.selectedSubCategory).projects.find((project) => project.name === this.selectedName)._id : '',
         projectName: this.project.changedName ? this.project.changedName : this.selectedName,
         projectDesc: this.project.changedDesc ? this.project.changedDesc : this.selectedDesc,
+        projectSite: this.project.changedSite ? this.project.changedSite : this.selectedSite,
+        projectCode: this.project.changedCode ? this.project.changedCode : this.selectedCode,
         projectKey: this.project.projectKey,
         projectImages: this.draggableImages
       }
@@ -79,7 +83,9 @@ export default {
         projectKey: '',
         changedSubCategory: '',
         changedName: '',
-        changedDesc: ''
+        changedDesc: '',
+        changedSite: '',
+        changedCode: ''
       },
       draggableImages: []
     }
@@ -92,14 +98,20 @@ export default {
       if (this.selectedCategory.subCategories.length > 0) {
         this.selectedSubCategory = this.selectedCategory.subCategories[0]
         this.project.changedDesc = this.selectedDesc
+        this.project.changedSite = this.selectedSite
+        this.project.changedCode = this.selectedCode
       } else {
         this.selectedSubCategory = ''
         this.project.changedDesc = ''
+        this.project.changedSite = ''
+        this.project.changedCode = ''
       }
     },
     subCategoryChanged(clickedSubCategory) {
       this.selectedSubCategory = clickedSubCategory
       this.project.changedDesc = this.selectedDesc
+      this.project.changedSite = this.selectedSite
+      this.project.changedCode = this.selectedCode
     },
     removeImage(imageUrl) {
       this.draggableImages = this.draggableImages.filter((image) => image !== imageUrl)
@@ -134,5 +146,7 @@ export default {
 
     this.draggableImages = this.changedProjectImages
     this.project.changedDesc = this.selectedDesc
+    this.project.changedSite = this.selectedSite
+    this.project.changedCode = this.selectedCode
   }
 }

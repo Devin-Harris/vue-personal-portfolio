@@ -31,7 +31,7 @@ export default {
   computed: {
     ...mapGetters(['getCategories', 'getSubCategories']),
     projectCategory() {
-      if (this.$route.params.projectCategory === 'add' || this.$route.params.projectCategory === 'edit' || this.$route.params.projectCategory === 'delete')
+      if (this.$route.params.projectCategory === 'add' || this.$route.params.projectCategory === 'edit' || this.$route.params.projectCategory === 'reorder' || this.$route.params.projectCategory === 'delete')
         return this.$route.params.projectCategory
 
       if (this.getCategories && this.$route.params.projectCategory)
@@ -50,7 +50,7 @@ export default {
       return this.$route.params.projectCategory
     },
     projectEditor() {
-      if (this.projectCategory === 'add' || this.projectCategory === 'edit' || this.projectCategory === 'delete') {
+      if (this.projectCategory === 'add' || this.projectCategory === 'edit' || this.projectCategory === 'reorder' || this.projectCategory === 'delete') {
         return true
       } else {
         return false
@@ -60,6 +60,7 @@ export default {
       let title = ''
       if (this.projectCategory === 'add') title = 'Add new project'
       else if (this.projectCategory === 'edit') title = 'Edit a project'
+      else if (this.projectCategory === 'reorder') title = 'Reorder projects'
       else if (this.projectCategory === 'delete') title = 'Delete a project'
       return title
     },

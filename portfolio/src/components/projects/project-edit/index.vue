@@ -18,6 +18,14 @@
         <label for="project-description">Project Description</label>
         <textarea name="project-description" :placeholder="selectedDesc ? '' : 'No description found...'" v-model="project.changedDesc" />
       </div>
+      <div class="project-live-site-field" v-if="availableSubCategories.length > 0">
+        <label for="project-live-site">Project Site</label>
+        <input type="text" name="project-live-site" :placeholder="selectedSite ? '' : 'No site found...'" v-model="project.changedSite" autocomplete="off" />
+      </div>
+      <div class="project-code-site-field" v-if="availableSubCategories.length > 0">
+        <label for="project-code-site">Project Code</label>
+        <input type="text" name="project-code-site" :placeholder="selectedCode ? '' : 'No code found...'" v-model="project.changedCode" autocomplete="off" />
+      </div>
       <div class="project-images" v-if="availableSubCategories.length === 0">
         <label>Project Image(s)</label>
         <label class="urlPrefix">{{ urlPrefix }}</label>

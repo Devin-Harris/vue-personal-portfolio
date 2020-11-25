@@ -6,6 +6,12 @@ export default {
   components: {
     SimplePopup
   },
+  created() {
+    window.addEventListener('click', this.clickOutside)
+  },
+  onUnmounted() {
+    window.removeEventListener('click', this.clickOutside)
+  },
   data() {
     return {
       isPopupOpen: false
@@ -24,6 +30,14 @@ export default {
     navigateToCategory(category) {
       this.isPopupOpen = false
       this.$router.push(`/projects/${category}`)
+    },
+    clickOutside(e) {
+      if (!this.isPopupOpen) return
+      const popup = this.$el.querySelector('.simple-popup-container__dropdown-popup')
+      if (!e.path.includes(popup) && !e.path.includes(this.$el)) this.closePopup()
+    },
+    closePopup() {
+      this.isPopupOpen = false
     }
   }
 }
