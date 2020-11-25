@@ -4,14 +4,14 @@
     <div class="project-categories">
       <label>All Categories</label>
       <draggable v-if="availableCategories && availableCategories.length > 0" :list="availableCategories" class="dragArea list-group w-full">
-        <draggable-item v-for="category in availableCategories" :key="category" :hasActions="false" :value="category.name" />
+        <draggable-item v-for="category in availableCategories" :canEdit="false" :key="category" :hasActions="false" :value="category.name" />
       </draggable>
     </div>
 
     <div class="project-sub-categories">
       <label>All Sub Categories</label>
       <draggable v-if="availableSubCategories.length > 0" :list="availableSubCategories" class="dragArea list-group w-full">
-        <draggable-item v-for="subCategory in availableSubCategories" :key="subCategory" :hasActions="false" :value="subCategory.sub_category_name" />
+        <draggable-item v-for="subCategory in availableSubCategories" :canEdit="false" :key="subCategory" :hasActions="false" :value="subCategory.sub_category_name" />
       </draggable>
     </div>
 
@@ -21,7 +21,7 @@
       <div class="project-current-sub-categories">
         <label>Current Sub Category Projects</label>
         <draggable v-if="availableProjects.length > 0" :list="availableProjects" class="dragArea list-group w-full">
-          <draggable-item v-for="project in availableProjects" :key="project" :hasActions="false" :value="project.name" />
+          <draggable-item v-for="project in availableProjects" :canEdit="false" :key="project" :hasActions="false" :value="project.name" />
         </draggable>
       </div>
       <div class="project-security-field">

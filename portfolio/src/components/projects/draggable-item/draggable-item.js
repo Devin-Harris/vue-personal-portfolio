@@ -1,6 +1,6 @@
 export default {
   name: 'draggable-item',
-  props: ['hasActions', 'value'],
+  props: ['hasActions', 'value', 'canEdit'],
   computed: {
 
   },

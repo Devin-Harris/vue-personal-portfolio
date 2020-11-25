@@ -10,10 +10,12 @@ export default {
   },
   computed: {
     successBtns() {
-      if (this.$route.params.projectCategory === 'add')
+      if (this.$route.params.projectSubCategory === 'add')
         return [{ text: 'Add another project', action: 'add' }, { text: 'View this project', action: 'view' }]
-      else if (this.$route.params.projectCategory === 'edit')
+      else if (this.$route.params.projectSubCategory === 'edit')
         return [{ text: 'Edit another project', action: 'edit' }]
+      else if (this.$route.params.projectSubCategory === 'reorder')
+        return [{ text: 'Reorder another project', action: 'reorder' }, { text: 'View this project', action: 'view' }]
     }
   },
   data() {

@@ -21,6 +21,8 @@ export default {
     handleClick(action) {
       if (action === '/contact') {
         this.$router.push('/contact')
+      } else if (action === 'site' || action === 'code') {
+        this.$emit('button-click', action)
       }
     }
   }

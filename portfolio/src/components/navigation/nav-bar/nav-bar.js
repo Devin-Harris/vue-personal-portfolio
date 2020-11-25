@@ -38,6 +38,10 @@ export default {
     },
     closePopup() {
       this.isPopupOpen = false
+    },
+    redirect(path) {
+      this.$router.push(path)
+      this.isPopupOpen = false
     }
   }
 }

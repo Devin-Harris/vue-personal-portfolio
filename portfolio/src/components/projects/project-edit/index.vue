@@ -30,14 +30,14 @@
         <label>Project Image(s)</label>
         <label class="urlPrefix">{{ urlPrefix }}</label>
         <draggable v-if="draggableImages && changedProjectImages && draggableImages.length > 0" :list="draggableImages" class="dragArea list-group w-full">
-          <draggable-item v-for="(imageValue, i) in draggableImages" :key="imageValue" :hasActions="true" :value="imageValue" @value-change="changeValue($event, i)" @remove-image="removeImage(imageValue)" @open-image="$emit('open-image', imageValue)" />
+          <draggable-item v-for="(imageValue, i) in draggableImages" :canEdit="true" :key="imageValue" :hasActions="true" :value="imageValue" @value-change="changeValue($event, i)" @remove-image="removeImage(imageValue)" @open-image="$emit('open-image', imageValue)" />
         </draggable>
       </div>
       <div class="project-display-image" v-else>
         <label>Display Image</label>
         <label class="urlPrefix">{{ urlPrefix }}</label>
         <draggable v-if="draggableImages && changedProjectImages && draggableImages.length > 0" :list="draggableImages" class="dragArea list-group w-full">
-          <draggable-item v-for="(imageValue, i) in draggableImages" :key="imageValue" :hasActions="true" :value="imageValue" @value-change="changeValue($event, i)" @remove-image="removeImage(imageValue)" @open-image="$emit('open-image', imageValue)" />
+          <draggable-item v-for="(imageValue, i) in draggableImages" :canEdit="true" :key="imageValue" :hasActions="true" :value="imageValue" @value-change="changeValue($event, i)" @remove-image="removeImage(imageValue)" @open-image="$emit('open-image', imageValue)" />
         </draggable>
       </div>
       <div class="project-security-field">

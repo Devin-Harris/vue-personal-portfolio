@@ -7,7 +7,7 @@
     <div class="request-message-container__btns btns-success" v-if="requestMessage.status === 200" :style="{ gridTemplateColumns: `repeat(${successBtns.length}, 1fr)` }">
       <icon-button class="request-message-btn" v-for="btn in successBtns" :key="btn" :btnText="btn.text" :hasIcon="true" @click="$emit('request-btn-click', btn.action)" />
     </div>
-    <div class="request-message-container__btns btns-error" v-if="requestMessage.status !== 200" :style="{ gridTemplateColumns: `repeat(${successBtns.length}, 1fr)` }">
+    <div class="request-message-container__btns btns-error" v-if="requestMessage.status !== 200" :style="{ gridTemplateColumns: `1fr` }">
       <icon-button class="request-message-btn" :btnText="'Try again'" :hasIcon="true" @click="$emit('request-btn-click', 'retry')" />
     </div>
   </div>

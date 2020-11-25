@@ -112,7 +112,7 @@ app.post('/add-project', async (req, res) => {
     if (req.body.projectSubCategory) {
 
       // Check if project already exists
-      if (SubCategories.find({
+      const subCat = await SubCategories.find({
         sub_category_name: req.body.projectSubCategory,
         projects: {
           name: req.body.projectName,
@@ -121,7 +121,8 @@ app.post('/add-project', async (req, res) => {
           live_site: req.body.projectSite,
           code: req.body.projectCode
         }
-      }))
+      })
+      if (subCat.length > 0)
         res.send({ message: 'Project already exists', status: 400 })
       else
         SubCategories.updateOne(
@@ -278,43 +279,58 @@ app.post('/edit-project', async (req, res) => {
 
 app.post('/reorder-project', async (req, res) => {
   // Check if security key is valid
+  if (req.body.projectKey !== process.env.PASS) {
+    res.send({ message: 'Incorrect Password. Project NOT updated.', status: 400 })
+    return
+  }
+
+  let hasError = false
 
   // Reset categories to match order of req categories
   Categories.deleteMany({}, (err) => {
     if (err)
-      console.log(err)
+      hasError = true
     else
-      console.log('success')
+      console.log('Successfully deleted all categories')
   })
 
   const categories = req.body.categories
   Categories.insertMany(categories, (err) => {
     if (err)
-      console.log(err)
+      hasError = true
     else
-      console.log('success')
+      console.log('Successfully added all categories')
   })
 
   // Reset sub categories to match order of req sub categories
   SubCategories.deleteMany({}, (err) => {
     if (err)
-      console.log(err)
+      hasError = true
     else
-      console.log('success')
+      console.log('Successfully deleted all sub categories')
   })
 
   const subCategories = req.body.subCategories
   SubCategories.insertMany(subCategories, (err) => {
     if (err)
-      console.log(err)
+      hasError = true
     else
-      console.log('success')
+      console.log('Successfully added all sub categories')
   })
 
   // Reset selected sub category projects to match order of req selected sub category projects
+  SubCategories.updateOne({ sub_category_name: req.body.selectedSubCategory.sub_category_name }, { $set: { projects: req.body.selectedSubCategory.projects } }, (err) => {
+    if (err)
+      hasError = true
+    else
+      console.log('Successfully updated selected sub category projects')
+  })
 
 
-  // console.log(req.body)
+  if (hasError)
+    res.send({ message: 'Project has NOT successfully been updated', status: 400 })
+  else
+    res.send({ message: 'Project has successfully been updated', status: 200 })
 })
 
 // Node Mailer methods

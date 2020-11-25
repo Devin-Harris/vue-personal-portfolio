@@ -3,7 +3,7 @@
     <img src="../../../assets/images/selfIllustrationSmall.png" class="footer-bar-container__illustration" />
 
     <footer-button
-      v-if="$route.params.projectCategory !== 'add' && $route.params.projectCategory !== 'edit' && $route.params.projectCategory !== 'reorder' && $route.params.projectCategory !== 'delete' && !$route.params.catchAll"
+      v-if="$route.params.projectCategory !== 'editor' && $route.params.projectCategory !== 'add' && $route.params.projectCategory !== 'edit' && $route.params.projectCategory !== 'reorder' && $route.params.projectCategory !== 'delete' && !$route.params.catchAll"
       :btnText="$route.name === 'Contact' ? 'View Projects' : 'Lets do this'"
       :subTitle="$route.name === 'Contact' ? 'Want to see my projects?' : 'Need a design?'"
       :title="$route.name === 'Contact' ? 'Check them out!' : 'Commission me!'"

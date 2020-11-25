@@ -10,7 +10,7 @@ import ProjectReorder from '@/components/projects/project-reorder'
 
 export default {
   name: 'project-editor',
-  props: ['editorType', 'hasIcon'],
+  props: ['hasIcon'],
   components: {
     IconHeading,
     SimpleDropdown,
@@ -70,30 +70,8 @@ export default {
       const url = `https://devinharris.dev/Portfolio_Images/${category}/`
       return url
     },
-    canClick() {
-      if (this.editorType === 'add') {
-        if (
-          this.selectedCategory &&
-          this.projectKey &&
-          this.projectImages.length > 0
-        ) {
-          if (this.availableSubCategories.length > 0) {
-            if (
-              this.selectedSubCategory &&
-              this.projectName &&
-              this.projectDesc
-            ) {
-              return true
-            } else {
-              return false
-            }
-          } else {
-            return true
-          }
-        }
-      } else {
-        return false
-      }
+    editorType() {
+      return this.$route.params.projectSubCategory
     }
   },
   data() {
@@ -192,13 +170,13 @@ export default {
       let route
       let editor
 
-      if (this.$route.params.projectCategory === 'add') {
+      if (this.$route.params.projectSubCategory === 'add') {
         route = '/add-project'
         editor = 'add'
-      } else if (this.$route.params.projectCategory === 'edit') {
+      } else if (this.$route.params.projectSubCategory === 'edit') {
         route = '/edit-project'
         editor = 'edit'
-      } else if (this.$route.params.projectCategory === 'reorder') {
+      } else if (this.$route.params.projectSubCategory === 'reorder') {
         route = '/reorder-project'
         editor = 'reorder'
       } else if (this.$route.params.projectCategory === 'delete') {
@@ -227,6 +205,7 @@ export default {
         }
       } else if (editor === 'reorder') {
         data = {
+          projectKey: editedData.projectKey,
           categories: editedData.categories,
           subCategories: editedData.subCategories,
           selectedSubCategory: editedData.selectedSubCategory
@@ -257,11 +236,15 @@ export default {
     },
     requestBtnHandler(action) {
       if (action === 'add') {
-        this.$router.push('/projects/add')
+        this.$router.push('/projects/editor/add')
         this.requestMessage = null
       }
       else if (action === 'edit') {
-        this.$router.push('/projects/edit')
+        this.$router.push('/projects/editor/edit')
+        this.requestMessage = null
+      }
+      else if (action === 'reorder') {
+        this.$router.push('/projects/editor/reorder')
         this.requestMessage = null
       }
       else if (action === 'view') {
@@ -270,7 +253,7 @@ export default {
           this.$emit('get-data')
         }, 300)
       } else if (action === 'retry') {
-        this.$router.push(`/projects/${this.$route.params.projectCategory}`)
+        this.$router.push(`/projects/editor/${this.$route.params.projectCategory}`)
         this.requestMessage = null
       }
     }

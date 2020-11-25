@@ -34,7 +34,9 @@ export default {
           if (
             this.selectedSubCategory &&
             this.project.projectName &&
-            this.project.projectDesc
+            this.project.projectDesc &&
+            this.project.projectSite &&
+            this.project.projectCode
           ) {
             return true
           } else {
@@ -121,17 +123,6 @@ export default {
       })
 
       this.requestMessage = await response.json()
-    },
-    requestBtnHandler(action) {
-      if (action === 'add') this.$router.push('/projects/add')
-      else if (action === 'edit') this.$router.push('/projects/edit')
-      else if (action === 'view') {
-        this.$router.push(`/projects/${this.selectedCategory.name}`)
-        setTimeout(() => {
-          this.$emit('get-data')
-        }, 300)
-      }
-      else if (action === 'retry') this.$router.push(`/projects/${this.$route.params.projectCategory}`)
     }
   },
   async mounted() {

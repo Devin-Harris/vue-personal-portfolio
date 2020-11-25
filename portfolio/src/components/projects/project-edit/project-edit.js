@@ -119,16 +119,6 @@ export default {
     async editorActionClick() {
       this.$emit('editor-action-click', this.project, this.editedData)
     },
-    requestBtnHandler(action) {
-      if (action === 'add') this.$router.push('/projects/add')
-      else if (action === 'edit') this.$router.push('/projects/edit')
-      else if (action === 'view') {
-        this.$router.push(`/projects/${this.selectedCategory.name}`)
-        setTimeout(() => {
-          this.$emit('get-data')
-        }, 300)
-      } else if (action === 'retry') this.$router.push(`/projects/${this.$route.params.projectCategory}`)
-    },
     moveToSubCategory(subCategory) {
       this.changedSubCategory = subCategory
     },

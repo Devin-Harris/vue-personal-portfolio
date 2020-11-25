@@ -29,7 +29,15 @@ export default {
       }
     },
     editedData() {
-      return
+      return {
+        projectKey: this.project.projectKey,
+        categories: this.availableCategories,
+        subCategories: this.availableSubCategories,
+        selectedSubCategory: {
+          sub_category_name: this.selectedSubCategory,
+          projects: this.availableProjects
+        }
+      }
     }
   },
   data() {

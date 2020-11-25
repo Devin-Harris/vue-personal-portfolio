@@ -7,6 +7,7 @@ import IconHeading from '@/components/headings/icon-heading'
 import SimpleDropdown from '@/components/dropdowns/simple-dropdown'
 import TextCardBlock from '@/components/text-blocks/text-card-block'
 import TextButtonBlock from '@/components/text-blocks/text-button-block'
+import SelectorCheckbox from '@/components/buttons/selector-checkbox'
 
 export default {
   name: 'project',
@@ -18,7 +19,8 @@ export default {
     TextButtonBlock,
     SimpleDropdown,
     ProjectImageGallery,
-    ProjectEditor
+    ProjectEditor,
+    SelectorCheckbox
   },
   data() {
     return {
@@ -31,13 +33,15 @@ export default {
   computed: {
     ...mapGetters(['getCategories', 'getSubCategories']),
     projectCategory() {
-      if (this.$route.params.projectCategory === 'add' || this.$route.params.projectCategory === 'edit' || this.$route.params.projectCategory === 'reorder' || this.$route.params.projectCategory === 'delete')
+      if (this.$route.params.projectCategory === 'editor' && !this.$route.params.projectSubCategory)
         return this.$route.params.projectCategory
+      if (this.$route.params.projectSubCategory === 'add' || this.$route.params.projectSubCategory === 'edit' || this.$route.params.projectSubCategory === 'reorder')
+        return this.$route.params.projectSubCategory
 
-      if (this.getCategories && this.$route.params.projectCategory)
+      if (this.getCategories && this.getCategories.data && this.$route.params.projectCategory)
         this.category = this.getCategories.data.find((c) => c.name === this.$route.params.projectCategory)
 
-      if (this.category && this.category.subCategories.length > 0) {
+      if (this.category && this.category.subCategories && this.category.subCategories.length > 0) {
         this.subCategories = this.getSubCategories.data
         if (this.subCategories)
           this.activeSubCategory = this.subCategories[0]
@@ -50,7 +54,7 @@ export default {
       return this.$route.params.projectCategory
     },
     projectEditor() {
-      if (this.projectCategory === 'add' || this.projectCategory === 'edit' || this.projectCategory === 'reorder' || this.projectCategory === 'delete') {
+      if (this.projectCategory === 'add' || this.projectCategory === 'edit' || this.projectCategory === 'reorder' || this.projectCategory === 'delete' || this.projectCategory === 'editor') {
         return true
       } else {
         return false
@@ -58,6 +62,7 @@ export default {
     },
     projectEditorTitle() {
       let title = ''
+      if (this.projectCategory === 'editor') title = 'Project Editor'
       if (this.projectCategory === 'add') title = 'Add new project'
       else if (this.projectCategory === 'edit') title = 'Edit a project'
       else if (this.projectCategory === 'reorder') title = 'Reorder projects'
@@ -78,7 +83,10 @@ export default {
       return items.filter((item) => this.activeSubCategory.projects.find((project) => project === item))
     },
     getProjectDescription() {
-      const project = this.subCategoriesItems.find((project) => project.name === this.$route.params.projectName)
+      cd
+      const projectName = this.$route.params.projectName
+      const projectSubCategory = this.$route.params.projectSubCategory
+      const project = this.subCategories.find(sc => sc.sub_category_name === projectSubCategory).projects.find(p => p.name === projectName)
       if (project)
         return project.description
       else
@@ -114,6 +122,19 @@ export default {
     },
     subCategoryCardClick(subCategoryCardName) {
       this.$router.push(`/projects/${this.$route.params.projectCategory}/${this.activeSubCategory.sub_category_name}/${subCategoryCardName}`)
+    },
+    changeEditorType(item) {
+      this.$router.push({ name: 'Projects', params: { projectCategory: 'editor', projectSubCategory: item.name.toLowerCase() } })
+    },
+    buttonClick(button) {
+      const projectName = this.$route.params.projectName
+      const projectSubCategory = this.$route.params.projectSubCategory
+      const project = this.subCategories.find(sc => sc.sub_category_name === projectSubCategory).projects.find(p => p.name === projectName)
+      if (button === 'site')
+        window.open(project.live_site)
+      else if (button === 'code')
+        window.open(project.code)
+
     }
   },
   async mounted() {

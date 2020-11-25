@@ -142,6 +142,21 @@
       color: $primary;
     }
 
+    .dragArea {
+      .draggable-item {
+
+        .draggable-input {
+          &:hover {
+            cursor: move;
+          }
+        }
+        
+        &:hover {
+          cursor: move;
+        }
+      }
+    }
+
   }
 
   .project-category-field {

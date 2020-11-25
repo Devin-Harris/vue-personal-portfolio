@@ -1,6 +1,6 @@
 <template>
   <div class="draggable-item" :class="{ isEdited: isEdited }" draggable="true">
-    <input class="draggable-input" :placeholder="value" @change="getEdited" />
+    <input class="draggable-input" :placeholder="value" @change="getEdited" :readonly="!canEdit" />
     <div class="actions" v-if="hasActions">
       <i @click.stop="editImage" class="fas fa-edit"></i>
       <i @click.stop="$emit('remove-image', imageValue)" class="fas fa-trash"></i>
