@@ -74,3 +74,12 @@
 .topSpacing {
   padding: 8rem 0 0 0;
 }
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {
+  .project-container {
+    .page-heading-container {
+      min-height: max-content;
+    }
+  }
+}

@@ -62,3 +62,56 @@
   }
 
 }
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// Extra large devices (large desktops, 1200px and up)
+@media (max-width: 1200px) {
+  .footer-bar-container {
+    padding: 8rem 0;
+
+    &__illustration {
+      height: 90%;
+      opacity: .3;
+      mix-blend-mode: overlay;
+    }
+
+    &__links {
+      grid-template-columns: repeat(2, auto);
+      grid-row-gap: 2rem;
+
+      &__navigation, &__media, &__copyright {
+        h1 {
+          font-size: 3vw;
+          width: max-content;
+        }
+        h4 {
+          font-size: 2vw;
+        }
+      }
+
+      &__copyright {
+        grid-column: 1 / span 2;
+      }
+    }
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (max-width: 992px) {
+  .footer-bar-container {
+    padding: 10rem 0;
+
+    &__illustration {
+      height: 85%;
+      opacity: .2;
+    }
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {  }
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {  }

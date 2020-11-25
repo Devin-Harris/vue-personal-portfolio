@@ -1,12 +1,12 @@
 <template>
-  <div class="nav-bar-container">
+  <div class="nav-bar-container" @click.stop="closePopup">
     <ul>
       <li :class="{ active: $route.name === 'Home' }" @click="redirect('/')">Home</li>
       <li
         :class="{
           active: route.name === 'my-work' || $route.params.projectCategory === 'add' || $route.params.projectCategory === 'edit' || $route.params.projectCategory === 'delete' || route.name === 'Projects'
         }"
-        @click="togglePopup"
+        @click.stop="togglePopup"
       >
         My work
       </li>

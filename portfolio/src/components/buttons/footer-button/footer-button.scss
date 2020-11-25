@@ -50,3 +50,56 @@
   }
 
 }
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// Extra large devices (large desktops, 1200px and up)
+@media (max-width: 1200px) { 
+
+}
+
+// Large devices (desktops, 992px and up)
+@media (max-width: 992px) {
+  .footer-button-container {
+    min-width: 60vw;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {
+  .footer-button-container {
+    min-width: 70vw;
+    &__text {
+      h4 {
+        font-size: 2.5vw;
+      }
+      h1 {
+        font-size: 2.75vw;
+      }
+    } 
+
+    &__button {
+      font-size: 2vw;
+    }
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+  .footer-button-container {
+    
+    &__text {
+      h4 {
+        font-size: 2vw;
+      }
+      h1 {
+        font-size: 2.25vw;
+      }
+    } 
+
+    &__button {
+      font-size: 1.5vw;
+    }
+  }
+}

@@ -83,7 +83,6 @@ export default {
       return items.filter((item) => this.activeSubCategory.projects.find((project) => project === item))
     },
     getProjectDescription() {
-      cd
       const projectName = this.$route.params.projectName
       const projectSubCategory = this.$route.params.projectSubCategory
       const project = this.subCategories.find(sc => sc.sub_category_name === projectSubCategory).projects.find(p => p.name === projectName)
