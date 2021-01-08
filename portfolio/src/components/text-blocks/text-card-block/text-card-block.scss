@@ -64,3 +64,28 @@
   }
 
 }
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// Extra large devices (large desktops, 1200px and up)
+@media (max-width: 1200px) {  }
+
+// Large devices (desktops, 992px and up)
+@media (max-width: 992px) {  }
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {  }
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+  .text-card-block-container {
+    padding: 10rem 0;
+
+    &__btns {
+      &__btn {
+        font-size: 60%;
+      }
+    }
+  }
+}

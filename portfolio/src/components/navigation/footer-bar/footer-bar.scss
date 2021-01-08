@@ -114,4 +114,31 @@
 @media (max-width: 768px) {  }
 
 // Small devices (landscape phones, 576px and up)
-@media (max-width: 576px) {  }
+@media (max-width: 576px) {
+  .footer-bar-container {
+
+    &__illustration {
+      width: 100%;
+      height: auto;
+    }
+
+    &__links {
+      grid-template-columns: repeat(2, auto);
+      grid-row-gap: 2rem;
+
+      &__navigation, &__media, &__copyright {
+        h1 {
+          font-size: 4vw;
+          width: max-content;
+        }
+        h4 {
+          font-size: 3vw;
+        }
+      }
+
+      &__copyright {
+        grid-column: 1 / span 2;
+      }
+    }
+  }
+}

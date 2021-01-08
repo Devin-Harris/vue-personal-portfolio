@@ -1,11 +1,14 @@
 const axios = require('axios')
 const dotenv = require('dotenv').config()
+
 const express = require('express')
 const app = express()
+
 const nodemailer = require("nodemailer")
 const mailGun = require("nodemailer-mailgun-transport")
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+var history = require('connect-history-api-fallback')
 
 const bodyParser = require("body-parser")
 const cors = require("cors")
@@ -60,6 +63,9 @@ const PORT = process.env.PORT || 3000
 app.listen(PORT, () => { console.log(`Listening on port ${PORT}`) })
 
 app.use(express.static('server_html'))
+// if (PORT !== 3000) {
+//   app.use(history())
+// }
 
 app.use(function (req, res, next) {
 
