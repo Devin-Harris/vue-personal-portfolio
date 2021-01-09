@@ -150,6 +150,10 @@
     align-items: center;
     padding: 5rem;
 
+    &__links {
+      display: none;
+    }
+
     &__text {
       text-align: center;
       margin-left: 0;
@@ -171,8 +175,27 @@
   .page-heading-container {
     width: 80%;
 
+    &__text {
+      h1 {
+        line-height: 100%;
+        font-size: 225%;
+      }
+    }
+
     &__image {
       height: 50%;
     }
+  }
+}
+
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 410px) {
+  .page-heading-container {
+
+    &__image {
+      height: 45%;
+    }
+
   }
 }

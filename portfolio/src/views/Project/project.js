@@ -137,8 +137,6 @@ export default {
     }
   },
   async mounted() {
-    await this.fetchCategories()
-    await this.fetchSubCategories()
     await this.initData()
   }
 }

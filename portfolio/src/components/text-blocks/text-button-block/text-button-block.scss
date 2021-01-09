@@ -44,4 +44,21 @@
 @media (max-width: 768px) {  }
 
 // Small devices (landscape phones, 576px and up)
-@media (max-width: 576px) {  }
+@media (max-width: 576px) {
+  .text-button-block-container {
+    width: 70%;
+
+    &__text {
+      font-size: 75%;
+    }
+
+    &__btns {
+      width: 100%;
+      .icon-button-container {
+        h1 {
+          font-size: 55%;
+        }
+      }
+    }
+  }
+}
