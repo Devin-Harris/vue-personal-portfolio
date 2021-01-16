@@ -86,6 +86,9 @@ export default {
         ]
         this.isFormShown = true
       }
+    },
+    headingBtnClick() {
+      this.$router.push('/')
     }
   }
 }

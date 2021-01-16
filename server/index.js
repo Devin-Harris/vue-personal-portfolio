@@ -14,8 +14,8 @@ const bodyParser = require("body-parser")
 const cors = require("cors")
 
 app.use(cors())
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.json({ limit: '1000mb' }))
+app.use(bodyParser.urlencoded({ limit: '1000mb', extended: false }))
 
 
 // Mongoose methods
@@ -184,7 +184,6 @@ app.post('/edit-project', async (req, res) => {
 
   // If sub categories find sub category in DB
   if (req.body.projectSubCategory) {
-    console.log(req.body)
     const subCategory = await SubCategories.find({ sub_category_name: req.body.projectSubCategory })
     const project = subCategory[0].projects.find(project => project._id == req.body.projectId)
 
@@ -227,7 +226,6 @@ app.post('/edit-project', async (req, res) => {
     }
     // If project doesnt exist in subcategory, add project to sub category and remove from subcategory it originated from
     else {
-      console.log('not in subcategory', req.body.originSubCategory)
       // Remove from subcategory
       SubCategories.updateOne({ sub_category_name: req.body.originSubCategory },
         {

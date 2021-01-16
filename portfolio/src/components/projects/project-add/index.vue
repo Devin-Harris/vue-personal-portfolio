@@ -22,14 +22,15 @@
       </div>
       <div class="project-images-field" v-if="availableSubCategories.length === 0">
         <label>Project Image(s)</label>
-        <label class="urlPrefix">{{ urlPrefix }}</label>
-        <div class="all-image-links" v-if="projectImages.length > 0">
+        <label v-if="false" class="urlPrefix">{{ urlPrefix }}</label>
+        <div class="all-image-links" v-if="projectImages.length > 0 && false">
           <div class="image-link" v-for="imageValue in projectImages" :key="imageValue" @click="$emit('open-image', imageValue)">
             <p>{{ imageValue }}</p>
             <i @click.stop="$emit('remove-image', imageValue)" class="fas fa-trash"></i>
           </div>
         </div>
-        <input type="text" placeholder="File name..." autocomplete="off" @keydown.enter.prevent="$emit('add-image', $event)" />
+        <!-- <input type="text" placeholder="File name..." autocomplete="off" @keydown.enter.prevent="$emit('add-image', $event)" /> -->
+        <file-uploader :uploadedFiles="projectImages" @file-change="$emit('set-images', $event)" ></file-uploader>
       </div>
       <div class="project-display-image-field" v-else>
         <label>Display Image</label>

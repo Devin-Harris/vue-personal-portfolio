@@ -49,6 +49,15 @@
       }
     }
 
+    .disabled {
+      background-color: $theme-greymiddle;
+      opacity: .1;
+
+      &:hover {
+        cursor: default;
+      }
+    }
+  
   }
 
   .simple-popup-container {

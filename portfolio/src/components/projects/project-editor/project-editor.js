@@ -38,13 +38,8 @@ export default {
     },
     availableNames() {
       if (!this.selectedSubCategory) return []
-      let subCategory = JSON.parse(
-        JSON.stringify(this.getSubCategories.data)
-      ).find(
-        (subCategory) =>
-          subCategory.sub_category_name === this.selectedSubCategory
-      )
-      return subCategory.projects.map((project) => project.name)
+      let subCategory = JSON.parse(JSON.stringify(this.getSubCategories.data)).find((subCategory) => subCategory.sub_category_name === this.selectedSubCategory)
+      return (subCategory && subCategory.projects) ? subCategory.projects.map((project) => project.name) : []
     },
     urlPrefix() {
       let category = ''
@@ -90,69 +85,43 @@ export default {
   methods: {
     ...mapActions(['fetchCategories', 'fetchSubCategories']),
     categoryChanged(clickedCategory) {
-      this.selectedCategory = JSON.parse(
-        JSON.stringify(this.availableCategories)
-      ).find((category) => category.name === clickedCategory)
+      this.selectedCategory = JSON.parse(JSON.stringify(this.availableCategories)).find((category) => category.name === clickedCategory)
 
       if (this.selectedCategory.subCategories.length > 0) {
         this.selectedSubCategory = this.selectedCategory.subCategories[0]
-        let subCategory = JSON.parse(
-          JSON.stringify(this.getSubCategories.data)
-        ).find(
-          (subCategory) =>
-            subCategory.sub_category_name === this.selectedSubCategory
-        )
-        this.selectedName = subCategory.projects[0].name
-        this.selectedDesc = subCategory.projects.find(
-          (project) => project.name === this.selectedName
-        ).description
-        this.selectedCode = subCategory.projects.find(
-          (project) => project.name === this.selectedName
-        ).code
-        this.selectedSite = subCategory.projects.find(
-          (project) => project.name === this.selectedName
-        ).live_site
-
-        console.log(this.selectedSite, this.selectedCode)
+        let subCategory = JSON.parse(JSON.stringify(this.getSubCategories.data)).find((subCategory) => subCategory.sub_category_name === this.selectedSubCategory)
+        if (subCategory) {
+          this.selectedName = subCategory.projects[0].name
+          this.selectedDesc = subCategory.projects.find((project) => project.name === this.selectedName).description
+          this.selectedCode = subCategory.projects.find((project) => project.name === this.selectedName).code
+          this.selectedSite = subCategory.projects.find((project) => project.name === this.selectedName).live_site
+        }
       } else {
         this.selectedSubCategory = ''
       }
     },
     subCategoryChanged(clickedSubCategory) {
       this.selectedSubCategory = clickedSubCategory
-      let subCategory = JSON.parse(
-        JSON.stringify(this.getSubCategories.data)
-      ).find(
-        (subCategory) => subCategory.sub_category_name === clickedSubCategory
-      )
-      this.selectedName = subCategory.projects[0].name
-      this.selectedDesc = subCategory.projects.find(
-        (project) => project.name === this.selectedName
-      ).description
-      this.selectedCode = subCategory.projects.find(
-        (project) => project.name === this.selectedName
-      ).code
-      this.selectedSite = subCategory.projects.find(
-        (project) => project.name === this.selectedName
-      ).live_site
+      let subCategory = JSON.parse(JSON.stringify(this.getSubCategories.data)).find((subCategory) => subCategory.sub_category_name === clickedSubCategory)
+
+      if (subCategory) {
+        this.selectedName = subCategory.projects[0].name
+        this.selectedDesc = subCategory.projects.find((project) => project.name === this.selectedName).description
+        this.selectedCode = subCategory.projects.find((project) => project.name === this.selectedName).code
+        this.selectedSite = subCategory.projects.find((project) => project.name === this.selectedName).live_site
+      }
     },
     nameChanged(clickedName) {
       this.selectedName = clickedName
-      let subCategory = JSON.parse(
-        JSON.stringify(this.getSubCategories.data)
-      ).find(
-        (subCategory) =>
-          subCategory.sub_category_name === this.selectedSubCategory
-      )
-      this.selectedDesc = subCategory.projects.find(
-        (project) => project.name === this.selectedName
-      ).description
-      this.selectedCode = subCategory.projects.find(
-        (project) => project.name === this.selectedName
-      ).code
-      this.selectedSite = subCategory.projects.find(
-        (project) => project.name === this.selectedName
-      ).live_site
+      let subCategory = JSON.parse(JSON.stringify(this.getSubCategories.data)).find((subCategory) => subCategory.sub_category_name === this.selectedSubCategory)
+      if (subCategory) {
+        this.selectedDesc = subCategory.projects.find((project) => project.name === this.selectedName).description
+        this.selectedCode = subCategory.projects.find((project) => project.name === this.selectedName).code
+        this.selectedSite = subCategory.projects.find((project) => project.name === this.selectedName).live_site
+      }
+    },
+    setImages(e) {
+      this.projectImages = e
     },
     addImage(e) {
       this.projectImages.push(e.target.value)
@@ -162,9 +131,7 @@ export default {
       window.open(this.urlPrefix + imageUrl)
     },
     removeImage(imageUrl) {
-      this.projectImages = this.projectImages.filter(
-        (image) => image !== imageUrl
-      )
+      this.projectImages = this.projectImages.filter((image) => image !== imageUrl)
     },
     async editorActionClick(project, editedData = null) {
       let route
@@ -219,7 +186,7 @@ export default {
           projectSite: project.projectSite,
           projectCode: project.projectCode,
           projectKey: project.projectKey,
-          projectImages: this.projectImages.map((image) => this.urlPrefix + image)
+          projectImages: this.projectImages //this.projectImages.map((image) => this.urlPrefix + image)
         }
       }
 
@@ -266,20 +233,16 @@ export default {
       await new Promise((resolve) => setTimeout(resolve, 10))
     }
 
-    this.availableCategories = JSON.parse(
-      JSON.stringify(this.getCategories.data)
-    )
+    this.availableCategories = JSON.parse(JSON.stringify(this.getCategories.data))
     this.selectedCategory = this.availableCategories[0]
     this.selectedSubCategory = this.selectedCategory.subCategories[0]
-    let init_project = JSON.parse(
-      JSON.stringify(this.getSubCategories.data)
-    ).find(
-      (subCategory) =>
-        subCategory.sub_category_name === this.selectedSubCategory
-    ).projects[0]
-    this.selectedName = init_project.name
-    this.selectedDesc = init_project.description
-    this.selectedCode = init_project.code
-    this.selectedSite = init_project.live_site
+    let init_project = JSON.parse(JSON.stringify(this.getSubCategories.data)).find((subCategory) => subCategory.sub_category_name === this.selectedSubCategory)
+    if (init_project) {
+      init_project = init_project.projects[0]
+      this.selectedName = init_project.name
+      this.selectedDesc = init_project.description
+      this.selectedCode = init_project.code
+      this.selectedSite = init_project.live_site
+    }
   }
 }

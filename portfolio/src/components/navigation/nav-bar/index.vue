@@ -4,7 +4,14 @@
       <li :class="{ active: $route.name === 'Home' }" @click="redirect('/')">Home</li>
       <li
         :class="{
-          active: route.name === 'my-work' || $route.params.projectCategory === 'add' || $route.params.projectCategory === 'edit' || $route.params.projectCategory === 'delete' || route.name === 'Projects'
+          'active': 
+            route.name === 'my-work' ||
+            $route.params.projectCategory === 'add' ||
+            $route.params.projectCategory === 'edit' ||
+            $route.params.projectCategory === 'delete' ||
+            route.name === 'Projects',
+          'disabled':
+            !getCategories
         }"
         @click.stop="togglePopup"
       >

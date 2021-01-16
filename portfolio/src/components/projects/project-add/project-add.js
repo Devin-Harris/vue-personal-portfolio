@@ -4,6 +4,7 @@ import SimpleDropdown from "@/components/dropdowns/simple-dropdown"
 import EditorButton from "@/components/buttons/editor-button"
 import IconButton from "@/components/buttons/icon-button"
 import RequestMessage from "@/components/projects/request-message"
+import FileUploader from '@/components/projects/file-uploader'
 
 export default {
   name: "project-add",
@@ -20,7 +21,8 @@ export default {
     SimpleDropdown,
     EditorButton,
     IconButton,
-    RequestMessage
+    RequestMessage,
+    FileUploader
   },
   computed: {
     ...mapGetters(['getCategories']),
@@ -46,7 +48,7 @@ export default {
           return true
         }
       }
-    },
+    }
   },
   data() {
     return {

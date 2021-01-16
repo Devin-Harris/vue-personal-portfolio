@@ -16,6 +16,7 @@
       @open-image="openImage($event)"
       @remove-image="removeImage($event)"
       @add-image="addImage"
+      @set-images="setImages"
       @editor-action-click="editorActionClick($event)"
     />
 

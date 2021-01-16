@@ -15,6 +15,11 @@
     <div class="text-card-block-container__cards">
       <category-card v-for="item in items" :item="item" :key="item.name" />
     </div>
+
+    <div v-if="items.length === 0" class="loading">
+      <span>Loading <i class="fas fa-spinner fa-spin"></i></span>
+    </div>
+
   </div>
 </template>
 

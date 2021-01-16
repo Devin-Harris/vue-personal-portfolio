@@ -1,0 +1,47 @@
+.file-uploader {
+  &-container {
+    width: 100%;
+    position: relative;
+
+    .project-image-gallery-container {
+      padding-bottom: 2rem;
+      width: unset;
+
+      &__image-container {
+        background-color: $theme-greywhite;
+      }
+    }
+  }
+
+  &-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  &-button {
+    background-color: $primary;
+    width: inherit;
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 1rem;
+    color: white;
+    font-size: 1.5rem;
+    transition: .3s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $primary-light;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+}
