@@ -11,4 +11,4 @@
 
 <script src="./editor-button.js"></script>
 
-<style lang="scss" src="./editor-button.scss"></style>
+<style lang="scss" src="./editor-button.scss" scoped></style>

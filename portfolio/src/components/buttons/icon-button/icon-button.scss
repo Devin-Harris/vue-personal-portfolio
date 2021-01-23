@@ -9,6 +9,7 @@
   border-radius: 50rem;
   transition: .3s;
   color: white;
+  pointer-events: all !important;
 
   .button-svg {
     height: 1.15rem;

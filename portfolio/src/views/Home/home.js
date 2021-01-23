@@ -3,6 +3,7 @@ import PageHeading from '@/components/headings/page-heading'
 import TextButtonBlock from '@/components/text-blocks/text-button-block'
 import TextCardBlock from '@/components/text-blocks/text-card-block'
 import SideBySideBlock from '@/components/text-blocks/side-by-side-block'
+import BackgroundAnimation from '@/components/headings/background-animation'
 
 export default {
   name: 'Home',
@@ -10,7 +11,8 @@ export default {
     PageHeading,
     TextButtonBlock,
     TextCardBlock,
-    SideBySideBlock
+    SideBySideBlock,
+    BackgroundAnimation
   },
   computed: {
     ...mapGetters(['getCategories'])

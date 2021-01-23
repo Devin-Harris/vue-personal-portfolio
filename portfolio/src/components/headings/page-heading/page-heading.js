@@ -20,6 +20,22 @@ export default {
   methods: {
     openLink(link) {
       window.open(link)
+    },
+    cardInHover(e) {
+      const card = this.$refs.card
+      card.style.transition = 'none'
+    },
+    cardMoveHover(e) {
+      const intensity = 25
+      const card = this.$refs.card
+      let xAxis = ((window.innerWidth / 2) - e.pageX) / intensity
+      let yAxis = ((window.innerHeight / 2) - e.pageY) / intensity
+      card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`
+    },
+    cardOutHover() {
+      const card = this.$refs.card
+      card.style.transition = 'all 0.5s ease'
+      card.style.transform = `rotateY(0deg) rotateX(0deg)`
     }
   },
   mounted() {

@@ -7,6 +7,7 @@ export default {
     SimplePopup
   },
   created() {
+    this.logo = require('@/assets/icons/dchLogoWhite.png')
     window.addEventListener('click', this.clickOutside)
   },
   onUnmounted() {
@@ -14,7 +15,8 @@ export default {
   },
   data() {
     return {
-      isPopupOpen: false
+      isPopupOpen: false,
+      logo: null
     }
   },
   computed: {
@@ -26,6 +28,16 @@ export default {
   methods: {
     togglePopup() {
       this.isPopupOpen = !this.isPopupOpen
+      if (this.isPopupOpen) this.positionArrow()
+    },
+    positionArrow() {
+      setTimeout(() => {
+        const workIcon = this.$refs.workIcon
+        const arrow = this.$refs.arrow
+        const navContainer = this.$refs.navContainer
+        let left = workIcon.getBoundingClientRect().left - navContainer.getBoundingClientRect().left + 6
+        arrow.style.left = left  + 'px'
+      }, 1)
     },
     navigateToCategory(category) {
       this.isPopupOpen = false
@@ -33,7 +45,7 @@ export default {
     },
     clickOutside(e) {
       if (!this.isPopupOpen) return
-      const popup = this.$el.querySelector('.simple-popup-container__dropdown-popup')
+      const popup = this.$el.querySelector('.popup-links')
       if (!e.path.includes(popup) && !e.path.includes(this.$el)) this.closePopup()
     },
     closePopup() {
@@ -43,5 +55,5 @@ export default {
       this.$router.push(path)
       this.isPopupOpen = false
     }
-  }
+  },
 }

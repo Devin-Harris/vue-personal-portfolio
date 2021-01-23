@@ -1,11 +1,13 @@
 import PageHeading from '@/components/headings/page-heading'
 import FormBlock from '@/components/text-blocks/form-block'
+import BackgroundAnimation from '@/components/headings/background-animation'
 
 export default {
   name: 'Contact',
   components: {
     PageHeading,
-    FormBlock
+    FormBlock,
+    BackgroundAnimation
   },
   data() {
     return {

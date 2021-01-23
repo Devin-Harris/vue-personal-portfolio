@@ -8,6 +8,7 @@ import SimpleDropdown from '@/components/dropdowns/simple-dropdown'
 import TextCardBlock from '@/components/text-blocks/text-card-block'
 import TextButtonBlock from '@/components/text-blocks/text-button-block'
 import SelectorCheckbox from '@/components/buttons/selector-checkbox'
+import BackgroundAnimation from '@/components/headings/background-animation'
 
 export default {
   name: 'project',
@@ -20,7 +21,8 @@ export default {
     SimpleDropdown,
     ProjectImageGallery,
     ProjectEditor,
-    SelectorCheckbox
+    SelectorCheckbox,
+    BackgroundAnimation
   },
   data() {
     return {
@@ -98,7 +100,7 @@ export default {
       await this.fetchCategories()
       await this.fetchSubCategories()
       // Wait for store to be populated by app call
-      while (this.getCategories.length === 0) {
+      while (!this.getCategories && this.getCategories.length === 0) {
         await new Promise((resolve) => setTimeout(resolve, 10))
       }
 
