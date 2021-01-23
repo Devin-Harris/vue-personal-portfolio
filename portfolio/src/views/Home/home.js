@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      aboutMeText: 'I am a computer science engineering student at the University of Cincinnati. I have over 6 years of experience in Adobe Photoshop, Illustrator, and Lightroom. I have an interest in software development especially in web development. I have experience with C++, MATLAB, Python, Processing, and PHP. I have worked extensively in HTML/CSS, Javascript, Vue, and jQuery, Bootstrap, and Jest.',
+      aboutMeText: 'I am a computer science engineering student at the University of Cincinnati. I have over 6 years of experience in Adobe Photoshop, Illustrator, and Lightroom. I have an interest in software development especially in web development. I have experience with C++, MATLAB, Python, Processing, and PHP. I have worked extensively in HTML/CSS, Javascript, Vue, jQuery, Bootstrap, and Jest.',
       sideBySideInformation: [
         {
           iconClass: 'fas fa-bezier-curve',
