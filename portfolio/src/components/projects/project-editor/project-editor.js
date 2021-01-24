@@ -7,6 +7,7 @@ import RequestMessage from '@/components/projects/request-message'
 import ProjectAdd from '@/components/projects/project-add'
 import ProjectEdit from '@/components/projects/project-edit'
 import ProjectReorder from '@/components/projects/project-reorder'
+import BackgroundAnimation from '@/components/headings/background-animation'
 
 export default {
   name: 'project-editor',
@@ -19,7 +20,8 @@ export default {
     RequestMessage,
     ProjectAdd,
     ProjectEdit,
-    ProjectReorder
+    ProjectReorder,
+    BackgroundAnimation
   },
   computed: {
     ...mapGetters(['getCategories', 'getSubCategories']),

@@ -8,7 +8,9 @@
       </div>
     </div>
     <ul>
-      <li :class="{ active: $route.name === 'Home' }" @click="redirect('/')"><i class="fas fa-home"></i></li>
+      <li :class="{ active: $route.name === 'Home' }" >
+        <i class="fas fa-home" @click="redirect('/')" v-tooltip="{ content: 'Home', classes: ['tooltip'] }"></i>
+      </li>
       <li
         :class="{
           'active': 
@@ -20,11 +22,12 @@
           'disabled':
             !getCategories
         }"
-        @click.stop="togglePopup"
       >
-        <i class="fas fa-stream" ref="workIcon"></i>
+        <i class="fas fa-stream" @click.stop="togglePopup" ref="workIcon" v-tooltip="{ content: 'My work', classes: ['tooltip'] }"></i>
       </li>
-      <li :class="{ active: $route.name === 'Contact' }" @click="redirect('/contact')"><i class="fas fa-comment"></i></li>
+      <li :class="{ active: $route.name === 'Contact' }">
+        <i class="fas fa-comment" @click="redirect('/contact')" v-tooltip="{ content: 'Contact me', classes: ['tooltip'] }"></i>
+      </li>
     </ul>
     <div v-if="isPopupOpen" class="popup-links" @click.stop>
       <div class="arrow" ref="arrow"></div>

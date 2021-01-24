@@ -1,5 +1,7 @@
 .footer-button-container {
-  min-width: 35rem;
+  width: max-content;
+  height: max-content;
+  margin: 0 auto;
   padding: 1.5rem;
   position: absolute;
   left: 50%;
@@ -8,12 +10,38 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: .75rem;
+  perspective: 1000px;
+  
+  &-animate {
+    border-radius: .75rem;
+    min-width: 35rem;
+    padding: 1.5rem;
+    z-index: 200;
+    pointer-events: none;
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-hover {
+    position: absolute;
+    min-width: 40rem;
+    width: 100%;
+    height: 100%;
+    padding: 5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // background-color: $primary;
+    z-index: 1;
+  }
 
   &__text {
     text-align: left;
     color: white;
-
+    z-index: 2;
+    
     h4 {
       font-weight: 400;
     }
@@ -21,8 +49,9 @@
       font-size: 1.25rem;
     }
   }
-
+  
   &__button {
+    z-index: 2;
     padding: .5rem 2rem;
     border-radius: 50rem;
     background-color: $primary;
@@ -30,6 +59,7 @@
     transition: .3s;
     font-weight: 700;
     font-size: .85rem;
+    pointer-events: all;
 
     &:hover {
       cursor: pointer;
@@ -38,11 +68,15 @@
   }
 
   &__dark {
-    background-color: $theme-greydark;
+    .footer-button-container-animate {
+      background-color: $theme-greydark;
+    }
   }
-
+  
   &__light {
-    background-color: $theme-greywhite;
+    .footer-button-container-animate {
+      background-color: $theme-greywhite;
+    }
 
     .footer-button-container__text {
       color: $theme-greydark;

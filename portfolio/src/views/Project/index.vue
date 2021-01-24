@@ -4,6 +4,7 @@
     <div v-if="projectEditor">
       <selector-checkbox v-if="$route.params.projectSubCategory" :items="['Add', 'Edit', 'Reorder']" />
       <editor-heading :title="projectEditorTitle" :btnText="'Go back to home page'" :class="{ topSpacing: !$route.params.projectSubCategory }" />
+      <background-animation />
       <project-editor v-if="$route.params.projectSubCategory" @get-data="initData" />
       <div v-if="!$route.params.projectSubCategory" class="editor-cards">
         <div
