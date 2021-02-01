@@ -97,6 +97,9 @@
 @media (max-width: 992px) {
   .footer-button-container {
     min-width: 60vw;
+    &-animate, &-hover {
+      min-width: 60vw;
+    }
   }
 }
 
@@ -104,6 +107,9 @@
 @media (max-width: 768px) {
   .footer-button-container {
     min-width: 70vw;
+    &-animate, &-hover {
+      min-width: 70vw;
+    }
     &__text {
       h4 {
         font-size: 2.5vw;
@@ -122,6 +128,9 @@
 // Small devices (landscape phones, 576px and up)
 @media (max-width: 576px) {
   .footer-button-container {
+    &-animate, &-hover {
+      min-width: 80vw;
+    }
     
     &__text {
       h4 {
