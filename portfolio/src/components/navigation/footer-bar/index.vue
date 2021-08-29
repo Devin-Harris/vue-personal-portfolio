@@ -16,7 +16,7 @@
         <h1>Page Navigation</h1>
         <h4 @click="redirect('top')">Top of page</h4>
         <h4 @click="redirect('Home')">Home</h4>
-        <h4 @click="redirect('work')">My work</h4>
+        <h4 @click="redirect('work')">My projects</h4>
         <h4 @click="redirect('Contact')">Contact Me</h4>
       </div>
 

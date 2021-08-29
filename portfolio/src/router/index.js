@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
+import app from '../main'
 import Home from '../views/Home'
 import Contact from '../views/Contact'
 import Project from '../views/Project'
@@ -28,11 +29,17 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
   scrollBehavior() {
     window.scrollTo({ left: 0, top: 0, behavior: 'auto' })
   }
+})
+
+router.beforeEach((to, from, next) => {
+  if (!app.config.globalProperties.$ILLUSTRATION_KEY) app.config.globalProperties.$ILLUSTRATION_KEY = 1
+  else ++app.config.globalProperties.$ILLUSTRATION_KEY
+  next()
 })
 
 export default router

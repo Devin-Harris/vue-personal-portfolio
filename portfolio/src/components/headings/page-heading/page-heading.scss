@@ -31,6 +31,13 @@
     position: absolute;
     z-index: 200;
     pointer-events: none;
+    border: 1px solid $theme-greymiddle;
+    &.hasIllustration {
+      background-color: transparent;
+      .page-heading-container__text > * {
+        opacity: 0;
+      }
+    }
   }
 
   &__text {
@@ -63,8 +70,8 @@
       background-color: $primary;
       padding: .5rem 1.5rem;
       margin: .5rem 0 0 0;
-      border-radius: 50rem;
-      transition: .3s;
+      // border-radius: 50rem;
+      // transition: .3s;
 
       .button-svg {
         height: 1.15rem;
@@ -137,8 +144,11 @@
     }
   }
 
-  .hidden {
+  .links-with-illustration {
     opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
   }
 
   &__image {
@@ -146,7 +156,6 @@
     bottom: 0;
     right: 0;
     height: 95%;
-    width: auto;
     border-radius: 0 0 .75rem 0;
   }
 }

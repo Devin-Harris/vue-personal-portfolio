@@ -43,8 +43,9 @@
         border: 0;
         outline: 0;
         padding: 0.5rem 1rem;
-        background-color: $theme-greydark;
-        color: $theme-greywhite;
+        border-radius: .25rem;
+        border-bottom: 1px solid $theme-greylight;
+        color: $theme-greydark;
 
         &::placeholder {
           color: $theme-greylight;
@@ -67,8 +68,9 @@
       color: $theme-greywhite;
       transition: .3s;
     }
-
+    
     .active {
+      cursor: pointer;
       pointer-events: all;
       background-color: $primary;
 

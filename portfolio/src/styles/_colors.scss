@@ -13,3 +13,17 @@ $theme-greymiddle: #716f73;
 $theme-greylight: #dadada;
 
 $theme-greywhite: #fbfbfb;
+
+:export {
+  secondary: $secondary;
+  secondaryLight: $secondary-light;
+  primary: $primary;
+  primaryLight: $primary-light;
+  errorRed: $error-red;
+  themeGrey: $theme-grey;
+  themeGreydark: $theme-greydark;
+  themeGreydarkest: $theme-greydarkest;
+  themeGreymiddle: $theme-greymiddle;
+  themeGreylight: $theme-greylight;
+  themeGreywhite: $theme-greywhite;
+}

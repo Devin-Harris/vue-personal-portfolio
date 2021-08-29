@@ -1,5 +1,5 @@
 .side-by-side-block-container {
-  width: 40%;
+  // width: 40%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -7,21 +7,12 @@
   &__side-section {
     width: 100%;
     padding: 4rem 2rem;
-    margin-top: -5rem;
+    // margin-top: -5rem;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 5rem 3rem 5rem 8rem auto;
-    border: 2px solid $theme-greylight;
+    grid-template-rows: 5rem 4rem 5rem 8rem auto;
+    // border: 2px solid $theme-greylight;
     background-color: white;
-
-    &:first-child {
-      border-right: 1px;
-      border-radius: .75rem 0 0 .75rem;
-    }
-
-    &:last-child {
-      border-radius: 0 .75rem .75rem 0;
-    }
 
     i {
       color: $primary;
@@ -37,7 +28,7 @@
       font-weight: 400;
       color: $theme-greydark;
       font-size: .75rem;
-      padding: 0 2.5rem;
+      padding: 0 2rem;
     }
 
     &__row {
@@ -59,10 +50,8 @@
 // Extra large devices (large desktops, 1200px and up)
 @media (max-width: 1200px) {
   .side-by-side-block-container {
-    width: 55%;
-
     &__side-section {
-      grid-template-rows: 5rem 5rem 5rem 8rem auto;
+      grid-template-rows: 5.5rem 5.5rem 5.5rem 8.5rem auto;
       padding: 4rem 1rem;
     }
   }
@@ -71,7 +60,6 @@
 // Large devices (desktops, 992px and up)
 @media (max-width: 992px) {
   .side-by-side-block-container {
-    width: 70%;
   }
 }
 
@@ -82,14 +70,7 @@
 
     &__side-section {
       &:first-child {
-        border-right: 2px solid $theme-greylight;
-        border-radius: .75rem .75rem 0 .75rem;
         margin-bottom: 4rem;
-      }
-  
-      &:last-child {
-        border-top: 1px solid $theme-greylight;
-        border-radius: 0 0rem .75rem .7rem;
       }
     }
   }

@@ -53,7 +53,7 @@
   &__button {
     z-index: 2;
     padding: .5rem 2rem;
-    border-radius: 50rem;
+    border-radius: .25rem;
     background-color: $primary;
     color: white;
     transition: .3s;
@@ -130,6 +130,7 @@
   .footer-button-container {
     &-animate, &-hover {
       min-width: 80vw;
+      padding: 1rem;
     }
     
     &__text {

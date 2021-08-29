@@ -2,6 +2,7 @@
   <div>
     <nav-bar />
     <router-view />
+    <background-animation />
     <footer-bar :footerButtonTheme="footerButtonTheme" />
   </div>
 </template>
@@ -10,12 +11,14 @@
 import { mapActions, mapGetters } from 'vuex';
 import NavBar from '@/components/navigation/nav-bar';
 import FooterBar from '@/components/navigation/footer-bar';
+import BackgroundAnimation from '@/components/headings/background-animation'
 
 export default {
   name: 'app',
   components: {
     NavBar,
-    FooterBar
+    FooterBar,
+    BackgroundAnimation
   },
   computed: {
     ...mapGetters(['getCategories']),
@@ -45,6 +48,7 @@ export default {
 
 body {
   background-color: $theme-greydark;
+  overflow-x: hidden;
 }
 
 #app {

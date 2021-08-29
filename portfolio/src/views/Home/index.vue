@@ -1,16 +1,57 @@
 <template>
   <div class="home-container">
+
+    <!-- <three-animation></three-animation> -->
+
     <div class="home-container__heading">
-      <page-heading class="page-heading-card" @heading-button-click="headingBtnClick()" :title="'Hello.'" :subTitle="'My name is Devin Harris'" :btnText="'View my work'" :isSocialMediaShown="true" :isIllustrationShown="true" />
-      <text-button-block class="page-about-section" :title="'About me'" :iconClass="'fas fa-user-circle'" :theme="'dark'" :paragraphText="aboutMeText" :buttons="[{ btnText: 'Contact me', action: '/contact', hasIcon: true }]" />
-      <background-animation />
+      <page-heading :key="$ILLUSTRATION_KEY + 'home-page-heading'" class="page-heading-card" :textAnimation="true" @animate-background="isBackgroundAnimation = true" @heading-button-click="headingBtnClick()" :title="'Hello.'" :subTitle="'My name is Devin Harris'" :btnText="'View my work'" :isSocialMediaShown="true" :isIllustrationShown="true" />
+    </div>
+
+    <div class="home-container_about">
+      <h1 class="home-container_about_header">About me</h1>
+      <div class="home-container_about_content">
+        <div class="home-container_about_content_picture">
+          <img :src="aboutPicture" alt="about-me-picture">
+        </div>
+        <div class="home-container_about_content_text">
+          <h4>{{aboutMeText}}</h4>
+          <icon-button :btnText="'Download Resume'" :hasIcon="true" @icon-button-click="downloadResume" />
+        </div>
+      </div>
     </div>
 
     <div class="home-container__skills-showcase">
-      <side-by-side-block :information="sideBySideInformation" />
+      <div class="home-container_qualifications">
+        <!-- Heading content -->
+        <h1 class="home-container_qualifications_heading">Qualifications</h1>
+        <div class="qualification_types">
+          <div class="type type_skills" :class="{'active': qualificationType === 'skills'}" @click="qualificationType = 'skills'">
+            <i class="fas fa-tools"></i>
+            <p>Skills</p>
+          </div>
+          <div class="type type_work" :class="{'active': qualificationType === 'work'}" @click="qualificationType = 'work'">
+            <i class="fas fa-briefcase"></i>
+            <p>Work</p>
+          </div>
+        </div>
+
+        <!-- Skills content -->
+        <div v-if="qualificationType === 'skills'" class="home-container_qualifications_content home-container_qualifications_content-skills">
+          <side-by-side-block :information="sideBySideInformation" />
+        </div>
+
+        <!-- Work content -->
+        <div v-if="qualificationType === 'work'" class="home-container_qualifications_content home-container_qualifications_content-work">
+          <timeline :points="workTimelinePoints" />
+        </div>
+
+      </div>
+    </div>
+
+    <div class="home-container_projects">
       <text-card-block
         class="page-work-section"
-        :title="'My work'"
+        :title="'My projects'"
         :iconClass="'fas fa-stream'"
         :theme="'light'"
         :paragraphText="'Here are some projects I have worked on. Want a commission?'"

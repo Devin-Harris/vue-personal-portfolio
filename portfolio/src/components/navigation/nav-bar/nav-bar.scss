@@ -7,11 +7,15 @@
   max-width: 80rem;
   min-width: 20rem;
   z-index: 1;
-  background: $theme-grey;
   padding: .5rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: transparent;
+  transition: background .3s;
+  &.has-background {
+    background-color: $theme-grey;
+  }
   
   .logo {
     cursor: pointer;
@@ -89,6 +93,69 @@
   
   }
 
+  .nav-bar_mobile {
+    color: white;
+    i {
+      font-size: 1.5rem;
+      margin-right: 1rem;
+    }
+    &_links {
+      &-container {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: $theme-grey;
+        min-height: 3rem;
+        padding: 5rem 0;
+        border-radius: .75rem .75rem 0 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-row-gap: 1.5rem;
+        place-items: center;
+        box-shadow: 0px 0px 9px 5px rgba(black, 0.35);
+        div {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          i {
+            margin: 0;
+            margin-bottom: .25rem;
+          }
+          p {
+            width: max-content;
+          }
+        }
+      }
+      .toggles {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translate(-50%, 0);
+        i {
+          margin-right: 0;
+          margin: 0 .5rem;
+          font-size: .75rem;
+          opacity: .5;
+        }
+        .active {
+          font-size: .75rem;
+          opacity: 1;
+        }
+      }
+      
+      &_close {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+      }
+    }
+  }
+
   .popup-links {
     width: 100%;
     height: max-content;
@@ -159,8 +226,24 @@
 // Large devices (desktops, 992px and up)
 @media (max-width: 992px) {
   .nav-bar-container {
+    background: $theme-grey;
+    top: unset;
+    bottom: 0;
+    width: 100%;
+    z-index: 500;
     .logo {
-      display: none;
+      // display: none;
+      .text {
+        p {
+          font-size: 1rem;
+        }
+        h1 {
+          font-size: .75rem;
+        }
+      }
+      img {
+        height: 3rem;
+      }
     }
     ul {
       margin: 0 auto;

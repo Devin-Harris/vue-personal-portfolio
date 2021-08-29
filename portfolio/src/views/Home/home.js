@@ -1,21 +1,31 @@
 import { mapActions, mapGetters } from 'vuex'
 import PageHeading from '@/components/headings/page-heading'
+import IconButton from '@/components/buttons/icon-button'
 import TextButtonBlock from '@/components/text-blocks/text-button-block'
 import TextCardBlock from '@/components/text-blocks/text-card-block'
 import SideBySideBlock from '@/components/text-blocks/side-by-side-block'
 import BackgroundAnimation from '@/components/headings/background-animation'
+import threeAnimation from '@/components/headings/three-animation'
+import Timeline from '@/components/text-blocks/timeline'
+import ScrollMagic from 'scrollmagic'
 
 export default {
   name: 'Home',
   components: {
     PageHeading,
+    IconButton,
     TextButtonBlock,
     TextCardBlock,
     SideBySideBlock,
-    BackgroundAnimation
+    BackgroundAnimation,
+    threeAnimation,
+    Timeline
   },
   computed: {
-    ...mapGetters(['getCategories'])
+    ...mapGetters(['getCategories']),
+    aboutPicture() {
+      return require('@/assets/images/aboutPicture.jpg')
+    }
   },
   data() {
     return {
@@ -73,13 +83,52 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      workTimelinePoints: [
+        {
+          position: 'Software Engineer',
+          company: 'Cincom Systems',
+          dates: '08/2020 - 01/2021',
+          info: 'This was my first coop at the University of Cincinnati. I worked primarily as a Front-End developer on the engineering team. Practiced Agile development Participated in daily stand ups, retrospectives, and demos. Used Vue.js, TDD, REST Apis, C#, and other technologies.'
+        },
+        {
+          position: 'Software Engineer',
+          company: 'Cincom Systems',
+          dates: '05/2021 - 09/2021',
+          info: 'This was my second coop at the University of Cincinnati. I worked primarily as a Front-End developer on the engineering team. Practiced Agile development Participated in daily stand ups, retrospectives, and demos. Used Vue.js, TDD, REST Apis, C#, and other technologies.'
+        }
+      ],
+      qualificationType: 'skills',
+      controller: null,
+      scene: null
     }
+  },
+  mounted() {
+    this.controller = new ScrollMagic.Controller()
+
+      // build scene
+    this.scene = new ScrollMagic.Scene({
+        triggerElement: ".home-container_qualifications",
+        triggerHook: 0.9, // show, when scrolled 10% into view
+        offset: 50, // move trigger to center of element
+        reverse: false // only do once
+      })
+        .setClassToggle(".home-container_qualifications", "visible") // add class to reveal
+        .addTo(this.controller);
+      
   },
   methods: {
     ...mapActions(['fetchCategories']),
     headingBtnClick() {
       document.querySelector('.page-work-section').scrollIntoView({ behavior: "smooth" })
+    },
+    downloadResume() {
+      const link = document.createElement("a");
+      link.setAttribute('download', 'Devin Harris_Resume.pdf');
+      link.href = './resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
     }
   }
 }

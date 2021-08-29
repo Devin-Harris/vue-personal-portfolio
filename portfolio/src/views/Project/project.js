@@ -92,6 +92,12 @@ export default {
         return project.description
       else
         return ''
+    },
+    getProjectHasCodeLink() {
+      const projectName = this.$route.params.projectName
+      const projectSubCategory = this.$route.params.projectSubCategory
+      const project = this.subCategories.find(sc => sc.sub_category_name === projectSubCategory).projects.find(p => p.name === projectName)
+      return !!(project.code)
     }
   },
   methods: {
@@ -117,6 +123,9 @@ export default {
       setTimeout(() => {
         document.querySelector('.page-work-section').scrollIntoView({ behavior: 'smooth' })
       }, 50)
+    },
+    webProjectsClick() {
+      this.$router.push(`/projects/${encodeURI('Web Projects')}`)
     },
     subCategoryClick(subCategory) {
       this.activeSubCategory = subCategory

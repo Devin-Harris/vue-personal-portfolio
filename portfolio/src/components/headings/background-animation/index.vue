@@ -1,5 +1,5 @@
 <template>
-  <div class="background-animation-container">
+  <div class="background-animation-container" ref="vantaRef">
     <div class="bg"></div>
     <div class="bg bg2"></div>
     <div class="bg bg3"></div>

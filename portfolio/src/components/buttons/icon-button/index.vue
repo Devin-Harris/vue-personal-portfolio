@@ -1,9 +1,7 @@
 <template>
   <div class="icon-button-container" @click="$emit('icon-button-click')">
-    <div v-if="hasIcon" class="button-svg">
-      <img src="@/assets/icons/mouse-svg-white.svg" alt="mouse-icon" />
-    </div>
     <h1>{{ btnText }}</h1>
+    <i v-if="hasIcon" class="fas fa-long-arrow-alt-right"></i>
   </div>
 </template>
 

@@ -63,9 +63,6 @@ const PORT = process.env.PORT || 3000
 app.listen(PORT, () => { console.log(`Listening on port ${PORT}`) })
 
 app.use(express.static('server_html'))
-// if (PORT !== 3000) {
-//   app.use(history())
-// }
 
 app.use(function (req, res, next) {
 

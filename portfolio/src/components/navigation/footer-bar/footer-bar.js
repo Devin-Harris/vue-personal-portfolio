@@ -1,9 +1,11 @@
 import FooterButton from '@/components/buttons/footer-button'
+import Illustration from '@/components/headings/page-heading/illustration'
 
 export default {
   name: 'footer-bar',
   components: {
-    FooterButton
+    FooterButton,
+    Illustration
   },
   props: ['footerButtonTheme'],
   methods: {
