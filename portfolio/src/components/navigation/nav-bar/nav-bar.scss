@@ -15,6 +15,9 @@
   transition: background .3s;
   &.has-background {
     background-color: $theme-grey;
+    &-override {
+      background-color: $theme-grey;
+    }
   }
   
   .logo {

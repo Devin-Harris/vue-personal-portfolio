@@ -20,7 +20,8 @@ export default createStore({
       }
     ],
     project_categories: [],
-    project_sub_categories: []
+    project_sub_categories: [],
+    isLoggedIntoEditor: false
   },
   mutations: {
     updateCategories(state, payload) {
@@ -28,6 +29,9 @@ export default createStore({
     },
     updateSubCategories(state, payload) {
       state.project_sub_categories = payload
+    },
+    updateIsLoggedIntoEditor(state, isLoggedIntoEditor) {
+      state.isLoggedIntoEditor = isLoggedIntoEditor
     }
   },
   actions: {
@@ -55,7 +59,26 @@ export default createStore({
       let data = await response.json()
       context.commit('updateSubCategories', { data })
     },
+    async verifyPassword(context, password) {
+      let url = ""
+      if (location.hostname === "localhost")
+        url = "http://localhost:3000/verify-password"
+      else url = "https://devinharris-portfolio.herokuapp.com/verify-password"
 
+      const response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          password: password
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        }
+      })
+      let data = await response.json()
+      if (data.status === 200) context.commit('updateIsLoggedIntoEditor', true)
+      else context.commit('updateIsLoggedIntoEditor', false)
+      return data
+    }
   },
   getters: {
     getCategories(state) {
@@ -63,8 +86,9 @@ export default createStore({
     },
     getSubCategories(state) {
       return state.project_sub_categories
+    },
+    getIsLoggedIntoEditor(state) {
+      return state.isLoggedIntoEditor
     }
   },
-  modules: {
-  }
 })

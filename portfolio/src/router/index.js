@@ -3,6 +3,7 @@ import app from '../main'
 import Home from '../views/Home'
 import Contact from '../views/Contact'
 import Project from '../views/Project'
+import Editor from '../views/Editor'
 import InvalidRoute from '../components/navigation/invalid-route'
 
 const routes = [
@@ -20,6 +21,11 @@ const routes = [
     path: '/projects/:projectCategory/:projectSubCategory?/:projectName?',
     name: 'Projects',
     component: Project
+  },
+  {
+    path: '/editor',
+    name: 'Editor',
+    component: Editor
   },
   {
     path: "/:catchAll(.*)",

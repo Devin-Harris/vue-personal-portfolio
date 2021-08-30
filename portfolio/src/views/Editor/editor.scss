@@ -1,0 +1,73 @@
+.editor {
+  margin: 0;
+  min-height: 90vh;
+  padding: 12.5rem 0 0 0;
+  background-color: white;
+  position: relative;
+  &_heading {
+    color: $theme-greydark;
+    margin-bottom: .75rem;
+    h1 {
+      font-family: 'Montserrat Alternates', 'Montserrat', sans-serif;
+    }
+  }
+
+  .submit-btn {
+    margin-top: 1rem;
+    padding: .5rem 1rem;
+    outline: none;
+    border: none;
+    border-radius: .25rem;
+    background-color: $theme-greylight;
+    color: white;
+    transition: .3s;
+    &.active {
+      cursor: pointer;
+      background-color: $primary;
+    }
+  }
+
+  .login-container {
+    color: $theme-greylight;
+    &_input {
+      margin: 0 auto;
+      width: max-content;
+      min-width: 25rem;
+      span {
+        position: relative;
+        i {
+          position: absolute;
+          top: 50%;
+          left: .75rem;
+          transform: translate(0, -50%);
+          color: $theme-border;
+        }
+        input {
+          width: 100%;
+          padding: .75rem 1rem;
+          padding-left: 2rem;
+          outline: none;
+          border: 1px solid $theme-border;
+          border-radius: .25rem;
+          background-color: $theme-greywhite;
+          color: $theme-greymiddle;
+          margin-top: .25rem;
+        }
+      }
+    }
+    &.incorrect-password {
+      .login-container_input {
+        i {
+          color: $primary;
+        }
+        input {
+          border-color: $primary;
+        }
+        p {
+          text-align: right;
+          color: $primary;
+        }
+      }
+    }
+  }
+}

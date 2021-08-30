@@ -73,18 +73,16 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
   res.setHeader('Access-Control-Allow-Credentials', true)
-
+  console.log(`Route ${req.originalUrl} received`)
   // Pass to next layer of middleware
   next()
 })
 
 app.get('/', (req, res) => {
-  console.log('Route / recieved')
   res.send('Connected')
 })
 
 app.get('/project-categories', (req, res) => {
-  console.log('Route / recieved')
   Categories.find({}, async (err, response) => {
     if (err) {
       console.log(err)
@@ -95,7 +93,6 @@ app.get('/project-categories', (req, res) => {
 })
 
 app.get('/project-sub-categories', (req, res) => {
-  console.log('Route / recieved')
   SubCategories.find({}, async (err, response) => {
     if (err) {
       console.log(err)
@@ -106,7 +103,6 @@ app.get('/project-sub-categories', (req, res) => {
 })
 
 app.post('/add-project', async (req, res) => {
-  console.log('Route / recieved')
   // Check for correct security key
   if (req.body.projectKey === process.env.PASS) {
     // Make insert to images of document if no sub categories or insert to projects of sub category if sub category
@@ -172,7 +168,6 @@ app.post('/add-project', async (req, res) => {
 })
 
 app.post('/edit-project', async (req, res) => {
-  console.log('Route / recieved')
   // Check for correct security key
   if (req.body.projectKey !== process.env.PASS) {
     res.send({ message: 'Project has NOT successfully been updated', status: 400 })
@@ -332,6 +327,15 @@ app.post('/reorder-project', async (req, res) => {
     res.send({ message: 'Project has NOT successfully been updated', status: 400 })
   else
     res.send({ message: 'Project has successfully been updated', status: 200 })
+})
+
+app.post('/verify-password', async (req, res) => {
+  // Check if security key is valid
+  if (req.body.password !== process.env.PASS) {
+    res.status(400).send({ message: 'Incorrect Password.', status: 400 })
+  } else {
+    res.status(200).send({ message: 'Correct Password.', status: 200 })
+  }
 })
 
 // Node Mailer methods

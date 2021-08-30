@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-bar-container" ref="navContainer" @click.stop="closePopup">
+  <div class="nav-bar-container" :class="{'has-background-override': $route.name === 'Editor'}" ref="navContainer" @click.stop="closePopup">
     <div class="logo" @click="redirect('/')">
       <img :src="logo" alt="logo">
       <div class="text">
