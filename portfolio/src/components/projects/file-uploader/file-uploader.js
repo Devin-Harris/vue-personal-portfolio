@@ -15,20 +15,21 @@ export default {
   },
   methods: {
     async fileLoad(e) {
-      this.inputFiles = []
-      let files = e.target.files
+      this.$emit('file-change', e.target.files)
+      // this.inputFiles = []
+      // let files = e.target.files
 
-      for (let i = 0; i < files.length; i++) {
-        let reader = new FileReader();
-        reader.readAsDataURL(files[i]);
-        reader.onload = () => {
-          this.inputFiles.push(reader.result)
-          this.$emit('file-change', this.inputFiles)
-        }
-        reader.onerror = () => {
-          console.log(reader.error);
-        }
-      }
+      // for (let i = 0; i < files.length; i++) {
+      //   let reader = new FileReader();
+      //   reader.readAsDataURL(files[i]);
+      //   reader.onload = () => {
+      //     this.inputFiles.push(reader.result)
+      //     this.$emit('file-change', this.inputFiles)
+      //   }
+      //   reader.onerror = () => {
+      //     console.log(reader.error);
+      //   }
+      // }
     },
     openSelector() {
       this.$refs.fileSelector.click()

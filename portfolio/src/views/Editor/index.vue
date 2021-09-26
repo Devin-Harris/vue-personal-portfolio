@@ -1,6 +1,8 @@
 <template>
   <div class="editor">
 
+    <!-- Breadcrumbs -->
+
     <div class="editor_heading"><h1>{{ headingOverride ? headingOverride : 'Project Editor' }}</h1></div>
 
     <div v-if="!getIsLoggedIntoEditor" class="login-container" :class="{'incorrect-password' : incorrectPassword}">
@@ -17,18 +19,19 @@
 
     <div v-else-if="getIsLoggedIntoEditor" class="editor-content">
       <!-- Project Editor -->
+      <draggable-table :heading="'Categories'" :canAdd="true" :items="categoryItems"></draggable-table>
 
-      <!-- Breadcrumbs -->
+      <!-- Add category -->
+      <draggable-table :heading="'Images'" :canAdd="true" :items="categoryItems"></draggable-table>
 
-        <!-- Add category -->
+      <!-- Add subcategory -->
+      <draggable-table :heading="'Projects'" :canAdd="true" :items="categoryItems"></draggable-table>
 
-        <!-- Add subcategory -->
+      <!-- Edit category -->
 
-        <!-- Edit category -->
+      <!-- Edit subcategory -->
 
-        <!-- Edit subcategory -->
-
-        <!-- Edit Project -->
+      <!-- Edit Project -->
 
     </div>
 

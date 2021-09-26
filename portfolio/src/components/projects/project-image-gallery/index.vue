@@ -4,7 +4,8 @@
       <a :href="image" :data-lightbox="category ? category.name : 'unassigned-image'">
         <i class="fas fa-expand"></i>
         <div class="project-image-gallery-container__image-container__image-overlay"></div>
-        <div class="project-image-gallery-container__image-container__image" :style="{'backgroundImage': `url(${image})`}"></div>
+        <img class="project-image-gallery-container__image-container__image" :src="image" :alt="image">
+        <!-- <div class="project-image-gallery-container__image-container__image" :style="{'backgroundImage': `url(${image})`}"></div> -->
       </a>
     </div>
   </div>

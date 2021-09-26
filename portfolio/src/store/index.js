@@ -1,4 +1,6 @@
 import { createStore } from 'vuex'
+import api from '@/api/api.js'
+const IMAGE_BASE_URL = 'https://devinharris.dev/Portfolio_Images'
 
 export default createStore({
   state: {
@@ -23,6 +25,17 @@ export default createStore({
     project_sub_categories: [],
     isLoggedIntoEditor: false
   },
+  getters: {
+    getCategories(state) {
+      return state.project_categories
+    },
+    getSubCategories(state) {
+      return state.project_sub_categories
+    },
+    getIsLoggedIntoEditor(state) {
+      return state.isLoggedIntoEditor
+    }
+  },
   mutations: {
     updateCategories(state, payload) {
       state.project_categories = payload
@@ -36,36 +49,21 @@ export default createStore({
   },
   actions: {
     async fetchCategories(context) {
-      let url = ""
-      if (location.hostname === "localhost")
-        url = "http://localhost:3000/project-categories"
-      else url = "https://devinharris-portfolio.herokuapp.com/project-categories"
-
-      const response = await fetch(url, {
+      const response = await fetch(api + '/project-categories', {
         method: "GET",
       })
       let data = await response.json()
       context.commit('updateCategories', { data })
     },
     async fetchSubCategories(context) {
-      let url = ""
-      if (location.hostname === "localhost")
-        url = "http://localhost:3000/project-sub-categories"
-      else url = "https://devinharris-portfolio.herokuapp.com/project-sub-categories"
-
-      const response = await fetch(url, {
+      const response = await fetch(api + '/project-sub-categories', {
         method: "GET",
       })
       let data = await response.json()
       context.commit('updateSubCategories', { data })
     },
     async verifyPassword(context, password) {
-      let url = ""
-      if (location.hostname === "localhost")
-        url = "http://localhost:3000/verify-password"
-      else url = "https://devinharris-portfolio.herokuapp.com/verify-password"
-
-      const response = await fetch(url, {
+      const response = await fetch(api + '/verify-password', {
         method: "POST",
         body: JSON.stringify({
           password: password
@@ -78,17 +76,106 @@ export default createStore({
       if (data.status === 200) context.commit('updateIsLoggedIntoEditor', true)
       else context.commit('updateIsLoggedIntoEditor', false)
       return data
-    }
-  },
-  getters: {
-    getCategories(state) {
-      return state.project_categories
     },
-    getSubCategories(state) {
-      return state.project_sub_categories
+    async addProject(context, payload) {
+      return new Promise(async (resolve, reject) => {
+        try {
+          const paths = payload.projectCategory.display_image.split('/')
+          const folder = paths[paths.length - 2]
+
+          if (payload.displayImage) {
+            const displayUploadRes = await context.dispatch('uploadImages', { folder, files: payload.displayImage, projectKey: payload.projectKey })
+            if (displayUploadRes.status === 400) {
+              resolve(displayUploadRes)
+            }
+            payload.displayImage = IMAGE_BASE_URL + displayUploadRes.path
+          }
+          if (payload.projectImages && payload.projectImages.length > 0) {
+            const uploadRes = await context.dispatch('uploadImages', { folder, files: payload.projectImages, projectKey: payload.projectKey})
+            if (uploadRes.status === 400) {
+              resolve(uploadRes)
+            }
+            payload.projectImages = [IMAGE_BASE_URL + uploadRes.path]
+          }
+          const response = await fetch(api + '/add-project', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          })
+          const json = await response.json()
+          resolve(json)
+        } catch (e) {
+          reject(e)
+        }
+      })
     },
-    getIsLoggedIntoEditor(state) {
-      return state.isLoggedIntoEditor
+    async uploadImages(context, { folder, files, projectKey }) {
+      return new Promise(async (resolve, reject) => {
+        const formData = new FormData()
+        files.forEach(file => {
+          formData.append(file.name, file)
+        })
+        try {
+          const res = await fetch(api + '/upload/' + folder + '/' + projectKey, {
+            method: 'POST',
+            body: formData
+          })
+          const json = await res.json()
+          resolve(json)
+        } catch (e) {
+          reject(e)
+        }
+      })
+    },
+    async editProject(context, payload) {
+      return new Promise(async (resolve, reject) => {
+        try {
+
+          if (payload.displayImage) {
+            const paths = payload.projectCategory.display_image.split('/')
+            const folder = paths[paths.length - 2]
+            const uploadRes = await context.dispatch('uploadImages', { folder, files: payload.displayImage, projectKey: payload.projectKey })
+            if (uploadRes.status === 400) {
+              resolve(uploadRes)
+            }
+            payload.displayImage = IMAGE_BASE_URL + uploadRes.path
+          }
+
+          const response = await fetch(api + '/edit-project', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          })
+          const json = await response.json()
+          resolve(json)
+        } catch (e) {
+          reject(e)
+        }
+      })
+    },
+    async reorderProject(context, payload) {
+      return new Promise(async (resolve, reject) => {
+        try {
+          const response = await fetch(api + '/reorder-project', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          })
+          const json = await response.json()
+          resolve(json)
+        } catch (e) {
+          reject(e)
+        }
+      })
     }
-  },
+  }
 })

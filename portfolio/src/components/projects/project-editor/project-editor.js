@@ -23,6 +23,20 @@ export default {
     ProjectReorder,
     BackgroundAnimation
   },
+  data() {
+    return {
+      selectedCategory: {},
+      selectedSubCategory: '',
+      selectedName: '',
+      selectedDesc: '',
+      selectedCode: '',
+      selectedSite: '',
+      availableCategories: [],
+      projectImages: [],
+      displayImage: null,
+      requestMessage: null
+    }
+  },
   computed: {
     ...mapGetters(['getCategories', 'getSubCategories']),
     availableSubCategories() {
@@ -71,21 +85,28 @@ export default {
       return this.$route.params.projectSubCategory
     }
   },
-  data() {
-    return {
-      selectedCategory: {},
-      selectedSubCategory: '',
-      selectedName: '',
-      selectedDesc: '',
-      selectedCode: '',
-      selectedSite: '',
-      availableCategories: [],
-      projectImages: [],
-      requestMessage: null
+  async mounted() {
+    await this.fetchCategories()
+    await this.fetchSubCategories()
+    // Wait for store to be populated by app call
+    while (this.getCategories.length === 0) {
+      await new Promise((resolve) => setTimeout(resolve, 10))
+    }
+
+    this.availableCategories = JSON.parse(JSON.stringify(this.getCategories.data))
+    this.selectedCategory = this.availableCategories[0]
+    this.selectedSubCategory = this.selectedCategory.subCategories[0]
+    let init_project = JSON.parse(JSON.stringify(this.getSubCategories.data)).find((subCategory) => subCategory.sub_category_name === this.selectedSubCategory)
+    if (init_project) {
+      init_project = init_project.projects[0]
+      this.selectedName = init_project.name
+      this.selectedDesc = init_project.description
+      this.selectedCode = init_project.code
+      this.selectedSite = init_project.live_site
     }
   },
   methods: {
-    ...mapActions(['fetchCategories', 'fetchSubCategories']),
+    ...mapActions(['fetchCategories', 'fetchSubCategories', 'addProject', 'editProject']),
     categoryChanged(clickedCategory) {
       this.selectedCategory = JSON.parse(JSON.stringify(this.availableCategories)).find((category) => category.name === clickedCategory)
 
@@ -125,6 +146,9 @@ export default {
     setImages(e) {
       this.projectImages = e
     },
+    setDisplayImage(e) {
+      this.displayImage = e
+    },
     addImage(e) {
       this.projectImages.push(e.target.value)
       e.target.value = ''
@@ -136,30 +160,8 @@ export default {
       this.projectImages = this.projectImages.filter((image) => image !== imageUrl)
     },
     async editorActionClick(project, editedData = null) {
-      let route
-      let editor
-
-      if (this.$route.params.projectSubCategory === 'add') {
-        route = '/add-project'
-        editor = 'add'
-      } else if (this.$route.params.projectSubCategory === 'edit') {
-        route = '/edit-project'
-        editor = 'edit'
-      } else if (this.$route.params.projectSubCategory === 'reorder') {
-        route = '/reorder-project'
-        editor = 'reorder'
-      } else if (this.$route.params.projectCategory === 'delete') {
-        route = '/delete-project'
-        editor = 'delete'
-      }
-
-      let url = ''
-      if (location.hostname === 'localhost')
-        url = `http://localhost:3000${route}`
-      else url = `https://devinharris-portfolio.herokuapp.com${route}`
-
       let data
-      if (editor === 'edit') {
+      if (this.$route.params.projectSubCategory === 'edit') {
         data = {
           projectCategory: this.selectedCategory,
           projectSubCategory: editedData.projectSubCategory,
@@ -170,16 +172,19 @@ export default {
           projectSite: editedData.projectSite,
           projectCode: editedData.projectCode,
           projectKey: editedData.projectKey,
-          projectImages: editedData.projectImages.map((image) => this.urlPrefix + image)
+          projectImages: editedData.projectImages.map((image) => this.urlPrefix + image),
+          displayImage: this.displayImage
         }
-      } else if (editor === 'reorder') {
+        this.requestMessage = await this.editProject(data)
+      } else if (this.$route.params.projectSubCategory === 'reorder') {
         data = {
           projectKey: editedData.projectKey,
           categories: editedData.categories,
           subCategories: editedData.subCategories,
           selectedSubCategory: editedData.selectedSubCategory
         }
-      } else if (editor === 'add') {
+        this.requestMessage = await this.reorderProject(data)
+      } else if (this.$route.params.projectSubCategory === 'add') {
         data = {
           projectCategory: this.selectedCategory,
           projectSubCategory: this.selectedSubCategory,
@@ -188,20 +193,11 @@ export default {
           projectSite: project.projectSite,
           projectCode: project.projectCode,
           projectKey: project.projectKey,
-          projectImages: this.projectImages //this.projectImages.map((image) => this.urlPrefix + image)
+          projectImages: this.projectImages,
+          displayImage: this.displayImage
         }
+        this.requestMessage = await this.addProject(data)
       }
-
-      const response = await fetch(url, {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-
-      this.requestMessage = await response.json()
     },
     requestBtnHandler(action) {
       if (action === 'add') {
@@ -225,26 +221,6 @@ export default {
         this.$router.push(`/projects/editor/${this.$route.params.projectCategory}`)
         this.requestMessage = null
       }
-    }
-  },
-  async mounted() {
-    await this.fetchCategories()
-    await this.fetchSubCategories()
-    // Wait for store to be populated by app call
-    while (this.getCategories.length === 0) {
-      await new Promise((resolve) => setTimeout(resolve, 10))
-    }
-
-    this.availableCategories = JSON.parse(JSON.stringify(this.getCategories.data))
-    this.selectedCategory = this.availableCategories[0]
-    this.selectedSubCategory = this.selectedCategory.subCategories[0]
-    let init_project = JSON.parse(JSON.stringify(this.getSubCategories.data)).find((subCategory) => subCategory.sub_category_name === this.selectedSubCategory)
-    if (init_project) {
-      init_project = init_project.projects[0]
-      this.selectedName = init_project.name
-      this.selectedDesc = init_project.description
-      this.selectedCode = init_project.code
-      this.selectedSite = init_project.live_site
     }
   }
 }

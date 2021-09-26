@@ -29,7 +29,15 @@ export default {
   },
   data() {
     return {
-      aboutMeText: 'I am a computer science engineering student at the University of Cincinnati. I have over 6 years of experience in Adobe Photoshop, Illustrator, and Lightroom. I have an interest in software development especially in web development. I have experience with C++, MATLAB, Python, Processing, and PHP. I have worked extensively in HTML/CSS, Javascript, Vue, jQuery, Bootstrap, and Jest.',
+      aboutMeText: `I am a computer science engineering student at the University of Cincinnati.
+        I have over 6 years of experience in Adobe Photoshop, Illustrator, and Lightroom.
+        I have an interest in software development especially in web development.
+        I have experience with C++, MATLAB, Python, LabVIEW, and PHP.
+        I have worked extensively in HTML/CSS, JavaScript, Vue, jQuery, Bootstrap, Selenium, and Jest.
+        <br>
+        My career goals are currently to become a frontend or fullstack web developer.
+        I have quite a bit of experience with frontend and graphic design and would love to branch out into all forms of software development one day as well.
+      `,
       sideBySideInformation: [
         {
           iconClass: 'fas fa-bezier-curve',
@@ -89,13 +97,33 @@ export default {
           position: 'Software Engineer',
           company: 'Cincom Systems',
           dates: '08/2020 - 01/2021',
-          info: 'This was my first coop at the University of Cincinnati. I worked primarily as a Front-End developer on the engineering team. Practiced Agile development Participated in daily stand ups, retrospectives, and demos. Used Vue.js, TDD, REST Apis, C#, and other technologies.'
+          info: `This was my first coop at the University of Cincinnati.
+            I worked primarily as a Front-End developer on the engineering team, but also got some experience on the Backend and QA portions of the applications we were building.
+            I practiced Agile development, Participated in daily stand ups, retrospectives, and demos at Cincom.
+            I used Vue.js, Test Driven Development through Jest and Selenium, REST Apis, C#, and other technologies as well.
+            <br>
+            <br>
+            Since this was my first coop I spent a lot of time getting familiar with the code base and meeting the team.
+            I got to practice professional work etiquette and partake in very technical discussions and meetings which was very exciting.
+            I also got much better at understanding how all the pieces of software development tie together and create a functional, secure, and attractive looking site/app.
+          `
         },
         {
           position: 'Software Engineer',
           company: 'Cincom Systems',
           dates: '05/2021 - 09/2021',
-          info: 'This was my second coop at the University of Cincinnati. I worked primarily as a Front-End developer on the engineering team. Practiced Agile development Participated in daily stand ups, retrospectives, and demos. Used Vue.js, TDD, REST Apis, C#, and other technologies.'
+          info: `This was my second coop at the University of Cincinnati.
+            This semester I worked primarily as a Front-End developer on the engineering team and helped out with QA every now and then.
+            Again got more practice with Agile development, participated in daily stand ups, retrospectives, and demos.
+            Used Vue.js, Test Driven Development through Jest and Selenium, REST Apis, C#, and other technologies.
+            <br>
+            <br>
+            My second coop I was much more comfortable with the codebase and my frontend skills.
+            I took on much more technical stories/bugs and like to think I made a much bigger impact compared to my first semester at Cincom.
+            This semester I also focused more on building connections with my team.
+            The first semester was completely remote, and while most of the second semester was as well, I did get the opportunity to come into the office for the last 1-2 months of the semester.
+            This made it much easier to build connections with the members of my team and was a great lesson on what the professional workplace looks and feels like. 
+          `
         }
       ],
       qualificationType: 'skills',

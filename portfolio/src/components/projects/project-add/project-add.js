@@ -14,7 +14,8 @@ export default {
     'selectedCategory',
     'selectedSubCategory',
     'availableCategories',
-    'projectImages'
+    'projectImages',
+    'displayImage'
   ],
   components: {
     IconHeading,
@@ -30,7 +31,7 @@ export default {
       if (
         this.selectedCategory &&
         this.project.projectKey &&
-        this.projectImages.length > 0
+        (this.projectImages.length > 0 || this.displayImage)
       ) {
         if (this.availableSubCategories.length > 0) {
           if (

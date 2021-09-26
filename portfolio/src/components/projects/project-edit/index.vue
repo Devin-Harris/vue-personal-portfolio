@@ -39,6 +39,8 @@
         <draggable v-if="draggableImages && changedProjectImages && draggableImages.length > 0" :list="draggableImages" class="dragArea list-group w-full">
           <draggable-item v-for="(imageValue, i) in draggableImages" :canEdit="true" :key="imageValue" :hasActions="true" :value="imageValue" @value-change="changeValue($event, i)" @remove-image="removeImage(imageValue)" @open-image="$emit('open-image', imageValue)" />
         </draggable>
+        <label class="or-label">or</label>
+        <file-uploader :uploadedFiles="displayImage" @file-change="$emit('set-display-image', $event)" ></file-uploader>
       </div>
       <div class="project-security-field">
         <label for="project-security">Security Key</label>

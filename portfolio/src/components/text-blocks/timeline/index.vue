@@ -12,7 +12,7 @@
         <div class="timeline_points_point_text">
           <h5>{{point.position}}</h5>
           <h6>{{point.company}}</h6>
-          <h6><i class="far fa-calendar-alt"></i> {{point.dates}}</h6>
+          <h6 class="timeline_points_point_text_date"><i class="far fa-calendar-alt"></i> {{point.dates}}</h6>
           <icon-button :hasIcon="false" :btnText="'More info...'" @icon-button-click="loadInfoPopup(point)" />
         </div>
 
@@ -27,8 +27,8 @@
       <div class="timeline_info_text">
         <h5>{{infoPopup.position}}</h5>
         <h6>{{infoPopup.company}}</h6>
-        <h6><i class="far fa-calendar-alt"></i> {{infoPopup.dates}}</h6>
-        <h4>{{infoPopup.info}}</h4>
+        <h6 class="timeline_info_text_date"><i class="far fa-calendar-alt"></i> {{infoPopup.dates}}</h6>
+        <h4 v-for="info in infoPopup.info.split('<br>')" :key="info">{{info}}<br></h4>
       </div>
       <icon-button :hasIcon="false" :btnText="'Go back'" @icon-button-click="back" />
     </div>

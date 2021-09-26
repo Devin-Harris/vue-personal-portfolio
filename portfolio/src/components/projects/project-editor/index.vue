@@ -10,6 +10,7 @@
       :selectedSubCategory="selectedSubCategory"
       :availableCategories="availableCategories"
       :projectImages="projectImages"
+      :displayImage="displayImage"
       :requestMessage="requestMessage"
       @selected-sub-change="subCategoryChanged($event)"
       @selected-category-change="categoryChanged($event)"
@@ -17,6 +18,7 @@
       @remove-image="removeImage($event)"
       @add-image="addImage"
       @set-images="setImages"
+      @set-display-image="setDisplayImage($event)"
       @editor-action-click="editorActionClick($event)"
     />
 
@@ -33,6 +35,7 @@
       :selectedDesc="selectedDesc"
       :availableCategories="availableCategories"
       :projectImages="projectImages"
+      :displayImage="displayImage"
       :requestMessage="requestMessage"
       @selected-sub-change="subCategoryChanged($event)"
       @selected-category-change="categoryChanged($event)"
@@ -40,6 +43,7 @@
       @open-image="openImage($event)"
       @remove-image="removeImage($event)"
       @add-image="addImage"
+      @set-display-image="setDisplayImage($event)"
       @editor-action-click="editorActionClick"
     />
 

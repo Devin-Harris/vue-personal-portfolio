@@ -29,7 +29,7 @@
     &_content {
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       max-width: 40rem;
       margin: 0 auto;
       text-align: left;
@@ -50,9 +50,15 @@
           font-weight: 400;
           margin-bottom: 1rem;
         }
-        .icon-button-container {
-          &:hover {
-            background-color: $theme-grey;
+        &_buttons {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          .icon-button-container {
+            margin-right: 1rem;
+            &:hover {
+              background-color: $theme-grey;
+            }
           }
         }
       }

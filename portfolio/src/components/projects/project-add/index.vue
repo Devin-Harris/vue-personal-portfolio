@@ -29,8 +29,8 @@
             <i @click.stop="$emit('remove-image', imageValue)" class="fas fa-trash"></i>
           </div>
         </div>
-        <input type="text" placeholder="File name..." autocomplete="off" @keydown.enter.prevent="$emit('add-image', $event)" />
-        <!-- <file-uploader :uploadedFiles="projectImages" @file-change="$emit('set-images', $event)" ></file-uploader> -->
+        <!-- <input type="text" placeholder="File name..." autocomplete="off" @keydown.enter.prevent="$emit('add-image', $event)" /> -->
+        <file-uploader :uploadedFiles="projectImages" @file-change="$emit('set-images', $event)" ></file-uploader>
       </div>
       <div class="project-display-image-field" v-else>
         <label>Display Image</label>
@@ -42,6 +42,8 @@
           </div>
         </div>
         <input type="text" placeholder="File name..." autocomplete="off" @keydown.enter.prevent="$emit('add-image', $event)" v-if="projectImages.length === 0" />
+        <label class="or-label">or</label>
+        <file-uploader :uploadedFiles="displayImage" @file-change="$emit('set-display-image', $event)" ></file-uploader>
       </div>
       <div class="project-security-field">
         <label for="project-security">Security Key</label>

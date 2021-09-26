@@ -44,11 +44,16 @@
         outline: 0;
         padding: 0.5rem 1rem;
         border-radius: .25rem;
-        border-bottom: 1px solid $theme-greylight;
+        border: 1px solid $theme-border;
         color: $theme-greydark;
+        transition: .3s;
+        &:active, &:focus {
+          border-color: $primary;
+          color: $primary;
+        }
 
         &::placeholder {
-          color: $theme-greylight;
+          color: $theme-greylight2;
         }
       }
 

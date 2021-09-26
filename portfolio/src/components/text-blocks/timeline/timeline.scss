@@ -13,15 +13,18 @@
       min-height: 8rem;
       &_text {
         h5 {
-          font-weight: 500;
-          font-size: 1.15rem;
+          font-weight: 600;
+          font-size: 1.25rem;
           color: $theme-greydark;
         }
         h6 {
           font-weight: 500;
-          font-size: .95rem;
-          color: $theme-greylight;
+          font-size: 1rem;
+          color: $theme-greylight2;
           margin: .15rem 0;
+        }
+        &_date {
+          margin-bottom: .5rem !important;
         }
       }
       &_circle {
@@ -52,8 +55,8 @@
       margin-top: 2rem;
       font-size: 1.25rem;
       h5 {
-        font-weight: 500;
-        font-size: 1.15rem;
+        font-weight: 600;
+        font-size: 1.25rem;
         color: $theme-greydark;
       }
       h4 {
@@ -63,9 +66,12 @@
       }
       h6 {
         font-weight: 500;
-        font-size: .95rem;
-        color: $theme-greylight;
+        font-size: 1rem;
+        color: $theme-greylight2;
         margin: .15rem 0;
+      }
+      &_date {
+        margin-bottom: .5rem !important;
       }
     }
   }

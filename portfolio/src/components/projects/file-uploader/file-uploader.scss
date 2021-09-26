@@ -11,6 +11,13 @@
         background-color: $theme-greywhite;
       }
     }
+    .images {
+      margin-top: .5rem;
+      .image {
+        margin-top: .25rem;
+        color: $theme-greylight;
+      }
+    }
   }
 
   &-input {

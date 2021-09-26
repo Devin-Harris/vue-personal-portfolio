@@ -17,6 +17,7 @@
           :key="item"
           @click="changeEditorType(item)"
         >
+          <p>{{item.name}}</p>
           <i :class="item.iconClass"></i>
         </div>
       </div>

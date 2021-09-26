@@ -14,8 +14,11 @@
           <img :src="aboutPicture" alt="about-me-picture">
         </div>
         <div class="home-container_about_content_text">
-          <h4>{{aboutMeText}}</h4>
-          <icon-button :btnText="'Download Resume'" :hasIcon="true" @icon-button-click="downloadResume" />
+          <h4 v-for="text in aboutMeText.split('<br>')" :key="text">{{text}}<br></h4>
+          <div class="home-container_about_content_text_buttons">
+            <icon-button :btnText="'Download Resume'" :hasIcon="true" @icon-button-click="downloadResume" />
+            <icon-button :btnText="'Contact Me'" :hasIcon="true" @icon-button-click="$router.push('/contact')" />
+          </div>
         </div>
       </div>
     </div>
@@ -31,7 +34,7 @@
           </div>
           <div class="type type_work" :class="{'active': qualificationType === 'work'}" @click="qualificationType = 'work'">
             <i class="fas fa-briefcase"></i>
-            <p>Work</p>
+            <p>Work/Co-ops</p>
           </div>
         </div>
 

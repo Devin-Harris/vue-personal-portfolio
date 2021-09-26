@@ -6,10 +6,24 @@ import IconButton from '@/components/buttons/icon-button'
 import RequestMessage from '@/components/projects/request-message'
 import { VueDraggableNext } from 'vue-draggable-next'
 import DraggableItem from '@/components/projects/draggable-item'
+import FileUploader from '@/components/projects/file-uploader'
 
 export default {
   name: 'project-edit',
-  props: ['availableSubCategories', 'urlPrefix', 'selectedCategory', 'selectedSubCategory', 'availableCategories', 'availableNames', 'projectImages', 'selectedName', 'selectedDesc', 'selectedCode', 'selectedSite'],
+  props: [
+    'availableSubCategories',
+    'urlPrefix',
+    'selectedCategory',
+    'selectedSubCategory',
+    'availableCategories',
+    'availableNames',
+    'projectImages',
+    'selectedName',
+    'selectedDesc',
+    'selectedCode',
+    'selectedSite',
+    'displayImage'
+  ],
   components: {
     IconHeading,
     SimpleDropdown,
@@ -17,7 +31,8 @@ export default {
     IconButton,
     RequestMessage,
     DraggableItem,
-    draggable: VueDraggableNext
+    draggable: VueDraggableNext,
+    FileUploader
   },
   computed: {
     ...mapGetters(['getCategories', 'getSubCategories']),
