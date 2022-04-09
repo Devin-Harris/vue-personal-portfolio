@@ -70,23 +70,26 @@ export default {
             {
               title: 'Languages I know:',
               subText: [
-                'HTML, CSS, Sass, JavaScript, PHP, C#'
+                'HTML, CSS, Sass, JavaScript, TypeScript, PHP, C#, RxJS',
               ]
             },
             {
               title: 'Dev Tools / Frameworks',
               subText: [
-                'VS Code',
+                'Visual Studio Code',
+                'Visual Studio',
+                'Vue',
+                'Angular',
                 'Xampp',
                 'Bootstrap',
                 'jQuery',
-                'Vue',
                 'Jest',
                 'GSAP',
                 'GitHub',
                 'Azure DevOps',
                 'Selenium',
-                'Postman'
+                'Postman',
+                'HiediSQL',
               ]
             }
           ]
@@ -124,6 +127,24 @@ export default {
             The first semester was completely remote, and while most of the second semester was as well, I did get the opportunity to come into the office for the last 1-2 months of the semester.
             This made it much easier to build connections with the members of my team and was a great lesson on what the professional workplace looks and feels like. 
           `
+        },
+        {
+          position: 'Software Engineer',
+          company: 'London Computer Systems',
+          dates: '01/2022 - 05/2022',
+          info: `This was my third coop at the University of Cincinnati.
+            This semester I worked as a full stack developer on the qManage engineering team.
+            Again got more practice with Agile development, through participating in daily stand ups, weekly retrospectives, and monthly demos.
+            This coop did not practice paired programming, but instead used peer reviewing as a way to check code across the team.
+            Used Angular, RxJS, REST and GraphQl, C#, WebAPI, and other technologies.
+            <br>
+            <br>
+            Although this was my third coop, I was a little hesitant jumping into a brand new team and learning a bunch of brand new technologies, especially backend related ones.
+            I picked up the frontend aspects very quickly and definitely learned a ton about WebAPI and backend methodologies.
+            I also really enjoyed being more "on my own" this semester, as the non paired programming environment made it more challenging and exciting when I got to experience new pieces of the codebase.
+            The team I joined was also spearheading a lot of the innovation on team tooling (such as switching from perforce to git) which I got to be apart of which was awesome to experience and give feedback on.
+            This was also my first non-completely remote coop, so coming in 2 days a week for the whole duration of the coop was a new experience for me as well.
+          `
         }
       ],
       qualificationType: 'skills',
@@ -134,16 +155,17 @@ export default {
   mounted() {
     this.controller = new ScrollMagic.Controller()
 
-      // build scene
+    // build scene
     this.scene = new ScrollMagic.Scene({
-        triggerElement: ".home-container_qualifications",
-        triggerHook: 0.9, // show, when scrolled 10% into view
-        offset: 50, // move trigger to center of element
-        reverse: false // only do once
-      })
-        .setClassToggle(".home-container_qualifications", "visible") // add class to reveal
-        .addTo(this.controller);
-      
+      triggerElement: ".home-container_qualifications",
+      triggerHook: 0.9, // show, when scrolled 10% into view
+      offset: 50, // move trigger to center of element
+      reverse: false // only do once
+    })
+      .setClassToggle(".home-container_qualifications", "visible") // add class to reveal
+      .addTo(this.controller);
+
+    this.positionInkBar()
   },
   methods: {
     ...mapActions(['fetchCategories']),
@@ -157,6 +179,23 @@ export default {
       document.body.appendChild(link);
       link.click();
       link.remove();
+    },
+    qualificationClick(qualificationType) {
+      this.qualificationType = qualificationType
+      this.positionInkBar()
+    },
+    positionInkBar() {
+      const qualificationsBounds = this.$refs.qualifications.getBoundingClientRect()
+      let typeBounds = null
+      if (this.qualificationType === 'skills') {
+        typeBounds = this.$refs.qualificationSkills.getBoundingClientRect()
+      } else if (this.qualificationType === 'work') {
+        typeBounds = this.$refs.qualificationWork.getBoundingClientRect()
+      }
+      if (typeBounds && qualificationsBounds) {
+        this.$refs.qualificationInkBar.style.width = typeBounds.width + 'px'
+        this.$refs.qualificationInkBar.style.left = (this.qualificationType === 'skills' ? 0 : typeBounds.width) + 'px'
+      }
     }
   }
 }

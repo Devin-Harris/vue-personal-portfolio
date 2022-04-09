@@ -106,7 +106,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['fetchCategories', 'fetchSubCategories', 'addProject', 'editProject']),
+    ...mapActions(['fetchCategories', 'fetchSubCategories', 'addProject', 'editProject', 'reorderProject']),
     categoryChanged(clickedCategory) {
       this.selectedCategory = JSON.parse(JSON.stringify(this.availableCategories)).find((category) => category.name === clickedCategory)
 

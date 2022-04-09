@@ -1,53 +1,96 @@
 <template>
   <div class="home-container">
-
     <!-- <three-animation></three-animation> -->
 
     <div class="home-container__heading">
-      <page-heading :key="$ILLUSTRATION_KEY + 'home-page-heading'" class="page-heading-card" :textAnimation="true" @animate-background="isBackgroundAnimation = true" @heading-button-click="headingBtnClick()" :title="'Hello.'" :subTitle="'My name is Devin Harris'" :btnText="'View my work'" :isSocialMediaShown="true" :isIllustrationShown="true" />
+      <page-heading
+        :key="$ILLUSTRATION_KEY + 'home-page-heading'"
+        class="page-heading-card"
+        :textAnimation="true"
+        @animate-background="isBackgroundAnimation = true"
+        @heading-button-click="headingBtnClick()"
+        :title="'Hello.'"
+        :subTitle="'My name is Devin Harris'"
+        :btnText="'View my work'"
+        :isSocialMediaShown="true"
+        :isIllustrationShown="true"
+      />
     </div>
 
     <div class="home-container_about">
       <h1 class="home-container_about_header">About me</h1>
       <div class="home-container_about_content">
         <div class="home-container_about_content_picture">
-          <img :src="aboutPicture" alt="about-me-picture">
+          <img :src="aboutPicture" alt="about-me-picture" />
         </div>
         <div class="home-container_about_content_text">
-          <h4 v-for="text in aboutMeText.split('<br>')" :key="text">{{text}}<br></h4>
+          <h4 v-for="text in aboutMeText.split('<br>')" :key="text">
+            {{ text }}<br />
+          </h4>
           <div class="home-container_about_content_text_buttons">
-            <icon-button :btnText="'Download Resume'" :hasIcon="true" @icon-button-click="downloadResume" />
-            <icon-button :btnText="'Contact Me'" :hasIcon="true" @icon-button-click="$router.push('/contact')" />
+            <icon-button
+              :btnText="'Download Resume'"
+              :hasIcon="true"
+              @icon-button-click="downloadResume"
+            />
+            <icon-button
+              :btnText="'Contact Me'"
+              :hasIcon="true"
+              @icon-button-click="$router.push('/contact')"
+            />
           </div>
         </div>
       </div>
     </div>
 
     <div class="home-container__skills-showcase">
-      <div class="home-container_qualifications">
+      <div ref="qualifications" class="home-container_qualifications">
         <!-- Heading content -->
         <h1 class="home-container_qualifications_heading">Qualifications</h1>
         <div class="qualification_types">
-          <div class="type type_skills" :class="{'active': qualificationType === 'skills'}" @click="qualificationType = 'skills'">
+          <div
+            ref="qualificationSkills"
+            class="type type_skills"
+            :class="{ active: qualificationType === 'skills' }"
+            @click="qualificationClick('skills')"
+          >
             <i class="fas fa-tools"></i>
             <p>Skills</p>
           </div>
-          <div class="type type_work" :class="{'active': qualificationType === 'work'}" @click="qualificationType = 'work'">
+          <div
+            ref="qualificationWork"
+            class="type type_work"
+            :class="{ active: qualificationType === 'work' }"
+            @click="qualificationClick('work')"
+          >
             <i class="fas fa-briefcase"></i>
             <p>Work/Co-ops</p>
           </div>
+
+          <div class="ink-bar" ref="qualificationInkBar"></div>
         </div>
 
         <!-- Skills content -->
-        <div v-if="qualificationType === 'skills'" class="home-container_qualifications_content home-container_qualifications_content-skills">
+        <div
+          v-if="qualificationType === 'skills'"
+          class="
+            home-container_qualifications_content
+            home-container_qualifications_content-skills
+          "
+        >
           <side-by-side-block :information="sideBySideInformation" />
         </div>
 
         <!-- Work content -->
-        <div v-if="qualificationType === 'work'" class="home-container_qualifications_content home-container_qualifications_content-work">
+        <div
+          v-if="qualificationType === 'work'"
+          class="
+            home-container_qualifications_content
+            home-container_qualifications_content-work
+          "
+        >
           <timeline :points="workTimelinePoints" />
         </div>
-
       </div>
     </div>
 
