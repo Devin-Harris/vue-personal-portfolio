@@ -1,2 +1,2 @@
-const BASE_URL = (location.hostname === "localhost") ? "http://localhost:3000" : "https://devinharris-portfolio.herokuapp.com"
+const BASE_URL = (location.hostname === "localhost") ? "http://localhost:3000" : "https://vue-personal-portfolio-production.up.railway.app"
 export default BASE_URL
