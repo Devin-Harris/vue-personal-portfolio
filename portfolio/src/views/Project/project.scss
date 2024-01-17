@@ -1,84 +1,83 @@
 .project-container {
-  margin: 0;
-  min-height: 80vh;
-  // background-color: $theme-greydark;
-  padding: 10rem 0 0 0;
+   margin: 0;
+   min-height: 80vh;
+   // background-color: $theme-greydark;
+   padding: 10rem 0 0 0;
 
-  .page-heading-card {
-    margin: 0 auto 10rem auto;
-  }
+   .page-heading-card {
+      margin: 0 auto 10rem auto;
+   }
 
-  &__sub-categories {
-    min-height: 40vh;
-    width: 100%;
-    margin: 10rem 0 0 0;
-    background-color: $theme-greywhite;
-  }
-
-  .project-about-block {
-    margin: 0 auto;
-    padding: 15rem 0;
-    // background-color: $theme-greydark;
-  }
-
-  .project-gallery-block {
-    width: 100%;
-    min-height: 50vh;
-    margin: 0;
-    padding: 0;
-    background-color: $theme-greywhite;
-  }
-
-  .project-image-gallery-block {
-    padding: 10rem 0 0 0;
-  }
-
-  .editor-cards {
-    margin: 3rem 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .card {
-      margin: 0 .5rem;
+   &__sub-categories {
+      min-height: 40vh;
+      width: 100%;
+      margin: 10rem 0 0 0;
       background-color: $theme-greywhite;
-      color: $theme-greylight2;
+   }
+
+   .project-about-block {
+      margin: 0 auto;
+      padding: 0 0 15rem 0;
+      // background-color: $theme-greydark;
+   }
+
+   .project-gallery-block {
+      width: 100%;
+      min-height: 50vh;
+      margin: 0;
+      padding: 0;
+      background-color: $theme-greywhite;
+   }
+
+   .project-image-gallery-block {
+      padding: 10rem 0 0 0;
+   }
+
+   .editor-cards {
+      margin: 3rem 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      border-radius: .75rem;
-      border: 3px solid $theme-grey;
-      transition: .3s;
-      padding: 1rem 1.5rem;
-      
-      i {
-        transition: .3s;
-        margin-left: 1rem;
-      }
 
-      &:hover {
-        background-color: $primary;
-        color: $primary-light;
-        cursor: pointer;
-        
-        i {
-          color: $primary-light;
-        }
-      }
-    }
-  }
+      .card {
+         margin: 0 0.5rem;
+         background-color: $theme-greywhite;
+         color: $theme-greylight2;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         border-radius: 0.75rem;
+         border: 3px solid $theme-grey;
+         transition: 0.3s;
+         padding: 1rem 1.5rem;
 
+         i {
+            transition: 0.3s;
+            margin-left: 1rem;
+         }
+
+         &:hover {
+            background-color: $primary;
+            color: $primary-light;
+            cursor: pointer;
+
+            i {
+               color: $primary-light;
+            }
+         }
+      }
+   }
 }
 
 .topSpacing {
-  padding: 8rem 0 0 0;
+   padding: 8rem 0 0 0;
 }
 
 // Medium devices (tablets, 768px and up)
 @media (max-width: 768px) {
-  .project-container {
-    .page-heading-container {
-      min-height: max-content;
-    }
-  }
+   .project-container {
+      .page-heading-container {
+         min-height: max-content;
+      }
+   }
 }

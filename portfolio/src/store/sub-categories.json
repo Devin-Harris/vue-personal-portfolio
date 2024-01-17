@@ -128,6 +128,14 @@
             "code": "https://github.com/Devin-Harris/vue-personal-portfolio"
          },
          {
+            "_id": "5fb8576b399d2c2ee4fc9cf2",
+            "name": "Roommated",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/Roommated.png",
+            "description": "Roommated was a multi version site I worked on with my partners for my senior design project. Roommated is a web app designed to simplify the process of finding and connecting with roommates for shared housing arrangements. Whether users are looking to fill vacancies in their current residence or seeking housing in a new area, Roommated provides a platform to facilitate roommate searches. The app leverages location-based features, interactive maps, and group formation capabilities to make the search process more efficient and collaborative. Users can create or join groups with friends or roommates, making it easier to coordinate their search efforts. Even if an individual starts their search alone, Roommated allows them to merge with other groups later, expanding their roommate search network. The app also streamlines the application management process, enabling users who have made posts to review and respond to applications from potential roommates. This feature helps users assess and connect with suitable roommates. Overall, Roommated is a user-friendly platform designed to simplify the roommate search process, making it easier for individuals and groups to find compatible roommates and housing options. It was built with Angular 16, NestJS, Azure SQL db and file storage, and many other interesting technologies.",
+            "live_site": "https://roommated.devinharris.dev/",
+            "code": "https://dev.azure.com/SunriseDestruction/_git/Roommated"
+         },
+         {
             "_id": "5fb7275a3deb2109e63a985f",
             "name": "My Resume",
             "display_image": "https://devinharris.dev/Portfolio_Images/Web/resume.png",
@@ -155,7 +163,7 @@
             "_id": "6031ba06bcbde2000496f4c6",
             "name": "Larissa Cullen Portfolio",
             "display_image": "https://devinharris.dev/Portfolio_Images/Web/ltcPNG.png",
-            "description": "This project was commissioned by someone I worked with on The Art league of Cincinnati site. She wanted a custom portfolio, that she could update, without using a CMS like weebly. I created this site using a Vue front end and made a custom backend using NodeJS and MongoDB Atlas. Site was also designed to be mobile responsive which was a focus when creating different components and designing the architecture for the site",
+            "description": "This project was commissioned by someone I worked with on The Art league of Cincinnati site. She wanted a custom portfolio, that she could update, without using a CMS like weebly. I created this site using a Vue front end and made a custom backend using NodeJS and MongoDB Atlas. Site was also designed to be mobile responsive which was a focus when creating different components and designing the architecture for the site. * Note the backend for this site has since been taken down as the heroku free tier was removed, so viewing the live site may not work as intended",
             "live_site": "http://ltcfineartist.com",
             "code": "https://github.com/Devin-Harris/LTC-portfolio"
          },
@@ -163,7 +171,7 @@
             "_id": "60df450d58e70b0004af3bbc",
             "name": "Wiffle Ninja",
             "display_image": "https://devinharris.dev/Portfolio_Images/Web/wiffleninja.png",
-            "description": "This project started as a mobile web app, designed to allow people to create and keep track of a wiffle ball league they want to run. The app was created using Vue 3 and a node js mongodb backend. I gained a lot of experience building the complex components in this project, especially the tables. This project I also implemented web sockets for the notifications to update on the screen in real time which was very interesting and fun to work with. This was made with a very commercial mindset. We have a mock database that links to our mock subdomain site: https://mock.wiffle.ninja and we are in the process of creating an admin dashboard to allow reporting, timeouts, and local development a lot easier in the future.",
+            "description": "This project started as a mobile web app, designed to allow people to create and keep track of a wiffle ball league they want to run. The app was created using Vue 3 and a node js mongodb backend. I gained a lot of experience building the complex components in this project, especially the tables. This project I also implemented web sockets for the notifications to update on the screen in real time which was very interesting and fun to work with. This was made with a very commercial mindset. We have a mock database that links to our mock subdomain site: https://mock.wiffle.ninja and we are in the process of creating an admin dashboard to allow reporting, timeouts, and local development a lot easier in the future. * Note the backend for this site has since been taken down as the heroku free tier was removed, so viewing the live site may not work as intended",
             "live_site": "https://wiffle.ninja/",
             "code": "https://github.com/Devin-Harris/wiffle-league"
          }
@@ -179,24 +187,24 @@
             "_id": "5fb8576b399d8c2ee4fc9cf2",
             "name": "Project 1",
             "display_image": "",
-            "description": "TBD",
-            "live_site": "",
+            "description": "In progress project for my CS 5124 - VISUAL INTERFACES DATA course",
+            "live_site": null,
             "code": "https://github.com/Devin-Harris"
          },
          {
             "_id": "65a7451a46363cc329ad3d45",
             "name": "Project 2",
             "display_image": "",
-            "description": "TBD",
-            "live_site": "",
+            "description": "In progress project for my CS 5124 - VISUAL INTERFACES DATA course",
+            "live_site": null,
             "code": "https://github.com/Devin-Harris"
          },
          {
             "_id": "65a7454c46363cc329ad3d47",
             "name": "Project 3",
             "display_image": "",
-            "description": "TBD",
-            "live_site": "",
+            "description": "In progress project for my CS 5124 - VISUAL INTERFACES DATA course",
+            "live_site": null,
             "code": "https://github.com/Devin-Harris"
          }
       ]

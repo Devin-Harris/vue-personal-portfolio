@@ -116,8 +116,8 @@ export default {
          const projectName = this.$route.params.projectName;
          const projectSubCategory = this.$route.params.projectSubCategory;
          const project = this.subCategories
-            .find((sc) => sc.sub_category_name === projectSubCategory)
-            .projects.find((p) => p.name === projectName);
+            ?.find((sc) => sc.sub_category_name === projectSubCategory)
+            ?.projects.find((p) => p.name === projectName);
          if (project) return project.description;
          else return '';
       },
@@ -125,9 +125,9 @@ export default {
          const projectName = this.$route.params.projectName;
          const projectSubCategory = this.$route.params.projectSubCategory;
          const project = this.subCategories
-            .find((sc) => sc.sub_category_name === projectSubCategory)
-            .projects.find((p) => p.name === projectName);
-         return !!project.code;
+            ?.find((sc) => sc.sub_category_name === projectSubCategory)
+            ?.projects.find((p) => p.name === projectName);
+         return !!project?.code;
       },
    },
    methods: {
