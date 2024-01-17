@@ -1,5 +1,18 @@
 [
    {
+      "subCategories": [
+         "Web Apps",
+         "Full Websites",
+         "Utility",
+         "Visualizations"
+      ],
+      "images": [],
+      "_id": "5fb1ac5b8f4e950787523a5d",
+      "name": "Web Projects",
+      "display_image": "https://devinharris.dev/Portfolio_Images/Web/code.jpg",
+      "__v": 0
+   },
+   {
       "subCategories": [],
       "images": [
          "https://devinharris.dev/Portfolio_Images/Logos/1-min.png",
@@ -125,19 +138,6 @@
       "_id": "5fb1d5baa1bb6859b5aa7430",
       "name": "Illustrations",
       "display_image": "https://devinharris.dev/Portfolio_Images/Illustrations/1-0.jpg",
-      "__v": 0
-   },
-   {
-      "subCategories": [
-         "Web Apps",
-         "Full Websites",
-         "Utility",
-         "Visualizations"
-      ],
-      "images": [],
-      "_id": "5fb1ac5b8f4e950787523a5d",
-      "name": "Web Projects",
-      "display_image": "https://devinharris.dev/Portfolio_Images/Web/code.jpg",
       "__v": 0
    },
    {

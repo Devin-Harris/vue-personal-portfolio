@@ -1,5 +1,7 @@
 import api from '@/api/api.js';
 import { createStore } from 'vuex';
+import categories from './categories.json';
+import subCategories from './sub-categories.json';
 const IMAGE_BASE_URL = 'https://devinharris.dev/Portfolio_Images';
 
 export default createStore({
@@ -59,18 +61,18 @@ export default createStore({
    },
    actions: {
       async fetchCategories(context) {
-         const response = await fetch(api + '/project-categories', {
-            method: 'GET',
-         });
-         let data = await response.json();
-         context.commit('updateCategories', { data });
+         // const response = await fetch(api + '/project-categories', {
+         //    method: 'GET',
+         // });
+         // let data = await response.json();
+         context.commit('updateCategories', { data: categories });
       },
       async fetchSubCategories(context) {
-         const response = await fetch(api + '/project-sub-categories', {
-            method: 'GET',
-         });
-         let data = await response.json();
-         context.commit('updateSubCategories', { data });
+         // const response = await fetch(api + '/project-sub-categories', {
+         //    method: 'GET',
+         // });
+         // let data = await response.json();
+         context.commit('updateSubCategories', { data: subCategories });
       },
       async verifyPassword(context, password) {
          const response = await fetch(api + '/verify-password', {
