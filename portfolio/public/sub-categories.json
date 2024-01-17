@@ -1,0 +1,204 @@
+[
+   {
+      "_id": "5fb1e80aa1bb6859b5aa7433",
+      "category_name": "Web Projects",
+      "sub_category_name": "Web Apps",
+      "projects": [
+         {
+            "_id": "5fb7277b3deb2109e63a9862",
+            "name": "Minesweeper",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/minesweeper.png",
+            "description": "This project is a great mixture of game logic and UI design. It used a lot of javascript and jquery to capture all the functionality of a minesweeper game, and allow easy manuevering through the games interface. The goal of the game is to flag every bomb on the board. Left clicking will show how many bombs are surrounding that piece and right clicked will flag and piece as a bomb. If you left click a bomb you will lose, and if you right click a piece that isn't a bomb you will run out of flags and eventually have to click a bomb.",
+            "live_site": "https://minesweeper.devinharris.dev",
+            "code": "https://github.com/Devin-Harris/MineSweeper"
+         },
+         {
+            "_id": "5fb727853deb2109e63a9863",
+            "name": "Roadster Recon",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/roadster.png",
+            "description": "This project was a improvement to one of my computer science final labs. The goal of the game is to traverse a 15x15 board and find the Roadster piece before the Musk piece finds you. This used a lot of logic and I used a lot of objects in order to save positions of the player and other pieces on the board.",
+            "live_site": "https://roadsterrecon.devinharris.dev/",
+            "code": "https://github.com/Devin-Harris/Roadster-Recon"
+         },
+         {
+            "_id": "5fb7278c3deb2109e63a9864",
+            "name": "Connect 4",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/connect.png",
+            "description": "This project was an fun way to continue my developement in javascript and jquery. It allows for 2 players to play against each other, or you can play the computer if you want. Alot of the code involved in this project was creating a bot that wasn't placing pieces completely randomly. Their are many functions the bot runs when checking for a new position to place a piece in order to win if it has the opportunity to, block the player from winning, or prevent itself from playing a move that the player could win off of.",
+            "live_site": "https://connect4.devinharris.dev/",
+            "code": "https://github.com/Devin-Harris/Connect-4"
+         },
+         {
+            "_id": "5fb727a73deb2109e63a9866",
+            "name": "Pong Game",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/pong.png",
+            "description": "This project was an even furthur exploration into javascript and jquery. It is a re-creation of the single player pong game where you have to move the paddle across the board and keep the bouncing ball in the air. It uses a lot of sophisticated techniques like objects, functions, timeouts, and tons of jquery.",
+            "live_site": "https://pong-game.devinharris.dev/",
+            "code": "https://github.com/Devin-Harris/Pong-game",
+            "hidden": true
+         },
+         {
+            "_id": "5fb727ad3deb2109e63a9867",
+            "name": "Peg Game",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/peg.png",
+            "description": "This project was an exploration into javascript and the functionality I could get out of it. Its a re-creation of the peg style game where you need to have as few pegs remaining at the end of the game. It uses very simple ui and vanilla javascript.",
+            "live_site": "https://peg-game.devinharris.dev/",
+            "code": "https://github.com/Devin-Harris/Peg-Game",
+            "hidden": true
+         },
+         {
+            "_id": "5fb727b43deb2109e63a9868",
+            "name": "Go Fish",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/gofish.png",
+            "description": "This project was an introduction to api's and how to interact with them from the front end. I used deckofcardsapi.com to generate in a deck of cards and split the cards between a player and computer. Then using those cards implemented logic to follow the rules of Go Fish. I also used Vue to create the cards, and other UI elements for this project.",
+            "live_site": "https://gofish.devinharris.dev/",
+            "code": "https://github.com/Devin-Harris/goFish"
+         },
+         {
+            "_id": "61796dcb67a47100049fcf74",
+            "name": "Dewdle",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/dewdle.png",
+            "description": "This project was mainly focused on Web sockets. The app is a drawing app where you can join/create a game and players take turns trying to draw a word onto the screen for the other players to guess. This required a lot of high order array methods on the backend and used Vue 3.0 with the composition api on the frontend. It was also my first complex project working with the canvas html api which proved to be very fun to work with.",
+            "live_site": "https://dewdle.devinharris.dev/",
+            "code": "https://github.com/Devin-Harris/dewdle"
+         }
+      ],
+      "__v": 0
+   },
+   {
+      "_id": "5fb1e83ea1bb6859b5aa7434",
+      "category_name": "Web Projects",
+      "sub_category_name": "Utility",
+      "projects": [
+         {
+            "_id": "5fb727c13deb2109e63a9869",
+            "name": "Spotify API",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/spotify.png",
+            "description": "This project was an exploration in API's and learning about authentication. I used spotifys API to load a lot information about a given account that was logged into. Also implemented a ton of features like being able to create playlists, add songs to queue, and open artists, tracks, or playlists all from the api. The front end was built with Vue js as well. ",
+            "live_site": "https://spotify.devinharris.dev/",
+            "code": "https://github.com/Devin-Harris/SpotifyAPI"
+         },
+         {
+            "_id": "5fb727c63deb2109e63a986a",
+            "name": "Sudoku Solver",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/sudoku.png",
+            "description": "This project was an exploration into backtracking and more practice with recursive functions. The project includes a sudoku board that you can enter values into and press a solve button to generate a valid solution to the sudoku puzzle following the rules of sudoku. It also includes error handling for invalid placements of board values and was built using Vue js.",
+            "live_site": "https://sudokusolver.devinharris.dev/",
+            "code": "https://github.com/Devin-Harris/SudokuSolver"
+         },
+         {
+            "_id": "5fb727cd3deb2109e63a986b",
+            "name": "Sorting Algorithm Visualizer",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/sorting.png",
+            "description": "This project was my first attempt to understand Sorting Algorithms. I had been interested in learning these algorithms for awhile, but was unable to find courses as a freshman. This project showcases 5 of my favorite sorting algorithms and also visually shows how these algorithms work. This project required a lot of research and built on my skills in javascript and dynamic styling. I show Quick Sort, Selection Sort, Bubble Sort, Merge Sort, and Heap Sort in this project. Along with the appealing visual showcasing the algorithm working, I also include a very ui friendly control panel where you can change the array size, generate a new array, use a different algorithm, change how fast the visual sorts, etc.",
+            "live_site": "https://sorting-visualizer.devinharris.dev/",
+            "code": "https://github.com/Devin-Harris/SortingAlgorithms"
+         },
+         {
+            "_id": "5fb727d33deb2109e63a986c",
+            "name": "Dynamic Gallery Loader",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/gallery.png",
+            "description": "This project was my first introduction to server side languages within web developement. This Gallery loader uses ajax to request to a php file where I recieve all the names of every image in a specific folder. The Javascript then renders those images out to the DOM completely dynamically. This helps a lot in a portfolio style website where images may need to be added or removed, and multiple images are within a gallery. This completely removes the need for img tags within a gallery, and allows a person of little to no coding background to edit their portfolio by simply putting images into a folder.",
+            "live_site": "https://dynamicgallery.devinharris.dev/",
+            "code": "https://github.com/Devin-Harris/DynamicGallery",
+            "hidden": true
+         },
+         {
+            "_id": "6250e13f8a27941060865439",
+            "name": "Image to ascii",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/image-to-ascii.png",
+            "description": "This project was an exploration in ascii density strings to convert images to ascii characters. It started with a simple file input field and quickly grew to have more functionality such as inverting the image, showing the original file, showing the saturation and luminance for each individual ascii converted from the images pixels, downloading the image as a png/jpg, copying the ascii as text to the clipboard, and much more. It is a solely frontend application using Vue 3. All the components and their stylings, besides the color picker, were made from scratch. Hope you enjoy this project!",
+            "live_site": "https://image-to-ascii.devinharris.dev/",
+            "code": "https://github.com/Devin-Harris/image-to-ascii"
+         }
+      ],
+      "__v": 0
+   },
+   {
+      "_id": "5fb1d92ea1bb6859b5aa7432",
+      "category_name": "Web Projects",
+      "sub_category_name": "Full Websites",
+      "projects": [
+         {
+            "_id": "5fb8576b399d8c2ee4fc9cf2",
+            "name": "My Portfolio",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/portfolio.png",
+            "description": "My personal portfolio was one of the first projects I attempted. I produced many drafts and revamped it multiple times. The version you are currently viewing is my most current edition.\n\nThis site uses the front end framework Vue JS. It was built using many different components and also used sass for styling of those components. This version was also one of my first attempts using node.js. I integrated this project with a mongoDB database and setup various endpoints that I called to dynamically load the projects and their corresponding imagery and details to the site.\n\n",
+            "live_site": "https://devinharris.dev/",
+            "code": "https://github.com/Devin-Harris/vue-personal-portfolio"
+         },
+         {
+            "_id": "5fb7275a3deb2109e63a985f",
+            "name": "My Resume",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/resume.png",
+            "description": "My resume initially was a simple site I set up to better showcase my web development skills. After many redesigns I ended up with a relatively simple site that is very easy to navigate. It also dynamically shows and hides information based on what information you want shown on the screen, allowing for very snapping redirects because a separate html document does not need to be loaded. This did require some complex jQuery and CSS to create, but the end product is very easy to update and understand as a viewer.",
+            "live_site": "https://resume.devinharris.dev/",
+            "code": "https://github.com/Devin-Harris?tab=repositories",
+            "hidden": true
+         },
+         {
+            "_id": "5fb727613deb2109e63a9860",
+            "name": "Emily Elder Creates",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/emilyeldercreates.png",
+            "description": "This project was another portfolio created using Vue. It was a simple design that holds various routes for different projects, a resume that you can download as well as view with interactive cards, and a working contact form.",
+            "live_site": "https://emily-elder.devinharris.dev/",
+            "hidden": true
+         },
+         {
+            "_id": "5fb727683deb2109e63a9861",
+            "name": "Art League of Cincy",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/artleaguecincy.png",
+            "description": "This project was one of my first commissioned projects. It was made for The Art League of Cincinnati to showcase their art collection, information about the organization, events, and a shop. I created this project using wordpress because the site needed to be editable by the rest of the organization, so using a CMS was essential.",
+            "live_site": "https://artleaguecincy.org/"
+         },
+         {
+            "_id": "6031ba06bcbde2000496f4c6",
+            "name": "Larissa Cullen Portfolio",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/ltcPNG.png",
+            "description": "This project was commissioned by someone I worked with on The Art league of Cincinnati site. She wanted a custom portfolio, that she could update, without using a CMS like weebly. I created this site using a Vue front end and made a custom backend using NodeJS and MongoDB Atlas. Site was also designed to be mobile responsive which was a focus when creating different components and designing the architecture for the site",
+            "live_site": "http://ltcfineartist.com",
+            "code": "https://github.com/Devin-Harris/LTC-portfolio"
+         },
+         {
+            "_id": "60df450d58e70b0004af3bbc",
+            "name": "Wiffle Ninja",
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/wiffleninja.png",
+            "description": "This project started as a mobile web app, designed to allow people to create and keep track of a wiffle ball league they want to run. The app was created using Vue 3 and a node js mongodb backend. I gained a lot of experience building the complex components in this project, especially the tables. This project I also implemented web sockets for the notifications to update on the screen in real time which was very interesting and fun to work with. This was made with a very commercial mindset. We have a mock database that links to our mock subdomain site: https://mock.wiffle.ninja and we are in the process of creating an admin dashboard to allow reporting, timeouts, and local development a lot easier in the future.",
+            "live_site": "https://wiffle.ninja/",
+            "code": "https://github.com/Devin-Harris/wiffle-league"
+         }
+      ],
+      "__v": 0
+   },
+   {
+      "_id": "65a7441e38133b7abc12dc5c",
+      "category_name": "Web Projects",
+      "sub_category_name": "Visualizations",
+      "projects": [
+         {
+            "_id": "5fb8576b399d8c2ee4fc9cf2",
+            "name": "Project 1",
+            "display_image": "",
+            "description": "TBD",
+            "live_site": "",
+            "code": "https://github.com/Devin-Harris"
+         },
+         {
+            "_id": "65a7451a46363cc329ad3d45",
+            "name": "Project 2",
+            "display_image": "",
+            "description": "TBD",
+            "live_site": "",
+            "code": "https://github.com/Devin-Harris"
+         },
+         {
+            "_id": "65a7454c46363cc329ad3d47",
+            "name": "Project 3",
+            "display_image": "",
+            "description": "TBD",
+            "live_site": "",
+            "code": "https://github.com/Devin-Harris"
+         }
+      ]
+   }
+]

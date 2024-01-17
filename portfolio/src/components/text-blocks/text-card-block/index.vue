@@ -13,7 +13,7 @@
     </div>
 
     <div v-if="items.length > 0" class="text-card-block-container__cards">
-      <category-card v-for="item in items" :item="item" :key="item.name" />
+      <category-card v-for="item in items.filter(i => !i.hidden)" :item="item" :key="item.name" />
     </div>
 
     <div v-if="items.length === 0 && !shouldHaveNoImages" class="loading">
