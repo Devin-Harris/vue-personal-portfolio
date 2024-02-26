@@ -1,12 +1,20 @@
 .text-button-block-container {
    margin: 5rem auto;
-   width: 50%;
+   width: 100%;
+   max-width: 80%;
+
+   text-align: left;
+   background-color: $theme-greydarkest;
+   border: 1px solid $theme-greydark;
+   border-radius: 0.5rem;
+   padding: 1rem !important;
+   margin-bottom: 15rem !important;
 
    &__heading {
    }
 
    &__text {
-      margin: 0.5rem 0;
+      margin: 1rem 0;
       color: white;
    }
 
@@ -31,6 +39,7 @@
 @media (max-width: 1200px) {
    .text-button-block-container {
       width: 60%;
+      max-width: unset;
    }
 }
 

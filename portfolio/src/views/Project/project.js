@@ -9,6 +9,7 @@ import ProjectImageGallery from '@/components/projects/project-image-gallery';
 import TextButtonBlock from '@/components/text-blocks/text-button-block';
 import TextCardBlock from '@/components/text-blocks/text-card-block';
 import { mapActions, mapGetters } from 'vuex';
+// import Visualizations from './visualizations';
 
 export default {
    name: 'project',
@@ -23,6 +24,7 @@ export default {
       ProjectEditor,
       SelectorCheckbox,
       BackgroundAnimation,
+      // Visualizations,
    },
    data() {
       return {
@@ -129,6 +131,14 @@ export default {
             ?.projects.find((p) => p.name === projectName);
          return !!project?.code;
       },
+      getProjectHasDocumentationLink() {
+         const projectName = this.$route.params.projectName;
+         const projectSubCategory = this.$route.params.projectSubCategory;
+         const project = this.subCategories
+            ?.find((sc) => sc.sub_category_name === projectSubCategory)
+            ?.projects.find((p) => p.name === projectName);
+         return !!project?.documentation;
+      },
    },
    methods: {
       ...mapActions(['fetchCategories', 'fetchSubCategories']),
@@ -195,6 +205,34 @@ export default {
             .projects.find((p) => p.name === projectName);
          if (button === 'site') window.open(project.live_site);
          else if (button === 'code') window.open(project.code);
+         else if (button === 'docs') window.open(project.documentation);
+      },
+      buildProjectButtons() {
+         const actions = [
+            {
+               hasIcon: true,
+               btnText: 'View the live site',
+               action: 'site',
+            },
+         ];
+
+         if (this.getProjectHasDocumentationLink) {
+            actions.push({
+               hasIcon: true,
+               btnText: 'View the documentation',
+               action: 'docs',
+            });
+         }
+
+         if (this.getProjectHasCodeLink) {
+            actions.push({
+               hasIcon: true,
+               btnText: 'View the code',
+               action: 'code',
+            });
+         }
+
+         return actions;
       },
    },
    async mounted() {

@@ -119,10 +119,7 @@ export default {
          },
       });
 
-      if (this.textAnimation) this.textTimeline.pause(0);
-      if (!this.textAnimation) this.textTimeline.seek(100000);
-
-      if (this.textAnimation) this.textTimeline.play();
-      if (this.linksTimeline) this.linksTimeline.play();
+      this.textTimeline.play();
+      this.linksTimeline.play();
    },
 };

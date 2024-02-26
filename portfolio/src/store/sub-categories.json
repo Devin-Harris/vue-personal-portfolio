@@ -186,10 +186,11 @@
          {
             "_id": "5fb8576b399d8c2ee4fc9cf2",
             "name": "Project 1",
-            "display_image": "",
-            "description": "In progress project for my CS 5124 - VISUAL INTERFACES DATA course",
-            "live_site": null,
-            "code": "https://github.com/Devin-Harris"
+            "display_image": "https://devinharris.dev/Portfolio_Images/Web/datavisproject1.png",
+            "description": "The motivation for this project was to illustrate potential correlations and trends between different economic, environmental, behavioral, demographic, and health related factors across all the U.S. counties. The goal of the project was to help people understand how these factors can influence each other while also providing quantitative data to each U.S. County. Another source of motivation for this project was to get accustomed to the d3js library. This library helps aid in creating various charts through the use of dynamically created svgs. This library is heavily used in the CS 5124 - VISUAL INTERFACES DATA course which I took in my senior year and thus where this project stemmed from.",
+            "live_site": "https://datavisproject1.devinharris.dev",
+            "documentation": "https://datavisproject1.devinharris.dev/documentation.html",
+            "code": "https://github.com/Devin-Harris/DataVisProject1/tree/main/vanilla"
          },
          {
             "_id": "65a7451a46363cc329ad3d45",

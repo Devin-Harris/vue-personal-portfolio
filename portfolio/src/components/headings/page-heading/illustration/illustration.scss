@@ -1,10 +1,18 @@
 .illustration-container {
    position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 100%;
+   width: max-content;
    .outlines,
    .fill {
       height: 100%;
       z-index: 5;
-      position: relative;
+      //  position: absolute;
+      top: 0;
+      left: 0;
       .lines {
          height: 100%;
       }
@@ -14,7 +22,6 @@
    }
    .fill {
       z-index: 1;
-      //  opacity: 0;
       position: absolute;
       top: 0%;
       right: 0%;
